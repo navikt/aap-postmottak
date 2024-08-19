@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "echo 'no tests'",
+    "test": "vitest --run",
     "lint": "next lint",
     "prepare": "husky"
   },
@@ -27,15 +27,25 @@
   "devDependencies": {
     "@navikt/aap-felles-prettier": "^1.5.3",
     "@navikt/eslint-config-aap": "^1.5.3",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^2.0.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "husky": "^9.1.4",
+    "jsdom": "^24.1.1",
     "lint-staged": "^15.2.9",
     "prettier": "^3.3.3",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite-tsconfig-paths": "^4",
+    "vitest": "^2.0.5",
+    "vitest-fetch-mock": "^0.3.0"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",

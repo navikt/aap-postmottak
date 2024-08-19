@@ -38,4 +38,6 @@ next-env.d.ts
 # eslint
 .eslintcache
 
+# Co-authors plugin
+.husky/prepare-commit-msg
 .git-co-authors.yaml
