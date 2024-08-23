@@ -41,3 +41,6 @@ next-env.d.ts
 # Co-authors plugin
 .husky/prepare-commit-msg
 .git-co-authors.yaml
+
+# IDE
+.idea
