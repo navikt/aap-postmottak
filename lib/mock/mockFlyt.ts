@@ -1,45 +1,45 @@
-import { Flyt } from 'lib/types';
+import { BehandlingFlytOgTilstand } from 'lib/types/types';
 
-export const mockFlyt: Flyt = {
+export const mockFlyt: BehandlingFlytOgTilstand = {
   flyt: [
     {
-      stegGruppe: 'VURDER_DOKUMENTTYPE',
+      stegGruppe: 'START_BEHANDLING',
       erFullført: false,
       steg: [
         {
-          stegType: 'VURDER_DOKUMENTTYPE',
+          stegType: 'START_BEHANDLING',
           avklaringsbehov: [],
-          vilkårDTO: {},
+          vilkårDTO: undefined,
         },
       ],
       skalVises: true,
     },
     {
-      stegGruppe: 'ENDELIG_JOURNALFØR',
+      stegGruppe: 'KATEGORISER',
       erFullført: false,
       steg: [
         {
-          stegType: 'ENDELIG_JOURNALFØR',
+          stegType: 'KATEGORISER_DOKUMENT',
           avklaringsbehov: [],
-          vilkårDTO: {},
+          vilkårDTO: undefined,
         },
       ],
       skalVises: false,
     },
   ],
-  aktivtSteg: 'VURDER_DOKUMENTTYPE',
-  aktivGruppe: 'VURDER_DOKUMENTTYPE',
+  aktivtSteg: 'KATEGORISER_DOKUMENT',
+  aktivGruppe: 'KATEGORISER',
   behandlingVersjon: 0,
   prosessering: {
-    status: 'VENTER',
+    status: 'FERDIG',
     ventendeOppgaver: [],
   },
   visning: {
-    saksbehandlerReadOnly: false,
-    beslutterReadyOnly: false,
-    visBeslutterKort: false,
-    visVenteKort: false,
+    beslutterReadOnly: false,
     kvalitetssikringReadOnly: false,
+    saksbehandlerReadOnly: false,
+    visBeslutterKort: false,
     visKvalitetssikringKort: false,
+    visVentekort: false,
   },
 };
