@@ -1,5 +1,7 @@
 import { StegGruppeIndikatorAksel } from 'components/steggruppeindikator/StegGruppeIndikatorAksel';
 import { ReactNode } from 'react';
+import {HGrid} from "@navikt/ds-react";
+import {SplitVindu} from "components/splitvindu/SplitVindu";
 
 interface LayoutProps {
   children: ReactNode;
@@ -11,7 +13,9 @@ const Layout = async ({ children, params }: LayoutProps) => {
   return (
     <div>
       <StegGruppeIndikatorAksel id={params.id} />
-      {children}
+        <SplitVindu>
+            {children}
+        </SplitVindu>
     </div>
   );
 };
