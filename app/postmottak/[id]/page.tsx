@@ -1,23 +1,19 @@
+import { hentFlyt } from 'lib/services/dokumentmottakservice/dokumentMottakService';
 import { notFound, redirect } from 'next/navigation';
 
 interface PageProps {
   id: string;
 }
 
-interface Flyt {
-  aktivtSteg: string;
-  steg: { stegType: string; erFullført: boolean }[];
-}
-
 const Page = async ({ params }: { params: PageProps }) => {
   // TODO: Hent flyt
-  const flyt: Flyt = { aktivtSteg: 'VURDER_DOKUMENTTYPE', steg: [] };
+  const flyt = await hentFlyt(params.id);
 
   if (flyt === undefined) {
     return notFound();
   }
 
-  redirect(`/postmottak/${params.id}/${flyt?.aktivtSteg}`);
+  redirect(`/postmottak/${params.id}/${flyt.aktivGruppe}`);
 };
 
 export default Page;

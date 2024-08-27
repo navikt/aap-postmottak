@@ -49,3 +49,7 @@ spec:
   {{/each}}
   tokenx:
     enabled: true
+  accessPolicy:
+    outbound:
+      rules:
+        - application: dokumentmottak
