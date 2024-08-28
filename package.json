@@ -24,7 +24,7 @@
     "@opentelemetry/instrumentation": "^0.52.1",
     "@opentelemetry/resources": "^1.25.1",
     "@opentelemetry/sdk-logs": "^0.52.1",
-    "@opentelemetry/sdk-metrics": "^1.25.1",
+    "@opentelemetry/sdk-metrics": "^1.26.0",
     "@opentelemetry/sdk-trace-base": "^1.25.1",
     "@vercel/otel": "^1.9.2",
     "next": "14.2.5",
