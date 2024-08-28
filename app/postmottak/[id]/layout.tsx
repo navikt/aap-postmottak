@@ -1,8 +1,6 @@
-import { StegGruppeIndikatorAksel } from 'components/steggruppeindikator/StegGruppeIndikatorAksel';
 import { ReactNode } from 'react';
-import { HGrid } from '@navikt/ds-react';
-import { SplitVindu } from 'components/splitvindu/SplitVindu';
 import { DokumentInfoBanner } from 'components/dokumentinfobanner/DokumentInfoBanner';
+import { hentFlyt } from 'lib/services/dokumentmottakservice/dokumentMottakService';
 
 interface LayoutProps {
   children: ReactNode;
@@ -11,11 +9,11 @@ interface LayoutProps {
 
 const Layout = async ({ children, params }: LayoutProps) => {
   // TODO: Høre med designer om vi trenger en 'saksinfo' komponent
+
   return (
     <div>
       <DokumentInfoBanner />
-      <StegGruppeIndikatorAksel id={params.id} />
-      <SplitVindu>{children}</SplitVindu>
+      {children}
     </div>
   );
 };
