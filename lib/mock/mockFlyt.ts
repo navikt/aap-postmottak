@@ -9,7 +9,6 @@ export const mockFlyt: BehandlingFlytOgTilstand = {
         {
           stegType: 'START_BEHANDLING',
           avklaringsbehov: [],
-          vilkårDTO: undefined,
         },
       ],
       skalVises: true,
@@ -21,7 +20,6 @@ export const mockFlyt: BehandlingFlytOgTilstand = {
         {
           stegType: 'KATEGORISER_DOKUMENT',
           avklaringsbehov: [],
-          vilkårDTO: undefined,
         },
       ],
       skalVises: false,
@@ -33,13 +31,5 @@ export const mockFlyt: BehandlingFlytOgTilstand = {
   prosessering: {
     status: 'FERDIG',
     ventendeOppgaver: [],
-  },
-  visning: {
-    beslutterReadOnly: false,
-    kvalitetssikringReadOnly: false,
-    saksbehandlerReadOnly: false,
-    visBeslutterKort: false,
-    visKvalitetssikringKort: false,
-    visVentekort: false,
   },
 };

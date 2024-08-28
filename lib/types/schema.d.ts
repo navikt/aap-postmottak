@@ -573,49 +573,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/behandling/{referanse}/sett-p\u00E5-vent': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description referanse */
-          referanse: string;
-        };
-        cookie?: never;
-      };
-      requestBody?: {
-        content: {
-          'application/json': components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.SettP\u00E5VentRequest'];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.BehandlingResultatDto'];
-          };
-        };
-      };
-    };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/behandling/{referanse}/vente-informasjon': {
+  '/api/dokument/{referanse}': {
     parameters: {
       query?: never;
       header?: never;
@@ -640,7 +598,7 @@ export interface paths {
             [name: string]: unknown;
           };
           content: {
-            'application/json': components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.Venteinformasjon'];
+            'application/json': components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentBehandlingDto'];
           };
         };
       };
@@ -881,16 +839,31 @@ export interface components {
       /** Format: uuid */
       referanse: string;
     };
-    'no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.AvklaringsbehovL\u00F8sning': components['schemas']['no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.SattP\u00E5VentL\u00F8sning'];
-    'no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.SattP\u00E5VentL\u00F8sning': {
+    'no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.AvklaringsbehovL\u00F8sning':
+      | components['schemas']['no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.DigitaliserDokumentL\u00F8sning']
+      | components['schemas']['no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.KategoriserDokumentL\u00F8sning'];
+    'no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.DigitaliserDokumentL\u00F8sning': {
       behovstype: string;
+      kategori: components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DigitaliserDokumentDto'];
+    };
+    'no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.KategoriserDokumentL\u00F8sning': {
+      behovstype: string;
+      kategori: components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.KategoriavklaringDto'];
+    };
+    'no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DigitaliserDokumentDto': {
+      strukturertDokument: string;
+    };
+    'no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentBehandlingDto': Record<
+      string,
+      never
+    >;
+    'no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.KategoriavklaringDto': {
+      /** @enum {string} */
+      kategori: 'SØKNAD' | 'MELDEKORT';
     };
     'no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO': {
       /** @enum {string} */
-      definisjon:
-        | "KATEGORISER_DOKUMENT(kode='1337')"
-        | "DIGITALISER_DOKUMENT(kode='1338')"
-        | "MANUELT_SATT_PÅ_VENT(kode='9001')";
+      definisjon: "KATEGORISER_DOKUMENT(kode='1337')" | "DIGITALISER_DOKUMENT(kode='1338')";
       endringer: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.EndringDTO'][];
       /** @enum {string} */
       status:
@@ -904,64 +877,18 @@ export interface components {
     };
     'no.nav.aap.behandlingsflyt.flyt.flate.BehandlingFlytOgTilstandDto': {
       /** @enum {string} */
-      aktivGruppe:
-        | 'KATEGORISER'
-        | 'DIGITALISER'
-        | 'START_BEHANDLING'
-        | 'ALDER'
-        | 'LOVVALG'
-        | 'MEDLEMSKAP'
-        | 'BARNETILLEGG'
-        | 'STUDENT'
-        | 'SYKDOM'
-        | 'GRUNNLAG'
-        | 'ET_ANNET_STED'
-        | 'UNDERVEIS'
-        | 'TILKJENT_YTELSE'
-        | 'SIMULERING'
-        | 'VEDTAK'
-        | 'FATTE_VEDTAK'
-        | 'KVALITETSSIKRING'
-        | 'IVERKSETT_VEDTAK'
-        | 'UDEFINERT';
+      aktivGruppe: 'KATEGORISER' | 'DIGITALISER' | 'START_BEHANDLING' | 'UDEFINERT';
       /** @enum {string} */
       aktivtSteg: 'KATEGORISER_DOKUMENT' | 'DIGITALISER_DOKUMENT' | 'START_BEHANDLING' | 'UDEFINERT';
       /** Format: int64 */
       behandlingVersjon: number;
       flyt: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.FlytGruppe'][];
       prosessering: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.visning.Prosessering'];
-      visning: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.visning.Visning'];
-      /** @enum {string|null} */
-      vurdertGruppe?:
-        | 'KATEGORISER'
-        | 'DIGITALISER'
-        | 'START_BEHANDLING'
-        | 'ALDER'
-        | 'LOVVALG'
-        | 'MEDLEMSKAP'
-        | 'BARNETILLEGG'
-        | 'STUDENT'
-        | 'SYKDOM'
-        | 'GRUNNLAG'
-        | 'ET_ANNET_STED'
-        | 'UNDERVEIS'
-        | 'TILKJENT_YTELSE'
-        | 'SIMULERING'
-        | 'VEDTAK'
-        | 'FATTE_VEDTAK'
-        | 'KVALITETSSIKRING'
-        | 'IVERKSETT_VEDTAK'
-        | 'UDEFINERT'
-        | null;
-      /** @enum {string|null} */
-      vurdertSteg?: 'KATEGORISER_DOKUMENT' | 'DIGITALISER_DOKUMENT' | 'START_BEHANDLING' | 'UDEFINERT' | null;
     };
-    'no.nav.aap.behandlingsflyt.flyt.flate.BehandlingResultatDto': {
-      'vilk\u00E5rene': components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.Vilk\u00E5rDTO'][];
-    };
+    'no.nav.aap.behandlingsflyt.flyt.flate.BehandlingResultatDto': Record<string, never>;
     'no.nav.aap.behandlingsflyt.flyt.flate.DefinisjonDTO': {
       /** @enum {string} */
-      behovType: 'MANUELT_PÅKREVD' | 'MANUELT_FRIVILLIG' | 'VENTEPUNKT';
+      behovType: 'MANUELT_PÅKREVD' | 'MANUELT_FRIVILLIG';
       /** @enum {string} */
       'l\u00F8sesISteg': 'KATEGORISER_DOKUMENT' | 'DIGITALISER_DOKUMENT' | 'START_BEHANDLING' | 'UDEFINERT';
       navn: string;
@@ -973,7 +900,7 @@ export interface components {
       avklaringsbehov: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO'][];
       /**
        * Format: date-time
-       * @example 2024-08-27T14:07:56.896029
+       * @example 2024-08-28T08:37:09.986848
        */
       opprettet: string;
       /** Format: uuid */
@@ -983,7 +910,6 @@ export interface components {
       type: string;
       /** Format: int64 */
       versjon: number;
-      'vilk\u00E5r': components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.Vilk\u00E5rDTO'][];
     };
     'no.nav.aap.behandlingsflyt.flyt.flate.EndringDTO': {
       begrunnelse?: string | null;
@@ -999,7 +925,7 @@ export interface components {
         | 'AVBRUTT';
       /**
        * Format: date-time
-       * @example 2024-08-27T14:07:56.896029
+       * @example 2024-08-28T08:37:09.986848
        */
       tidsstempel: string;
     };
@@ -1008,109 +934,21 @@ export interface components {
       skalVises: boolean;
       steg: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.FlytSteg'][];
       /** @enum {string} */
-      stegGruppe:
-        | 'KATEGORISER'
-        | 'DIGITALISER'
-        | 'START_BEHANDLING'
-        | 'ALDER'
-        | 'LOVVALG'
-        | 'MEDLEMSKAP'
-        | 'BARNETILLEGG'
-        | 'STUDENT'
-        | 'SYKDOM'
-        | 'GRUNNLAG'
-        | 'ET_ANNET_STED'
-        | 'UNDERVEIS'
-        | 'TILKJENT_YTELSE'
-        | 'SIMULERING'
-        | 'VEDTAK'
-        | 'FATTE_VEDTAK'
-        | 'KVALITETSSIKRING'
-        | 'IVERKSETT_VEDTAK'
-        | 'UDEFINERT';
+      stegGruppe: 'KATEGORISER' | 'DIGITALISER' | 'START_BEHANDLING' | 'UDEFINERT';
     };
     'no.nav.aap.behandlingsflyt.flyt.flate.FlytSteg': {
       avklaringsbehov: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO'][];
       /** @enum {string} */
       stegType: 'KATEGORISER_DOKUMENT' | 'DIGITALISER_DOKUMENT' | 'START_BEHANDLING' | 'UDEFINERT';
-      'vilk\u00E5rDTO'?: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.Vilk\u00E5rDTO'];
-    };
-    'no.nav.aap.behandlingsflyt.flyt.flate.SettP\u00E5VentRequest': {
-      begrunnelse: string;
-      /** Format: int64 */
-      behandlingVersjon: number;
-      /**
-       * Format: date
-       * @example 2024-08-27
-       */
-      frist?: string | null;
-      /** @enum {string} */
-      grunn:
-        | 'VENTER_PÅ_OPPLYSNINGER'
-        | 'VENTER_PÅ_OPPLYSNINGER_FRA_UTENLANDSKE_MYNDIGHETER'
-        | 'VENTER_PÅ_MEDISINSKE_OPPLYSNINGER'
-        | 'VENTER_PÅ_VURDERING_AV_ROL'
-        | 'VENTER_PÅ_SVAR_FRA_BRUKER';
     };
     'no.nav.aap.behandlingsflyt.flyt.flate.S\u00F8knadSendDto': {
       journalpostId: string;
       saksnummer: string;
     };
-    'no.nav.aap.behandlingsflyt.flyt.flate.Venteinformasjon': {
-      begrunnelse: string;
-      /**
-       * Format: date
-       * @example 2024-08-27
-       */
-      frist: string;
-      /** @enum {string} */
-      grunn:
-        | 'VENTER_PÅ_OPPLYSNINGER'
-        | 'VENTER_PÅ_OPPLYSNINGER_FRA_UTENLANDSKE_MYNDIGHETER'
-        | 'VENTER_PÅ_MEDISINSKE_OPPLYSNINGER'
-        | 'VENTER_PÅ_VURDERING_AV_ROL'
-        | 'VENTER_PÅ_SVAR_FRA_BRUKER';
-    };
-    'no.nav.aap.behandlingsflyt.flyt.flate.Vilk\u00E5rDTO': {
-      perioder: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.Vilk\u00E5rsperiodeDTO'][];
-      /** @enum {string} */
-      'vilk\u00E5rtype':
-        | 'ALDERSVILKÅRET'
-        | 'SYKDOMSVILKÅRET'
-        | 'BISTANDSVILKÅRET'
-        | 'MEDLEMSKAP'
-        | 'GRUNNLAGET'
-        | 'SYKEPENGEERSTATNING';
-    };
-    'no.nav.aap.behandlingsflyt.flyt.flate.Vilk\u00E5rsperiodeDTO': {
-      /** @enum {string|null} */
-      'avslags\u00E5rsak'?:
-        | 'BRUKER_UNDER_18'
-        | 'BRUKER_OVER_67'
-        | 'MANGLENDE_DOKUMENTASJON'
-        | 'IKKE_SYKDOM_SKADE_LYTE_VESENTLIGDEL'
-        | 'IKKE_NOK_REDUSERT_ARBEIDSEVNE'
-        | null;
-      begrunnelse?: string | null;
-      /** @enum {string|null} */
-      'innvilgelses\u00E5rsak'?: 'YRKESSKADE_ÅRSAKSSAMMENHENG' | 'STUDENT' | null;
-      manuellVurdering: boolean;
-      periode: components['schemas']['no.nav.aap.verdityper.Periode'];
-      /** @enum {string} */
-      utfall: 'IKKE_VURDERT' | 'IKKE_RELEVANT' | 'OPPFYLT' | 'IKKE_OPPFYLT';
-    };
     'no.nav.aap.behandlingsflyt.flyt.flate.visning.Prosessering': {
       /** @enum {string} */
       status: 'JOBBER' | 'FEILET' | 'FERDIG';
       ventendeOppgaver: components['schemas']['no.nav.aap.motor.api.JobbInfoDto'][];
-    };
-    'no.nav.aap.behandlingsflyt.flyt.flate.visning.Visning': {
-      beslutterReadOnly: boolean;
-      kvalitetssikringReadOnly: boolean;
-      saksbehandlerReadOnly: boolean;
-      visBeslutterKort: boolean;
-      visKvalitetssikringKort: boolean;
-      visVentekort: boolean;
     };
     'no.nav.aap.behandlingsflyt.sakogbehandling.sak.adapters.Dokument': {
       brevkode?: string | null;
@@ -1123,7 +961,7 @@ export interface components {
     'no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.BehandlinginfoDTO': {
       /**
        * Format: date-time
-       * @example 2024-08-27T14:07:56.896029
+       * @example 2024-08-28T08:37:09.986848
        */
       opprettet: string;
       /** Format: uuid */
@@ -1136,7 +974,7 @@ export interface components {
       ident: string;
       /**
        * Format: date
-       * @example 2024-08-27
+       * @example 2024-08-28
        */
       's\u00F8knadsdato': string;
     };
@@ -1158,7 +996,7 @@ export interface components {
       ident: string;
       /**
        * Format: date-time
-       * @example 2024-08-27T14:07:56.896029
+       * @example 2024-08-28T08:37:09.986848
        */
       opprettetTidspunkt: string;
       periode: components['schemas']['no.nav.aap.verdityper.Periode'];
@@ -1169,7 +1007,7 @@ export interface components {
       ident: string;
       /**
        * Format: date-time
-       * @example 2024-08-27T14:07:56.896029
+       * @example 2024-08-28T08:37:09.986848
        */
       opprettetTidspunkt: string;
       periode: components['schemas']['no.nav.aap.verdityper.Periode'];
@@ -1190,7 +1028,7 @@ export interface components {
       navn: string;
       /**
        * Format: date-time
-       * @example 2024-08-27T14:07:56.896029
+       * @example 2024-08-28T08:37:09.986848
        */
       'planlagtKj\u00F8retidspunkt': string;
       /** @enum {string} */
@@ -1200,12 +1038,12 @@ export interface components {
     'no.nav.aap.verdityper.Periode': {
       /**
        * Format: date
-       * @example 2024-08-27
+       * @example 2024-08-28
        */
       fom: string;
       /**
        * Format: date
-       * @example 2024-08-27
+       * @example 2024-08-28
        */
       tom: string;
     };
