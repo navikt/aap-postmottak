@@ -1,3 +1,8 @@
 .splitVindu {
     height: 100%;
 }
+.splitStateButtonWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
