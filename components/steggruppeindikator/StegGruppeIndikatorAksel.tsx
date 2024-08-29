@@ -1,20 +1,15 @@
 'use client';
+
 import { Stepper } from '@navikt/ds-react';
 import style from './StegGruppeIndikator.module.css';
 import { FlytGruppe } from 'lib/types/types';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
-export const StegGruppeIndikatorAksel = ({
-  id,
-  stegGrupper,
-  aktivGruppe,
-}: {
-  id: string;
-  stegGrupper: FlytGruppe[];
-  aktivGruppe: string;
-}) => {
-  const aktivtStegNummer = stegGrupper.findIndex((steg) => steg.stegGruppe === aktivGruppe) + 1;
+export const StegGruppeIndikatorAksel = ({ id, stegGrupper }: { id: string; stegGrupper: FlytGruppe[] }) => {
+  const { aktivtSteg } = useParams();
+  const aktivtStegNummer = stegGrupper.findIndex((steg) => steg.stegGruppe === aktivtSteg) + 1;
   const router = useRouter();
+
   return (
     <div className={style.stegMenyWrapper}>
       <Stepper orientation="horizontal" activeStep={aktivtStegNummer}>

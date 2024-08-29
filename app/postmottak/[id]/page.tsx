@@ -6,7 +6,6 @@ interface PageProps {
 }
 
 const Page = async ({ params }: { params: PageProps }) => {
-  // TODO: Hent flyt
   const flyt = await hentFlyt(params.id);
 
   if (flyt === undefined) {
