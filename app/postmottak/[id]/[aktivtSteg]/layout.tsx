@@ -12,10 +12,10 @@ const Layout = async ({ children, params }: LayoutProps) => {
   const flyt = await hentFlyt(params.id);
   const stegGrupper = flyt.flyt.map((steg) => steg);
   return (
-    <div>
-      <StegGruppeIndikatorAksel id={params.id} stegGrupper={stegGrupper} aktivGruppe={params.aktivtSteg} />
-      <SplitVindu>{children}</SplitVindu>
-    </div>
+    <>
+        <StegGruppeIndikatorAksel id={params.id} stegGrupper={stegGrupper} aktivGruppe={params.aktivtSteg} />
+        <SplitVindu>{children}</SplitVindu>
+    </>
   );
 };
 

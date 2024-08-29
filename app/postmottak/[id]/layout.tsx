@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { DokumentInfoBanner } from 'components/dokumentinfobanner/DokumentInfoBanner';
-import { hentFlyt } from 'lib/services/dokumentmottakservice/dokumentMottakService';
+import styles from './layout.module.css'
 
 interface LayoutProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ const Layout = async ({ children, params }: LayoutProps) => {
   // TODO: Høre med designer om vi trenger en 'saksinfo' komponent
 
   return (
-    <div>
+    <div className={styles.idLayoutWrapper}>
       <DokumentInfoBanner />
       {children}
     </div>

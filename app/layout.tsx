@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 
 import { hentBrukerInformasjon, verifyUserLoggedIn } from '@navikt/aap-felles-utils';
 import {AppHeader} from "components/appheader/AppHeader";
+import styles from './layout.module.css'
 
 export const metadata: Metadata = {
   title: 'Kelvin Postmottak',
@@ -23,8 +24,10 @@ export default async function RootLayout({
   return (
     <html lang="nb">
       <body>
-        <AppHeader brukerInformasjon={brukerInformasjon} />
-        {children}
+        <div className={styles.bodyWrapper}>
+          <AppHeader brukerInformasjon={brukerInformasjon} />
+          {children}
+        </div>
       </body>
     </html>
   );

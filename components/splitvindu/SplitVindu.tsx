@@ -3,6 +3,7 @@
 import {HGrid} from "@navikt/ds-react";
 import {ReactNode, useState} from "react";
 import {Dokumentvisning} from "components/dokumentvisning/Dokumentvisning";
+import styles from './SplitVindu.module.css'
 
 interface Props {
     children: ReactNode;
@@ -10,7 +11,7 @@ interface Props {
 export const SplitVindu = ({children}: Props) => {
     const [isSplit, setIsSplit] = useState<boolean>(true);
     return (
-       <HGrid columns={isSplit ? 2 : 1} rows={'1fr'} >
+       <HGrid columns={isSplit ? 2 : 1} rows={'1fr'} className={styles.splitVindu} >
            <div>
                {children}
            </div>
