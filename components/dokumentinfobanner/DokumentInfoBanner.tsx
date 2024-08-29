@@ -6,12 +6,19 @@ export const DokumentInfoBanner = ({}) => {
     <div className={styles.dokumentInfoBanner}>
       <div className={styles.left}>
         <div>
-          <Label size="small">Journalpost</Label>
-          <BodyShort size="small">123456789</BodyShort>
+          <Label size="small">Søker</Label>
+          <BodyShort size="small">Navn: Grisete Kanin</BodyShort>
+          <BodyShort size="small">Ident: 123456789</BodyShort>
         </div>
         <div>
-          <Label size="small">Ident</Label>
-          <BodyShort size="small">123456789</BodyShort>
+          <Label size="small">Avsender</Label>
+          <BodyShort size="small">Navn: Grisete Kanin</BodyShort>
+          <BodyShort size="small">Ident: 123456789</BodyShort>
+        </div>
+        <div>
+          <Label size="small">Dokument</Label>
+          <BodyShort size="small">Tittel: Klage på vedtak</BodyShort>
+          <BodyShort size="small">JournalpostId: 123456789</BodyShort>
         </div>
       </div>
     </div>

@@ -12,5 +12,5 @@
 
 .left {
   display: flex;
-  gap: var(--a-spacing-4);
+  gap: var(--a-spacing-8);
 }
