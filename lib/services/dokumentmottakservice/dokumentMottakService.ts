@@ -1,6 +1,6 @@
 import { fetchProxy } from 'lib/fetchproxy/fetchProxy';
 import { mockFlyt } from 'lib/mock/mockFlyt';
-import { BehandlingFlytOgTilstand } from 'lib/types/types';
+import { BehandlingFlytOgTilstand, LøsAvklaringsbehovPåBehandling } from 'lib/types/types';
 
 const dokumentMottakApiBaseUrl = process.env.DOKUMENTMOTTAK_API_BASE_URL;
 const dokumentMottakApiScope = process.env.DOKUMENTMOTTAK_API_SCOPE ?? '';
@@ -11,6 +11,11 @@ export const hentFlyt = async (behandlingsReferanse: string): Promise<Behandling
   }
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/${behandlingsReferanse}/flyt`;
   return await fetchProxy<BehandlingFlytOgTilstand>(url, dokumentMottakApiScope, 'GET');
+};
+
+export const løsAvklaringsbehov = async (avklaringsBehov: LøsAvklaringsbehovPåBehandling) => {
+  const url = `${dokumentMottakApiBaseUrl}/api/behandling/løs-behov`;
+  return await fetchProxy<void>(url, dokumentMottakApiScope, 'POST', avklaringsBehov);
 };
 
 export const hentDokumentUrlForJournalpostId = async (journalpostId: string): Promise<{ url: string }> => {
