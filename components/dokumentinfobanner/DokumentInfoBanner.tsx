@@ -7,12 +7,12 @@ export const DokumentInfoBanner = ({}) => {
       <div className={styles.left}>
         <div>
           <Label size="small">Søker</Label>
-          <BodyShort size="small">Navn: Grisete Kanin</BodyShort>
+          <BodyShort size="small">Navn: Turid Skogen</BodyShort>
           <BodyShort size="small">Ident: 123456789</BodyShort>
         </div>
         <div>
           <Label size="small">Avsender</Label>
-          <BodyShort size="small">Navn: Grisete Kanin</BodyShort>
+          <BodyShort size="small">Navn: Tor Nado</BodyShort>
           <BodyShort size="small">Ident: 123456789</BodyShort>
         </div>
         <div>

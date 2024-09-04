@@ -39,388 +39,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/sak/finn': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: {
-        content: {
-          'application/json': components['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.FinnSakForIdentDTO'];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.SaksinfoDTO'][];
-          };
-        };
-      };
-    };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/sak/finnEllerOpprett': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: {
-        content: {
-          'application/json': components['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.FinnEllerOpprettSakDTO'];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.SaksinfoDTO'];
-          };
-        };
-      };
-    };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/sak/alle': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.SaksinfoDTO'][];
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/sak/{saksnummer}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description saksnummer */
-          saksnummer: string;
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.UtvidetSaksinfoDTO'];
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/sak/{saksnummer}/dokumenter': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description saksnummer */
-          saksnummer: string;
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.sak.adapters.Dokument'][];
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/sak/dokument/{journalpostId}/{dokumentinfoId}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description Journalpost-ID */
-          journalpostId: string;
-          /** @description Dokumentinfo-ID */
-          dokumentinfoId: string;
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/pdf': string;
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/sak/{saksnummer}/lesetilgang': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description saksnummer */
-          saksnummer: string;
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.LesetilgangDTO'];
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/sak/{saksnummer}/identer': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description saksnummer */
-          saksnummer: string;
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.IdenterDto'];
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/sak/{saksnummer}/personinformasjon': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description saksnummer */
-          saksnummer: string;
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.SakPersoninfoDTO'];
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/soknad/send': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: {
-        content: {
-          'application/json': components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.S\u00F8knadSendDto'];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': string;
-          };
-        };
-      };
-    };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   '/api/behandling/{referanse}': {
     parameters: {
       query?: never;
@@ -433,6 +51,8 @@ export interface paths {
         query?: never;
         header?: never;
         path: {
+          /** @description referanse */
+          identifikator: number;
           /** @description referanse */
           referanse: string;
         };
@@ -472,7 +92,7 @@ export interface paths {
         header?: never;
         path: {
           /** @description referanse */
-          referanse: string;
+          identifikator: number;
         };
         cookie?: never;
       };
@@ -510,7 +130,7 @@ export interface paths {
         header?: never;
         path: {
           /** @description referanse */
-          referanse: string;
+          identifikator: number;
         };
         cookie?: never;
       };
@@ -573,7 +193,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/dokument/{referanse}': {
+  '/api/behandling/{referanse}/dokument': {
     parameters: {
       query?: never;
       header?: never;
@@ -598,7 +218,7 @@ export interface paths {
             [name: string]: unknown;
           };
           content: {
-            'application/json': components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentBehandlingDto'];
+            'application/pdf': string;
           };
         };
       };
@@ -827,43 +447,89 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/test/hentAlleBehandlinger': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': components['schemas']['no.nav.aap.behandlingsflyt.BehandlingsListe'][];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
+    'no.nav.aap.behandlingsflyt.BehandlingsListe': {
+      id: string;
+      status: string;
+    };
     'no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.flate.L\u00F8sAvklaringsbehovP\u00E5Behandling': {
       /** Format: int64 */
       behandlingVersjon: number;
       behov: components['schemas']['no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.AvklaringsbehovL\u00F8sning'];
       ingenEndringIGruppe?: boolean | null;
-      /** Format: uuid */
-      referanse: string;
+      referanse: components['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.behandling.dokumenter.JournalpostId'];
     };
     'no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.AvklaringsbehovL\u00F8sning':
       | components['schemas']['no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.DigitaliserDokumentL\u00F8sning']
+      | components['schemas']['no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.GrovkategoriserDokumentL\u00F8sning']
       | components['schemas']['no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.KategoriserDokumentL\u00F8sning'];
     'no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.DigitaliserDokumentL\u00F8sning': {
       behovstype: string;
-      kategori: components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DigitaliserDokumentDto'];
+      strukturertDokument: components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DigitaliserDokumentDto'];
+    };
+    'no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.GrovkategoriserDokumentL\u00F8sning': {
+      behovstype: string;
+      skalTilAap: boolean;
     };
     'no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.KategoriserDokumentL\u00F8sning': {
       behovstype: string;
-      kategori: components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.KategoriavklaringDto'];
+      /** @enum {string} */
+      kategori: 'SØKNAD' | 'AKTIVITETSKORT' | 'PLIKTKORT' | 'UKJENT';
     };
     'no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DigitaliserDokumentDto': {
-      strukturertDokument: string;
+      json: string;
     };
-    'no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentBehandlingDto': Record<
-      string,
-      never
-    >;
-    'no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.KategoriavklaringDto': {
-      /** @enum {string} */
-      kategori: 'SØKNAD' | 'MELDEKORT';
+    'no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentBehandlingDto': {
+      journalpostId: string;
+      referanse: string;
+      sakId?: string | null;
+      /** Format: int64 */
+      version: number;
     };
     'no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO': {
       /** @enum {string} */
-      definisjon: "KATEGORISER_DOKUMENT(kode='1337')" | "DIGITALISER_DOKUMENT(kode='1338')";
+      definisjon:
+        | "GROVKATEGORISER_DOKUMENT(kode='1339')"
+        | "KATEGORISER_DOKUMENT(kode='1337')"
+        | "DIGITALISER_DOKUMENT(kode='1338')";
       endringer: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.EndringDTO'][];
       /** @enum {string} */
       status:
@@ -877,9 +543,27 @@ export interface components {
     };
     'no.nav.aap.behandlingsflyt.flyt.flate.BehandlingFlytOgTilstandDto': {
       /** @enum {string} */
-      aktivGruppe: 'KATEGORISER' | 'DIGITALISER' | 'START_BEHANDLING' | 'UDEFINERT';
+      aktivGruppe:
+        | 'KATEGORISER'
+        | 'DIGITALISER'
+        | 'START_BEHANDLING'
+        | 'UDEFINERT'
+        | 'AVKLAR_TEMA'
+        | 'ENDERLIG_JOURNALFØRING'
+        | 'OVERLEVER_TIL_FAGSYSTEM'
+        | 'FINN_SAK'
+        | 'GROVKATEGORISERING';
       /** @enum {string} */
-      aktivtSteg: 'KATEGORISER_DOKUMENT' | 'DIGITALISER_DOKUMENT' | 'START_BEHANDLING' | 'UDEFINERT';
+      aktivtSteg:
+        | 'KATEGORISER_DOKUMENT'
+        | 'DIGITALISER_DOKUMENT'
+        | 'START_BEHANDLING'
+        | 'AVKLAR_TEMA'
+        | 'ENDERLIG_JOURNALFØRING'
+        | 'OVERLEVER_TIL_FAGSYSTEM'
+        | 'UDEFINERT'
+        | 'FINN_SAK'
+        | 'GROVKATEGORTISER_DOKUMENT';
       /** Format: int64 */
       behandlingVersjon: number;
       flyt: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.FlytGruppe'][];
@@ -890,21 +574,38 @@ export interface components {
       /** @enum {string} */
       behovType: 'MANUELT_PÅKREVD' | 'MANUELT_FRIVILLIG';
       /** @enum {string} */
-      'l\u00F8sesISteg': 'KATEGORISER_DOKUMENT' | 'DIGITALISER_DOKUMENT' | 'START_BEHANDLING' | 'UDEFINERT';
+      'l\u00F8sesISteg':
+        | 'KATEGORISER_DOKUMENT'
+        | 'DIGITALISER_DOKUMENT'
+        | 'START_BEHANDLING'
+        | 'AVKLAR_TEMA'
+        | 'ENDERLIG_JOURNALFØRING'
+        | 'OVERLEVER_TIL_FAGSYSTEM'
+        | 'UDEFINERT'
+        | 'FINN_SAK'
+        | 'GROVKATEGORTISER_DOKUMENT';
       navn: string;
       type: string;
     };
     'no.nav.aap.behandlingsflyt.flyt.flate.DetaljertBehandlingDTO': {
       /** @enum {string} */
-      aktivtSteg: 'KATEGORISER_DOKUMENT' | 'DIGITALISER_DOKUMENT' | 'START_BEHANDLING' | 'UDEFINERT';
+      aktivtSteg:
+        | 'KATEGORISER_DOKUMENT'
+        | 'DIGITALISER_DOKUMENT'
+        | 'START_BEHANDLING'
+        | 'AVKLAR_TEMA'
+        | 'ENDERLIG_JOURNALFØRING'
+        | 'OVERLEVER_TIL_FAGSYSTEM'
+        | 'UDEFINERT'
+        | 'FINN_SAK'
+        | 'GROVKATEGORTISER_DOKUMENT';
       avklaringsbehov: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO'][];
       /**
        * Format: date-time
-       * @example 2024-08-28T08:37:09.986848
+       * @example 2024-09-04T09:46:12.283444
        */
       opprettet: string;
-      /** Format: uuid */
-      referanse: string;
+      referanse: components['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.behandling.dokumenter.JournalpostId'];
       /** @enum {string} */
       status: 'OPPRETTET' | 'UTREDES' | 'AVSLUTTET';
       type: string;
@@ -925,7 +626,7 @@ export interface components {
         | 'AVBRUTT';
       /**
        * Format: date-time
-       * @example 2024-08-28T08:37:09.986848
+       * @example 2024-09-04T09:46:12.283444
        */
       tidsstempel: string;
     };
@@ -934,86 +635,39 @@ export interface components {
       skalVises: boolean;
       steg: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.FlytSteg'][];
       /** @enum {string} */
-      stegGruppe: 'KATEGORISER' | 'DIGITALISER' | 'START_BEHANDLING' | 'UDEFINERT';
+      stegGruppe:
+        | 'KATEGORISER'
+        | 'DIGITALISER'
+        | 'START_BEHANDLING'
+        | 'UDEFINERT'
+        | 'AVKLAR_TEMA'
+        | 'ENDERLIG_JOURNALFØRING'
+        | 'OVERLEVER_TIL_FAGSYSTEM'
+        | 'FINN_SAK'
+        | 'GROVKATEGORISERING';
     };
     'no.nav.aap.behandlingsflyt.flyt.flate.FlytSteg': {
       avklaringsbehov: components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO'][];
       /** @enum {string} */
-      stegType: 'KATEGORISER_DOKUMENT' | 'DIGITALISER_DOKUMENT' | 'START_BEHANDLING' | 'UDEFINERT';
-    };
-    'no.nav.aap.behandlingsflyt.flyt.flate.S\u00F8knadSendDto': {
-      journalpostId: string;
-      saksnummer: string;
+      stegType:
+        | 'KATEGORISER_DOKUMENT'
+        | 'DIGITALISER_DOKUMENT'
+        | 'START_BEHANDLING'
+        | 'AVKLAR_TEMA'
+        | 'ENDERLIG_JOURNALFØRING'
+        | 'OVERLEVER_TIL_FAGSYSTEM'
+        | 'UDEFINERT'
+        | 'FINN_SAK'
+        | 'GROVKATEGORTISER_DOKUMENT';
     };
     'no.nav.aap.behandlingsflyt.flyt.flate.visning.Prosessering': {
       /** @enum {string} */
       status: 'JOBBER' | 'FEILET' | 'FERDIG';
       ventendeOppgaver: components['schemas']['no.nav.aap.motor.api.JobbInfoDto'][];
     };
-    'no.nav.aap.behandlingsflyt.sakogbehandling.sak.adapters.Dokument': {
-      brevkode?: string | null;
-      dokumentInfoId: string;
-      journalpostId: string;
-      tittel: string;
-      /** @enum {string} */
-      variantformat: 'ARKIV' | 'SLADDET' | 'ORIGINAL';
-    };
-    'no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.BehandlinginfoDTO': {
-      /**
-       * Format: date-time
-       * @example 2024-08-28T08:37:09.986848
-       */
-      opprettet: string;
-      /** Format: uuid */
-      referanse: string;
-      /** @enum {string} */
-      status: 'OPPRETTET' | 'UTREDES' | 'AVSLUTTET';
-      type: string;
-    };
-    'no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.FinnEllerOpprettSakDTO': {
-      ident: string;
-      /**
-       * Format: date
-       * @example 2024-08-28
-       */
-      's\u00F8knadsdato': string;
-    };
-    'no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.FinnSakForIdentDTO': {
-      ident: string;
-    };
-    'no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.IdenterDto': {
-      barn: string[];
-      's\u00F8ker': string[];
-    };
-    'no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.LesetilgangDTO': {
-      tilgang: boolean;
-    };
-    'no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.SakPersoninfoDTO': {
-      fnr: string;
-      navn: string;
-    };
-    'no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.SaksinfoDTO': {
-      ident: string;
-      /**
-       * Format: date-time
-       * @example 2024-08-28T08:37:09.986848
-       */
-      opprettetTidspunkt: string;
-      periode: components['schemas']['no.nav.aap.verdityper.Periode'];
-      saksnummer: string;
-    };
-    'no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.UtvidetSaksinfoDTO': {
-      behandlinger: components['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.BehandlinginfoDTO'][];
-      ident: string;
-      /**
-       * Format: date-time
-       * @example 2024-08-28T08:37:09.986848
-       */
-      opprettetTidspunkt: string;
-      periode: components['schemas']['no.nav.aap.verdityper.Periode'];
-      saksnummer: string;
-      /** @enum {string} */
-      status: 'OPPRETTET' | 'UTREDES' | 'LØPENDE' | 'AVSLUTTET';
+    'no.nav.aap.behandlingsflyt.sakogbehandling.behandling.dokumenter.JournalpostId': {
+      /** Format: int64 */
+      identifikator: number;
     };
     'no.nav.aap.motor.api.JobbInfoDto': {
       /** Format: int32 */
@@ -1028,24 +682,12 @@ export interface components {
       navn: string;
       /**
        * Format: date-time
-       * @example 2024-08-28T08:37:09.986848
+       * @example 2024-09-04T09:46:12.283444
        */
       'planlagtKj\u00F8retidspunkt': string;
       /** @enum {string} */
       status: 'KLAR' | 'PLUKKET' | 'FERDIG' | 'FEILET';
       type: string;
-    };
-    'no.nav.aap.verdityper.Periode': {
-      /**
-       * Format: date
-       * @example 2024-08-28
-       */
-      fom: string;
-      /**
-       * Format: date
-       * @example 2024-08-28
-       */
-      tom: string;
     };
   };
   responses: never;
