@@ -1,10 +1,14 @@
-import { VilkårsKort } from 'components/vilkårskort/VilkårsKort';
+import {AvklarTemaMedDataFetching} from "../avklartema/AvklarTemaMedDataFetching";
 
-export const StegKolonne = ({ aktivtSteg }: { aktivtSteg: string }) => {
+interface Props {
+  aktivtSteg: string;
+  behandlingsReferanse: string;
+}
+export const StegKolonne = ({ aktivtSteg, behandlingsReferanse }: Props) => {
   // Det er her vi gjør datafetching og rendering av stegene
   return (
     <div>
-      <VilkårsKort heading={aktivtSteg}>Litt innhold i vilkårskortet</VilkårsKort>
+        {aktivtSteg === 'AVKLAR_TEMA' && <AvklarTemaMedDataFetching id={behandlingsReferanse} />}
     </div>
   );
 };
