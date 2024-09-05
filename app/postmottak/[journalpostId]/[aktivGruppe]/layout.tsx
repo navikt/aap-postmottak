@@ -2,10 +2,9 @@ import { ReactNode } from 'react';
 
 interface LayoutProps {
   children: ReactNode;
-  params: { id: string; aktivtSteg: string };
 }
 
-const Layout = async ({ children, params }: LayoutProps) => {
+const Layout = async ({ children }: LayoutProps) => {
   return <>{children}</>;
 };
 

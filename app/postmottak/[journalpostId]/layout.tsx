@@ -8,20 +8,20 @@ import { Dokumentvisning } from 'components/dokumentvisning/Dokumentvisning';
 
 interface LayoutProps {
   children: ReactNode;
-  params: { id: string };
+  params: { journalpostId: string };
 }
 
 const Layout = async ({ children, params }: LayoutProps) => {
-  const flyt = await hentFlyt(params.id);
+  const flyt = await hentFlyt(params.journalpostId);
   const stegGrupper = flyt.flyt.map((steg) => steg);
 
-  const { url } = await hentDokumentUrlForJournalpostId(params.id);
+  const { url } = await hentDokumentUrlForJournalpostId(params.journalpostId);
   // TODO: Hent dokumentUrl fra backend
 
   return (
     <div className={styles.idLayoutWrapper}>
       <DokumentInfoBanner />
-      <StegGruppeIndikatorAksel id={params.id} stegGrupper={stegGrupper} />
+      <StegGruppeIndikatorAksel journalpostId={params.journalpostId} stegGrupper={stegGrupper} />
       <SplitVindu dokumentvisning={<Dokumentvisning dokumentUrl={url} />}>{children}</SplitVindu>
     </div>
   );

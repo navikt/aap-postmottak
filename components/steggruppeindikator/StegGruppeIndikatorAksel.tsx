@@ -5,9 +5,15 @@ import style from './StegGruppeIndikator.module.css';
 import { FlytGruppe } from 'lib/types/types';
 import { useParams, useRouter } from 'next/navigation';
 
-export const StegGruppeIndikatorAksel = ({ id, stegGrupper }: { id: string; stegGrupper: FlytGruppe[] }) => {
-  const { aktivtSteg } = useParams();
-  const aktivtStegNummer = stegGrupper.findIndex((steg) => steg.stegGruppe === aktivtSteg) + 1;
+export const StegGruppeIndikatorAksel = ({
+  journalpostId,
+  stegGrupper,
+}: {
+  journalpostId: string;
+  stegGrupper: FlytGruppe[];
+}) => {
+  const { aktivGruppe } = useParams();
+  const aktivtStegNummer = stegGrupper.findIndex((steg) => steg.stegGruppe === aktivGruppe) + 1;
   const router = useRouter();
 
   return (
@@ -18,7 +24,7 @@ export const StegGruppeIndikatorAksel = ({ id, stegGrupper }: { id: string; steg
             as="button"
             completed={steg.erFullført}
             key={index}
-            onClick={() => router.push(`/postmottak/${id}/${steg.stegGruppe}`)}
+            onClick={() => router.push(`/postmottak/${journalpostId}/${steg.stegGruppe}`)}
           >
             {steg.stegGruppe}
           </Stepper.Step>

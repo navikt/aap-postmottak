@@ -11,7 +11,7 @@ export const useLøsBehovOgGåTilNesteSteg = (
   isLoading: boolean;
   løsBehovOgGåTilNesteSteg: (behov: LøsAvklaringsbehovPåBehandling) => void;
 } => {
-  const params = useParams<{ aktivtSteg: string; id: string }>();
+  const params = useParams<{ aktivGruppe: string; journalpostId: string }>();
   const router = useRouter();
   const [status, setStatus] = useState<ServerSentEventStatus | undefined>();
   const [isLoading, setIsLoading] = useState(false);
@@ -22,16 +22,19 @@ export const useLøsBehovOgGåTilNesteSteg = (
   };
   const listenSSE = () => {
     setIsLoading(true);
-    const eventSource = new EventSource(`/api/post/${params.id}/hent/${params.aktivtSteg}/${steg}/nesteSteg/`, {
-      withCredentials: true,
-    });
+    const eventSource = new EventSource(
+      `/api/post/${params.journalpostId}/hent/${params.aktivGruppe}/${steg}/nesteSteg/`,
+      {
+        withCredentials: true,
+      }
+    );
     eventSource.onmessage = async (event: any) => {
       const eventData: ServerSentEventData = JSON.parse(event.data);
       if (eventData.status === 'DONE') {
         eventSource.close();
         if (eventData.skalBytteGruppe || eventData.skalBytteSteg) {
           // TODO: Legge tilbake igjen hash for aktivt-steg hvis vi tar i bruk dette?
-          router.push(`/postmottak/${params.id}/${eventData.aktivGruppe}/`);
+          router.push(`/postmottak/${params.journalpostId}/${eventData.aktivGruppe}/`);
         }
         router.refresh();
         setIsLoading(false);
