@@ -39,7 +39,7 @@ export const AvklarTema = ({ behandlingsVersjon, journalpostId }: Props) => {
     })(event);
   };
   return (
-    <VilkårsKort heading={'Bekreft tema'}>
+    <VilkårsKort heading={'Avklar tema'}>
       <form onSubmit={onSubmit}>
         <FormField form={form} formField={formFields.erTemaAAP} />
         <Button>Send</Button>
