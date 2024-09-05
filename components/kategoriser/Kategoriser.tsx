@@ -6,7 +6,7 @@ import { Behovstype } from '../../lib/form';
 import { FormEvent, FormEventHandler } from 'react';
 import { useLøsBehovOgGåTilNesteSteg } from '../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { Button } from '@navikt/ds-react';
-import {KategoriserGrunnlag} from "../../lib/types/types";
+import { KategoriserGrunnlag } from '../../lib/types/types';
 
 interface Props {
   behandlingsVersjon: number;
@@ -16,16 +16,20 @@ interface Props {
 interface FormFields {
   kategori: string;
 }
-export const Kategoriser = ({ behandlingsVersjon, journalpostId, grunnlag}: Props) => {
+export const Kategoriser = ({ behandlingsVersjon, journalpostId, grunnlag }: Props) => {
   const { formFields, form } = useConfigForm<FormFields>({
     kategori: {
-      type: 'select',
+      type: 'combobox',
       label: 'Kategoriser',
       rules: { required: 'Du må velge kategori' },
-      options: [{label: 'Søknad', value: 'SØKNAD'}, {label: 'Pliktkort', value: 'PLIKTKORT'}],
-      defaultValue: grunnlag.vurdering?.brevkode
+      options: [
+        { label: 'Søknad', value: 'SØKNAD' },
+        { label: 'Pliktkort', value: 'PLIKTKORT' },
+      ],
+      defaultValue: grunnlag.vurdering?.brevkode,
     },
   });
+  console.log(form.watch());
   const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('KATEGORISER_DOKUMENT');
   const onSubmit: FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
     form.handleSubmit((data) => {
@@ -35,7 +39,7 @@ export const Kategoriser = ({ behandlingsVersjon, journalpostId, grunnlag}: Prop
           behovstype: Behovstype.KATEGORISER_DOKUMENT,
           // TODO:  kategori må endres. er ikke det samme som brevkode
           // @ts-ignore
-          dokumentkategori: data.kategori
+          dokumentkategori: data.kategori,
         },
         //TODO: dette skal være referanse: string
         // @ts-ignore
