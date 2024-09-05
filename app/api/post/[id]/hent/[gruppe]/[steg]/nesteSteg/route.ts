@@ -24,10 +24,7 @@ const gruppeEllerStegErEndret = (
   aktivtStegFraBackend: string
 ) => aktivGruppe !== aktivGruppeFraBackend || aktivtSteg !== aktivtStegFraBackend;
 
-export async function GET(
-  __request: NextRequest,
-  context: { params: { referanse: string; gruppe: string; steg: string } }
-) {
+export async function GET(__request: NextRequest, context: { params: { id: string; gruppe: string; steg: string } }) {
   let responseStream = new TransformStream();
   const writer = responseStream.writable.getWriter();
 
@@ -51,7 +48,7 @@ export async function GET(
         writer.write(`event: message\ndata: ${JSON.stringify(json)}\n\n`);
       }
 
-      const flyt = await hentFlyt(context.params.referanse);
+      const flyt = await hentFlyt(context.params.id);
       const aktivGruppe = flyt.aktivGruppe;
       const aktivtSteg = flyt.aktivtSteg;
 
