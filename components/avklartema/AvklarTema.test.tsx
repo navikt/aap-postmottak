@@ -5,7 +5,7 @@ import { AvklarTemaGrunnlag } from 'lib/types/types';
 
 describe('AvklarTema', () => {
   const grunnlag: AvklarTemaGrunnlag = {
-    vurdering: true,
+    vurdering: {skalTilAap: true},
     dokumenter: [],
   };
   it('Skal ha en oversikt', () => {

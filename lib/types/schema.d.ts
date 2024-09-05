@@ -269,7 +269,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/behandling/{referanse}/avklarTemaVurdering": {
+    "/api/behandling/{referanse}/grunnlag/avklarTemaVurdering": {
         parameters: {
             query?: never;
             header?: never;
@@ -294,7 +294,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaVurderingDto"];
+                        "application/json": components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaGrunnlagDto"];
                     };
                 };
             };
@@ -307,7 +307,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/behandling/{referanse}/kategorisering": {
+    "/api/behandling/{referanse}/grunnlag/kategorisering": {
         parameters: {
             query?: never;
             header?: never;
@@ -332,7 +332,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringVurderingDto"];
+                        "application/json": components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringGrunnlagDto"];
                     };
                 };
             };
@@ -345,7 +345,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/behandling/{referanse}/strukturering": {
+    "/api/behandling/{referanse}/grunnlag/strukturering": {
         parameters: {
             query?: never;
             header?: never;
@@ -370,7 +370,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringVurderingDto"];
+                        "application/json": components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringGrunnlagDto"];
                     };
                 };
             };
@@ -634,20 +634,29 @@ export interface components {
             /** @enum {string} */
             kategori: "SØKNAD" | "AKTIVITETSKORT" | "PLIKTKORT" | "UKJENT";
         };
-        "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaVurderingDto": {
+        "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaGrunnlagDto": {
             dokumenter: number[];
-            vurdering?: boolean | null;
+            vurdering?: components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaVurderingDto"];
+        };
+        "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaVurderingDto": {
+            skalTilAap: boolean;
+        };
+        "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringGrunnlagDto": {
+            dokumenter: number[];
+            vurdering?: components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringVurderingDto"];
         };
         "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringVurderingDto": {
-            dokumenter: number[];
-            /** @enum {string|null} */
-            vurdering?: "SØKNAD" | "AKTIVITETSKORT" | "PLIKTKORT" | "UKJENT" | null;
+            /** @enum {string} */
+            brevkode: "SØKNAD" | "AKTIVITETSKORT" | "PLIKTKORT" | "UKJENT";
         };
-        "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringVurderingDto": {
+        "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringGrunnlagDto": {
             dokumenter: number[];
             /** @enum {string} */
             kategori: "SØKNAD" | "AKTIVITETSKORT" | "PLIKTKORT" | "UKJENT";
-            vurdering?: string | null;
+            vurdering?: components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringVurderingDto"];
+        };
+        "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringVurderingDto": {
+            strukturertDokumentJson: string;
         };
         "no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO": {
             definisjon: components["schemas"]["no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.Definisjon"];
@@ -680,7 +689,7 @@ export interface components {
             avklaringsbehov: components["schemas"]["no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO"][];
             /**
              * Format: date-time
-             * @example 2024-09-04T15:28:43.384772
+             * @example 2024-09-05T10:35:47.886037
              */
             opprettet: string;
             referanse: components["schemas"]["no.nav.aap.behandlingsflyt.sakogbehandling.behandling.dokumenter.JournalpostId"];
@@ -697,7 +706,7 @@ export interface components {
             status: "OPPRETTET" | "AVSLUTTET" | "TOTRINNS_VURDERT" | "SENDT_TILBAKE_FRA_BESLUTTER" | "KVALITETSSIKRET" | "SENDT_TILBAKE_FRA_KVALITETSSIKRER" | "AVBRUTT";
             /**
              * Format: date-time
-             * @example 2024-09-04T15:28:43.384772
+             * @example 2024-09-05T10:35:47.886037
              */
             tidsstempel: string;
         };
@@ -736,7 +745,7 @@ export interface components {
             navn: string;
             /**
              * Format: date-time
-             * @example 2024-09-04T15:28:43.384772
+             * @example 2024-09-05T10:35:47.886037
              */
             "planlagtKj\u00F8retidspunkt": string;
             /** @enum {string} */

@@ -13,4 +13,5 @@ export const JaEllerNeiOptions: ValuePair[] = [
 export enum Behovstype {
     AVKLAR_TEMA = '1339',
     FINN_SAK = '1362',
+    KATEGORISER_DOKUMENT = '1337'
 }

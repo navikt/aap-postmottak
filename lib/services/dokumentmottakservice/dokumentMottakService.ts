@@ -11,7 +11,7 @@ export const hentFlyt = async (journalpostId: string): Promise<BehandlingFlytOgT
 };
 
 export const hentAvklarTemaGrunnlag = async (journalpostId: string): Promise<AvklarTemaGrunnlag> => {
-  const url = `${dokumentMottakApiBaseUrl}/api/behandling/${journalpostId}/avklarTemaVurdering`;
+  const url = `${dokumentMottakApiBaseUrl}/api/behandling/${journalpostId}/grunnlag/avklarTemaVurdering`;
   return await fetchProxy<AvklarTemaGrunnlag>(url, dokumentMottakApiScope, 'GET');
 };
 

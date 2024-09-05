@@ -23,7 +23,7 @@ export const AvklarTema = ({ behandlingsVersjon, journalpostId, grunnlag }: Prop
       type: 'radio',
       label: 'Er dokumentet riktig journalført på tema AAP?',
       rules: { required: 'Du må svare på om dokumentet har riktig tema' },
-      defaultValue: getJaNeiEllerUndefined(grunnlag.vurdering),
+      defaultValue: getJaNeiEllerUndefined(grunnlag.vurdering?.skalTilAap),
       options: JaEllerNeiOptions,
     },
   });
