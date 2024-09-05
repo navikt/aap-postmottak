@@ -6,20 +6,24 @@ import { Behovstype, JaEllerNei, JaEllerNeiOptions } from '../../lib/form';
 import { FormEvent, FormEventHandler } from 'react';
 import { useLøsBehovOgGåTilNesteSteg } from '../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { Button } from '@navikt/ds-react';
+import { AvklarTemaGrunnlag } from 'lib/types/types';
+import { getJaNeiEllerUndefined } from 'lib/utils/form';
 
 interface Props {
   behandlingsVersjon: number;
   journalpostId: string;
+  grunnlag: AvklarTemaGrunnlag;
 }
 interface FormFields {
   erTemaAAP: string;
 }
-export const AvklarTema = ({ behandlingsVersjon, journalpostId }: Props) => {
+export const AvklarTema = ({ behandlingsVersjon, journalpostId, grunnlag }: Props) => {
   const { formFields, form } = useConfigForm<FormFields>({
     erTemaAAP: {
       type: 'radio',
       label: 'Er dokumentet riktig journalført på tema AAP?',
       rules: { required: 'Du må svare på om dokumentet har riktig tema' },
+      defaultValue: getJaNeiEllerUndefined(grunnlag.vurdering),
       options: JaEllerNeiOptions,
     },
   });
