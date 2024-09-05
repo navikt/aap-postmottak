@@ -6,31 +6,36 @@ import { Behovstype } from '../../lib/form';
 import { FormEvent, FormEventHandler } from 'react';
 import { useLøsBehovOgGåTilNesteSteg } from '../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { Button } from '@navikt/ds-react';
+import {KategoriserGrunnlag} from "../../lib/types/types";
 
 interface Props {
   behandlingsVersjon: number;
   journalpostId: string;
+  grunnlag: KategoriserGrunnlag;
 }
 interface FormFields {
-  knyttTilSak: string;
+  kategori: string;
 }
-export const FinnSak = ({ behandlingsVersjon, journalpostId}: Props) => {
+export const Kategoriser = ({ behandlingsVersjon, journalpostId, grunnlag}: Props) => {
   const { formFields, form } = useConfigForm<FormFields>({
-    knyttTilSak: {
-      type: 'radio',
-      label: 'Journalfør på sak',
-      rules: { required: 'Du må svare på hvilken sak dokumentet skal knyttes til' },
-      options: ['Aap ordinær: 124355','Aap etablering av egen bedrift: 456456532', 'Ny sak'],
+    kategori: {
+      type: 'select',
+      label: 'Kategoriser',
+      rules: { required: 'Du må velge kategori' },
+      options: [{label: 'Søknad', value: 'SØKNAD'}, {label: 'Pliktkort', value: 'PLIKTKORT'}],
+      defaultValue: grunnlag.vurdering?.brevkode
     },
   });
-  const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('FINN_SAK');
+  const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('KATEGORISER_DOKUMENT');
   const onSubmit: FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
     form.handleSubmit((data) => {
       løsBehovOgGåTilNesteSteg({
         behandlingVersjon: behandlingsVersjon,
         behov: {
-          behovstype: Behovstype.FINN_SAK,
-          // TODO: send med knyttTilSak
+          behovstype: Behovstype.KATEGORISER_DOKUMENT,
+          // TODO:  kategori må endres. er ikke det samme som brevkode
+          // @ts-ignore
+          dokumentkategori: data.kategori
         },
         //TODO: dette skal være referanse: string
         // @ts-ignore
@@ -41,7 +46,7 @@ export const FinnSak = ({ behandlingsVersjon, journalpostId}: Props) => {
   return (
     <VilkårsKort heading={'Finn sak'}>
       <form onSubmit={onSubmit}>
-        <FormField form={form} formField={formFields.knyttTilSak} />
+        <FormField form={form} formField={formFields.kategori} />
         <Button>Send</Button>
       </form>
     </VilkårsKort>

@@ -1,6 +1,11 @@
 import { fetchProxy } from 'lib/fetchproxy/fetchProxy';
 import { mockFlyt } from 'lib/mock/mockFlyt';
-import { AvklarTemaGrunnlag, BehandlingFlytOgTilstand, LøsAvklaringsbehovPåBehandling } from 'lib/types/types';
+import {
+  AvklarTemaGrunnlag,
+  BehandlingFlytOgTilstand,
+  KategoriserGrunnlag,
+  LøsAvklaringsbehovPåBehandling
+} from 'lib/types/types';
 
 const dokumentMottakApiBaseUrl = process.env.DOKUMENTMOTTAK_API_BASE_URL;
 const dokumentMottakApiScope = process.env.DOKUMENTMOTTAK_API_SCOPE ?? '';
@@ -13,6 +18,10 @@ export const hentFlyt = async (journalpostId: string): Promise<BehandlingFlytOgT
 export const hentAvklarTemaGrunnlag = async (journalpostId: string): Promise<AvklarTemaGrunnlag> => {
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/${journalpostId}/grunnlag/avklarTemaVurdering`;
   return await fetchProxy<AvklarTemaGrunnlag>(url, dokumentMottakApiScope, 'GET');
+};
+export const hentKategoriserGrunnlag = async (journalpostId: string): Promise<KategoriserGrunnlag> => {
+  const url = `${dokumentMottakApiBaseUrl}/api/behandling/${journalpostId}/grunnlag/kategorisering`;
+  return await fetchProxy<KategoriserGrunnlag>(url, dokumentMottakApiScope, 'GET');
 };
 
 export const løsAvklaringsbehov = async (avklaringsBehov: LøsAvklaringsbehovPåBehandling) => {

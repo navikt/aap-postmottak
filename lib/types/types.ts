@@ -14,3 +14,5 @@ export type LøsAvklaringsbehovPåBehandling =
 
 export type AvklarTemaGrunnlag =
   components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaGrunnlagDto'];
+export type KategoriserGrunnlag =
+    components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringGrunnlagDto'];
