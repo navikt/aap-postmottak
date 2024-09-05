@@ -1,6 +1,7 @@
 import { StegSuspense } from 'components/stegsuspense/StegSuspense';
 import { AvklarTemaMedDataFetching } from '../avklartema/AvklarTemaMedDataFetching';
 import { StegGruppe } from 'lib/types/types';
+import {FinnSakMedDataFetching} from "../finnsak/FinnSakMedDataFetching";
 
 interface Props {
   aktivGruppe: StegGruppe;
@@ -17,7 +18,7 @@ export const StegKolonne = ({ aktivGruppe, journalpostId }: Props) => {
       )}
       {aktivGruppe === 'FINN_SAK' && (
         <StegSuspense>
-          <div>FINN_SAK</div>
+          <FinnSakMedDataFetching journalpostId={journalpostId} />
         </StegSuspense>
       )}
       {aktivGruppe === 'KATEGORISER' && (
