@@ -41,3 +41,9 @@ export const hentAlleBehandlinger = async () => {
   const url = `${dokumentMottakApiBaseUrl}/test/hentAlleBehandlinger`;
   return await fetchProxy<[{ id: string; status: string }]>(url, dokumentMottakApiScope, 'GET');
 };
+
+// TODO: Fjern denne - testendepunkt
+export const opprettBehandlingForJournalpost = async (body: {referanse: number}) => {
+  const url = `${dokumentMottakApiBaseUrl}/api/behandling`;
+  return await fetchProxy<{ referanse: number }>(url, dokumentMottakApiScope, 'POST', body);
+}

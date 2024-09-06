@@ -28,6 +28,11 @@ export function løsBehov(avklaringsBehov: LøsAvklaringsbehovPåBehandling) {
   return fetchProxy('/api/post/los-behov/', 'POST', avklaringsBehov);
 }
 
+// TODO: Test-endepunkt - skal fjernes
+export function opprettBehandling(journalpostId: number) {
+  return fetchProxy<{referanse: number}>('/api/test/behandling/opprett/', 'POST', {referanse: journalpostId});
+}
+
 export interface SaksInformasjon {
   søker: {
     navn: string;

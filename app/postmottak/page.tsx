@@ -1,8 +1,10 @@
 import { hentAlleBehandlinger } from 'lib/services/dokumentmottakservice/dokumentMottakService';
 import Link from 'next/link';
+import {OpprettBehandling} from "../../components/test/behandling/OpprettBehandling";
 
 const Page = async () => {
   const alleBehandlinger = await hentAlleBehandlinger();
+  
   console.log(alleBehandlinger);
   return (
     <main>
@@ -16,6 +18,7 @@ const Page = async () => {
           </li>
         ))}
       </ul>
+      <OpprettBehandling/>
     </main>
   );
 };
