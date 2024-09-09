@@ -17,12 +17,6 @@ export interface ServerSentEventData {
 
 export type ServerSentEventStatus = 'POLLING' | 'ERROR' | 'DONE';
 
-const gruppeEllerStegErEndret = (
-  aktivGruppe: string,
-  aktivtSteg: string,
-  aktivGruppeFraBackend: string,
-  aktivtStegFraBackend: string
-) => aktivGruppe !== aktivGruppeFraBackend || aktivtSteg !== aktivtStegFraBackend;
 
 export async function GET(__request: NextRequest, context: { params: { id: string; gruppe: string; steg: string } }) {
   let responseStream = new TransformStream();
@@ -63,8 +57,8 @@ export async function GET(__request: NextRequest, context: { params: { id: strin
         return;
       }
 
-      if (gruppeEllerStegErEndret(context.params.gruppe, context.params.steg, aktivGruppe, aktivtSteg)) {
-        logInfo('Gruppe eller steg er endret!');
+      if (flyt.prosessering.status === 'FERDIG') {
+        logInfo(`prosessering ferdig på ${retries} forsøk`);
 
         // TODO: Tar bort vurdertGruppe og vurdertSteg foreløpig til vi finner ut av hva de skal brukes til
         const json: ServerSentEventData = {
