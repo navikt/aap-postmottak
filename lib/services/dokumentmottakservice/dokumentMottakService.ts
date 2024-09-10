@@ -1,4 +1,4 @@
-import { fetchProxy } from 'lib/fetchproxy/fetchProxy';
+import {fetchPdf, fetchProxy} from 'lib/fetchproxy/fetchProxy';
 import { mockFlyt } from 'lib/mock/mockFlyt';
 import {
   AvklarTemaGrunnlag,
@@ -28,14 +28,12 @@ export const løsAvklaringsbehov = async (avklaringsBehov: LøsAvklaringsbehovP�
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/løs-behov`;
   return await fetchProxy<void>(url, dokumentMottakApiScope, 'POST', avklaringsBehov);
 };
-
-export const hentDokumentUrlForJournalpostId = async (journalpostId: string): Promise<{ url: string }> => {
-  if (process.env.NEXT_PUBLIC_ENVIRONMENT === 'localhost') {
-    return { url: 'https://pdfobject.com/pdf/sample.pdf' };
-  }
-  const url = `${dokumentMottakApiBaseUrl}/api/dokument/${journalpostId}/hent`;
-  return await fetchProxy<{ url: string }>(url, dokumentMottakApiScope, 'GET');
-};
+export const hentDokumentFraDokumentInfoId = async (journalpostId: string, dokumentInfoId: string): Promise<Blob | undefined> => {
+  return fetchPdf(
+      `${dokumentMottakApiBaseUrl}/api/dokumenter/${journalpostId}/${dokumentInfoId}`,
+      dokumentMottakApiScope
+  );
+}
 
 export const hentAlleBehandlinger = async () => {
   const url = `${dokumentMottakApiBaseUrl}/test/hentAlleBehandlinger`;
