@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ServerSentEventData, ServerSentEventStatus } from 'app/api/post/[id]/hent/[gruppe]/[steg]/nesteSteg/route';
+import { ServerSentEventData, ServerSentEventStatus } from '../../app/api/post/[journalpostId]/hent/[gruppe]/[steg]/nesteSteg/route';
 import { useParams, useRouter } from 'next/navigation';
 import { LøsAvklaringsbehovPåBehandling, StegType } from 'lib/types/types';
 import { løsBehov } from 'lib/clientApi';
