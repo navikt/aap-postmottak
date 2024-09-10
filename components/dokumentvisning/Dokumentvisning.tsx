@@ -17,7 +17,6 @@ export const Dokumentvisning = ({ journalpostId, dokumentInfoId }: Props ) => {
         }
         hentDokument();
     }, [])
-    console.log('dokument', blob)
   return (
     <div>
         {blob && <object data={URL.createObjectURL(blob)} type="application/pdf" width="100%" height="100%">
