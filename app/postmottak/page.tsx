@@ -3,7 +3,10 @@ import Link from 'next/link';
 import {OpprettBehandling} from "../../components/test/behandling/OpprettBehandling";
 
 const Page = async () => {
-  const alleBehandlinger = await hentAlleBehandlinger();
+  const alleBehandlinger = (await hentAlleBehandlinger()).sort(
+    (a, b) => Date.parse(a.opprettet) - Date.parse(b.opprettet)
+  );
+
   
   console.log(alleBehandlinger);
   return (
@@ -13,7 +16,7 @@ const Page = async () => {
         {alleBehandlinger.map((behandling) => (
           <li key={behandling.id}>
             <Link href={`/postmottak/${behandling.id}/`}>
-              {behandling.id} - {behandling.status}
+              {behandling.id} - {behandling.status} - {behandling.opprettet}
             </Link>
           </li>
         ))}

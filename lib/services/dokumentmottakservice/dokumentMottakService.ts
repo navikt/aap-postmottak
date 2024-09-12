@@ -37,7 +37,7 @@ export const hentDokumentFraDokumentInfoId = async (journalpostId: string, dokum
 
 export const hentAlleBehandlinger = async () => {
   const url = `${dokumentMottakApiBaseUrl}/test/hentAlleBehandlinger`;
-  return await fetchProxy<[{ id: string; status: string }]>(url, dokumentMottakApiScope, 'GET');
+  return await fetchProxy<[{ id: string; status: string; opprettet: string }]>(url, dokumentMottakApiScope, 'GET');
 };
 
 // TODO: Fjern denne - testendepunkt
