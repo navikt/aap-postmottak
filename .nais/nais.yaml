@@ -52,4 +52,4 @@ spec:
   accessPolicy:
     outbound:
       rules:
-        - application: dokumentmottak
+        - application: postmottak-backend
