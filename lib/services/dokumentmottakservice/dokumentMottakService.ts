@@ -1,8 +1,8 @@
 import {fetchPdf, fetchProxy} from 'lib/fetchproxy/fetchProxy';
-import { mockFlyt } from 'lib/mock/mockFlyt';
 import {
   AvklarTemaGrunnlag,
   BehandlingFlytOgTilstand,
+  JournalpostInfo,
   KategoriserGrunnlag,
   LøsAvklaringsbehovPåBehandling
 } from 'lib/types/types';
@@ -23,6 +23,10 @@ export const hentKategoriserGrunnlag = async (journalpostId: string): Promise<Ka
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/${journalpostId}/grunnlag/kategorisering`;
   return await fetchProxy<KategoriserGrunnlag>(url, dokumentMottakApiScope, 'GET');
 };
+export const hentJournalpostInfo = async (journalpostId: string): Promise<JournalpostInfo> => {
+  const url = `${dokumentMottakApiBaseUrl}/api/dokumenter/${journalpostId}/info`;
+  return fetchProxy<JournalpostInfo>(url, dokumentMottakApiScope, 'GET');
+}
 
 export const løsAvklaringsbehov = async (avklaringsBehov: LøsAvklaringsbehovPåBehandling) => {
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/løs-behov`;

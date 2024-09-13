@@ -712,18 +712,22 @@ export interface components {
             kategori: "SØKNAD" | "AKTIVITETSKORT" | "PLIKTKORT" | "UKJENT";
         };
         "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaGrunnlagDto": {
-            dokumenter: number[];
+            dokumenter: string[];
             vurdering?: components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaVurderingDto"];
         };
         "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaVurderingDto": {
             skalTilAap: boolean;
+        };
+        "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentDto": {
+            dokumentInfoId: string;
+            tittel?: string | null;
         };
         "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentIdent": {
             ident: string;
             navn: string;
         };
         "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentInfoResponsDTO": {
-            dokumenter: components["schemas"]["no.nav.aap.behandlingsflyt.saf.Dokument"][];
+            dokumenter: components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentDto"][];
             "s\u00F8ker": components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentIdent"];
             tittel: string;
         };
@@ -775,7 +779,7 @@ export interface components {
             avklaringsbehov: components["schemas"]["no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO"][];
             /**
              * Format: date-time
-             * @example 2024-09-12T18:53:35.310050387
+             * @example 2024-09-13T10:49:03.167443
              */
             opprettet: string;
             referanse: components["schemas"]["no.nav.aap.behandlingsflyt.sakogbehandling.behandling.dokumenter.JournalpostId"];
@@ -792,7 +796,7 @@ export interface components {
             status: "OPPRETTET" | "AVSLUTTET" | "TOTRINNS_VURDERT" | "SENDT_TILBAKE_FRA_BESLUTTER" | "KVALITETSSIKRET" | "SENDT_TILBAKE_FRA_KVALITETSSIKRER" | "AVBRUTT";
             /**
              * Format: date-time
-             * @example 2024-09-12T18:53:35.310050387
+             * @example 2024-09-13T10:49:03.167443
              */
             tidsstempel: string;
         };
@@ -817,15 +821,6 @@ export interface components {
             status: "JOBBER" | "FEILET" | "FERDIG";
             ventendeOppgaver: components["schemas"]["no.nav.aap.motor.api.JobbInfoDto"][];
         };
-        "no.nav.aap.behandlingsflyt.saf.Dokument": {
-            brevkode?: string | null;
-            dokumentInfoId: components["schemas"]["no.nav.aap.verdityper.dokument.DokumentInfoId"];
-            /** @enum {string} */
-            filtype: "PDF" | "JPEG" | "PNG" | "TIFF" | "XLSX" | "JSON" | "XML" | "AXML" | "DXML" | "RTF";
-            tittel?: string | null;
-            /** @enum {string} */
-            variantFormat: "ARKIV" | "FULLVERSJON" | "PRODUKSJON" | "PRODUKSJON_DLF" | "SLADDET" | "ORIGINAL";
-        };
         "no.nav.aap.behandlingsflyt.sakogbehandling.behandling.dokumenter.JournalpostId": {
             /** Format: int64 */
             referanse: number;
@@ -834,7 +829,7 @@ export interface components {
             id: string;
             /**
              * Format: date-time
-             * @example 2024-09-12T18:53:35.310050387
+             * @example 2024-09-13T10:49:03.167443
              */
             opprettet: string;
             status: string;
@@ -853,15 +848,12 @@ export interface components {
             navn: string;
             /**
              * Format: date-time
-             * @example 2024-09-12T18:53:35.310050387
+             * @example 2024-09-13T10:49:03.167443
              */
             "planlagtKj\u00F8retidspunkt": string;
             /** @enum {string} */
             status: "KLAR" | "PLUKKET" | "FERDIG" | "FEILET";
             type: string;
-        };
-        "no.nav.aap.verdityper.dokument.DokumentInfoId": {
-            dokumentInfoId: string;
         };
     };
     responses: never;
