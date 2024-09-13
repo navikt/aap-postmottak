@@ -10,7 +10,6 @@ interface Props {
 }
 
 export const Dokumentvisning = ({ journalpostId, dokumenter }: Props ) => {
-    console.log(dokumenter)
     const [valgtDokumentIndex, setValgtDokumentIndex] = useState<number>(0);
     const [dataUri, setDataUri] = useState<string>();
     useEffect(() => {
