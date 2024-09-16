@@ -3,6 +3,7 @@ import { AvklarTemaMedDataFetching } from '../avklartema/AvklarTemaMedDataFetchi
 import { StegGruppe } from 'lib/types/types';
 import {FinnSakMedDataFetching} from "../finnsak/FinnSakMedDataFetching";
 import {KategoriserMedDataFetching} from "../kategoriser/KategoriserMedDataFetching";
+import {DigitaliserDokumentMedDatafetching} from "../digitaliserdokument/DigitaliserDokumentMedDatafetching";
 
 interface Props {
   aktivGruppe: StegGruppe;
@@ -29,7 +30,7 @@ export const StegKolonne = ({ aktivGruppe, journalpostId }: Props) => {
       )}
       {aktivGruppe === 'DIGITALISER' && (
         <StegSuspense>
-          <div>Digitaliser</div>
+          <DigitaliserDokumentMedDatafetching journalpostId={journalpostId} />
         </StegSuspense>
       )}
       {aktivGruppe === 'OVERLEVER_TIL_FAGSYSTEM' && (

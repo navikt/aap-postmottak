@@ -7,7 +7,7 @@ import { FormEvent, FormEventHandler } from 'react';
 import { useLøsBehovOgGåTilNesteSteg } from '../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { Button } from '@navikt/ds-react';
 import { AvklarTemaGrunnlag } from 'lib/types/types';
-import { getJaNeiEllerUndefined } from 'lib/utils/form';
+import { getJaNeiEllerUndefined } from 'lib/form';
 
 interface Props {
   behandlingsVersjon: number;

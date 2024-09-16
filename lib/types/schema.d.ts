@@ -728,7 +728,7 @@ export interface components {
         };
         "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentInfoResponsDTO": {
             dokumenter: components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentDto"][];
-            "s\u00F8ker": components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentIdent"];
+            "s\u00F8ker"?: components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentIdent"];
             tittel: string;
         };
         "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringGrunnlagDto": {
@@ -779,7 +779,7 @@ export interface components {
             avklaringsbehov: components["schemas"]["no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO"][];
             /**
              * Format: date-time
-             * @example 2024-09-13T10:49:03.167443
+             * @example 2024-09-16T09:17:36.548856
              */
             opprettet: string;
             referanse: components["schemas"]["no.nav.aap.behandlingsflyt.sakogbehandling.behandling.dokumenter.JournalpostId"];
@@ -796,7 +796,7 @@ export interface components {
             status: "OPPRETTET" | "AVSLUTTET" | "TOTRINNS_VURDERT" | "SENDT_TILBAKE_FRA_BESLUTTER" | "KVALITETSSIKRET" | "SENDT_TILBAKE_FRA_KVALITETSSIKRER" | "AVBRUTT";
             /**
              * Format: date-time
-             * @example 2024-09-13T10:49:03.167443
+             * @example 2024-09-16T09:17:36.548856
              */
             tidsstempel: string;
         };
@@ -829,7 +829,7 @@ export interface components {
             id: string;
             /**
              * Format: date-time
-             * @example 2024-09-13T10:49:03.167443
+             * @example 2024-09-16T09:17:36.548856
              */
             opprettet: string;
             status: string;
@@ -848,7 +848,7 @@ export interface components {
             navn: string;
             /**
              * Format: date-time
-             * @example 2024-09-13T10:49:03.167443
+             * @example 2024-09-16T09:17:36.548856
              */
             "planlagtKj\u00F8retidspunkt": string;
             /** @enum {string} */
