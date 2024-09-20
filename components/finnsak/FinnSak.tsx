@@ -6,21 +6,26 @@ import { Behovstype } from '../../lib/form';
 import { FormEvent, FormEventHandler } from 'react';
 import { useLøsBehovOgGåTilNesteSteg } from '../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { Button } from '@navikt/ds-react';
+import { FinnSakGrunnlag } from '../../lib/types/types';
 
 interface Props {
   behandlingsVersjon: number;
   journalpostId: string;
+  grunnlag: FinnSakGrunnlag;
 }
 interface FormFields {
   knyttTilSak: string;
 }
-export const FinnSak = ({ behandlingsVersjon, journalpostId}: Props) => {
+
+const nySak = "Ny Sak";
+
+export const FinnSak = ({ behandlingsVersjon, journalpostId, grunnlag}: Props) => {
   const { formFields, form } = useConfigForm<FormFields>({
     knyttTilSak: {
       type: 'radio',
       label: 'Journalfør på sak',
       rules: { required: 'Du må svare på hvilken sak dokumentet skal knyttes til' },
-      options: ['Aap ordinær: 124355','Aap etablering av egen bedrift: 456456532', 'Ny sak'],
+      options: grunnlag.saksinfo.map(saksinfo => saksinfo.saksnummer).concat([nySak]),
     },
   });
   const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('FINN_SAK');
@@ -30,7 +35,7 @@ export const FinnSak = ({ behandlingsVersjon, journalpostId}: Props) => {
         behandlingVersjon: behandlingsVersjon,
         behov: {
           behovstype: Behovstype.FINN_SAK,
-          // TODO: send med knyttTilSak
+          saksnummer: (data.knyttTilSak == nySak) ? null : data.knyttTilSak
         },
         //TODO: dette skal være referanse: string
         // @ts-ignore

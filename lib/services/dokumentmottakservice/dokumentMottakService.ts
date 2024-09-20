@@ -1,10 +1,10 @@
 import {fetchPdf, fetchProxy} from 'lib/fetchproxy/fetchProxy';
 import {
   AvklarTemaGrunnlag,
-  BehandlingFlytOgTilstand,
+  BehandlingFlytOgTilstand, FinnSakGrunnlag,
   JournalpostInfo,
   KategoriserGrunnlag,
-  LøsAvklaringsbehovPåBehandling, StruktureringGrunnlag
+  LøsAvklaringsbehovPåBehandling, StruktureringGrunnlag,
 } from 'lib/types/types';
 
 const dokumentMottakApiBaseUrl = process.env.DOKUMENTMOTTAK_API_BASE_URL;
@@ -18,6 +18,10 @@ export const hentFlyt = async (journalpostId: string): Promise<BehandlingFlytOgT
 export const hentAvklarTemaGrunnlag = async (journalpostId: string): Promise<AvklarTemaGrunnlag> => {
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/${journalpostId}/grunnlag/avklarTemaVurdering`;
   return await fetchProxy<AvklarTemaGrunnlag>(url, dokumentMottakApiScope, 'GET');
+};
+export const hentFinnSakGrunnlag = async (journalpostId: string): Promise<FinnSakGrunnlag> => {
+  const url = `${dokumentMottakApiBaseUrl}/api/behandling/${journalpostId}/grunnlag/finnSak`;
+  return await fetchProxy<FinnSakGrunnlag>(url, dokumentMottakApiScope, 'GET');
 };
 export const hentKategoriserGrunnlag = async (journalpostId: string): Promise<KategoriserGrunnlag> => {
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/${journalpostId}/grunnlag/kategorisering`;
