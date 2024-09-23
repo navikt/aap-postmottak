@@ -802,7 +802,7 @@ export interface components {
             saksnummer: string;
         };
         "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.finnsak.flate.SaksInfoDto": {
-            perioder: components["schemas"]["no.nav.aap.komponenter.type.Periode"];
+            periode: components["schemas"]["no.nav.aap.komponenter.type.Periode"];
             saksnummer: string;
         };
         "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentDto": {
@@ -866,7 +866,7 @@ export interface components {
             avklaringsbehov: components["schemas"]["no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO"][];
             /**
              * Format: date-time
-             * @example 2024-09-20T13:16:31.152240025
+             * @example 2024-09-23T09:47:25.663345244
              */
             opprettet: string;
             referanse: components["schemas"]["no.nav.aap.behandlingsflyt.sakogbehandling.behandling.dokumenter.JournalpostId"];
@@ -883,7 +883,7 @@ export interface components {
             status: "OPPRETTET" | "AVSLUTTET" | "TOTRINNS_VURDERT" | "SENDT_TILBAKE_FRA_BESLUTTER" | "KVALITETSSIKRET" | "SENDT_TILBAKE_FRA_KVALITETSSIKRER" | "AVBRUTT";
             /**
              * Format: date-time
-             * @example 2024-09-20T13:16:31.152240025
+             * @example 2024-09-23T09:47:25.663345244
              */
             tidsstempel: string;
         };
@@ -916,7 +916,7 @@ export interface components {
             id: string;
             /**
              * Format: date-time
-             * @example 2024-09-20T13:16:31.152240025
+             * @example 2024-09-23T09:47:25.663345244
              */
             opprettet: string;
             status: string;
@@ -924,12 +924,12 @@ export interface components {
         "no.nav.aap.komponenter.type.Periode": {
             /**
              * Format: date
-             * @example 2024-09-20
+             * @example 2024-09-23
              */
             fom: string;
             /**
              * Format: date
-             * @example 2024-09-20
+             * @example 2024-09-23
              */
             tom: string;
         };
@@ -947,7 +947,7 @@ export interface components {
             navn: string;
             /**
              * Format: date-time
-             * @example 2024-09-20T13:16:31.152240025
+             * @example 2024-09-23T09:47:25.663345244
              */
             "planlagtKj\u00F8retidspunkt": string;
             /** @enum {string} */
