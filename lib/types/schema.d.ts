@@ -422,6 +422,44 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/behandling/{referanse}/grunnlag/finnSak": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description referanse */
+                    referanse: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.finnsak.flate.FinnSakGrunnlagDto"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/behandling/{referanse}/grunnlag/strukturering": {
         parameters: {
             query?: never;
@@ -531,6 +569,44 @@ export interface paths {
         trace?: never;
     };
     "/drift/api/jobb/rekjor/{jobbId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description ID */
+                    jobbId: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": string;
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/drift/api/jobb/avbryt/{jobbId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -695,7 +771,7 @@ export interface components {
         };
         "no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.AvklarSaksnummerL\u00F8sning": {
             behovstype: string;
-            saksnummer: string;
+            saksnummer?: string | null;
         };
         "no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.l\u00F8sning.AvklarTemaL\u00F8sning": {
             behovstype: string;
@@ -717,6 +793,17 @@ export interface components {
         };
         "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaVurderingDto": {
             skalTilAap: boolean;
+        };
+        "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.finnsak.flate.FinnSakGrunnlagDto": {
+            saksinfo: components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.finnsak.flate.SaksInfoDto"][];
+            vurdering?: components["schemas"]["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.finnsak.flate.FinnSakVurderingDto"];
+        };
+        "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.finnsak.flate.FinnSakVurderingDto": {
+            saksnummer: string;
+        };
+        "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.finnsak.flate.SaksInfoDto": {
+            periode: components["schemas"]["no.nav.aap.komponenter.type.Periode"];
+            saksnummer: string;
         };
         "no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.flate.DokumentDto": {
             dokumentInfoId: string;
@@ -779,7 +866,7 @@ export interface components {
             avklaringsbehov: components["schemas"]["no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO"][];
             /**
              * Format: date-time
-             * @example 2024-09-16T09:17:36.548856
+             * @example 2024-09-23T09:47:25.663345244
              */
             opprettet: string;
             referanse: components["schemas"]["no.nav.aap.behandlingsflyt.sakogbehandling.behandling.dokumenter.JournalpostId"];
@@ -796,7 +883,7 @@ export interface components {
             status: "OPPRETTET" | "AVSLUTTET" | "TOTRINNS_VURDERT" | "SENDT_TILBAKE_FRA_BESLUTTER" | "KVALITETSSIKRET" | "SENDT_TILBAKE_FRA_KVALITETSSIKRER" | "AVBRUTT";
             /**
              * Format: date-time
-             * @example 2024-09-16T09:17:36.548856
+             * @example 2024-09-23T09:47:25.663345244
              */
             tidsstempel: string;
         };
@@ -829,10 +916,22 @@ export interface components {
             id: string;
             /**
              * Format: date-time
-             * @example 2024-09-16T09:17:36.548856
+             * @example 2024-09-23T09:47:25.663345244
              */
             opprettet: string;
             status: string;
+        };
+        "no.nav.aap.komponenter.type.Periode": {
+            /**
+             * Format: date
+             * @example 2024-09-23
+             */
+            fom: string;
+            /**
+             * Format: date
+             * @example 2024-09-23
+             */
+            tom: string;
         };
         "no.nav.aap.motor.api.JobbInfoDto": {
             /** Format: int32 */
@@ -848,11 +947,11 @@ export interface components {
             navn: string;
             /**
              * Format: date-time
-             * @example 2024-09-16T09:17:36.548856
+             * @example 2024-09-23T09:47:25.663345244
              */
             "planlagtKj\u00F8retidspunkt": string;
             /** @enum {string} */
-            status: "KLAR" | "PLUKKET" | "FERDIG" | "FEILET";
+            status: "KLAR" | "PLUKKET" | "FERDIG" | "FEILET" | "AVBRUTT";
             type: string;
         };
     };
