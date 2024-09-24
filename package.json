@@ -9,6 +9,7 @@
     "test": "vitest --run",
     "lint": "next lint",
     "gentypes": "openapi-typescript http://localhost:8080/openapi.json -o lib/types/schema.d.ts",
+    "gentypes:behandlingsflyt": "openapi-typescript http://localhost:8080/openapi.json -o lib/types/behandlingsflyt.schema.d.ts",
     "prepare": "husky"
   },
   "prettier": "@navikt/aap-felles-prettier",

@@ -6,6 +6,7 @@ import {FormEvent, FormEventHandler} from "react";
 import {VilkårsKort} from "../vilkårskort/VilkårsKort";
 import {Button} from "@navikt/ds-react";
 import {useLøsBehovOgGåTilNesteSteg} from "../../lib/hooks/LøsBehovOgGåTilNesteStegHook";
+import { Søknad } from '../../lib/types/types';
 
 interface FormFields {
   søknadsDato: Date;
@@ -17,9 +18,17 @@ interface Props {
     behandlingsVersjon: number;
     journalpostId: string;
 }
-function mapTilSøknadKontrakt(data: FormFields ) {
-    return JSON.stringify(data);
+
+function mapTilSøknadKontrakt(data: FormFields) {
+  return JSON.stringify({
+    student: {
+      erStudent: data.erStudent.toString(),
+      kommeTilbake: data.studentKommeTilbake.toString(),
+    },
+    yrkesskade: data.yrkesSkade.toString(),
+  } as Søknad);
 }
+
 export const DigitaliserSøknad = ({behandlingsVersjon, journalpostId}: Props) => {
 
     const {form, formFields} = useConfigForm<FormFields>({

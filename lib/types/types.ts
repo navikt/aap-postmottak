@@ -1,4 +1,5 @@
 import { components } from 'lib/types/schema';
+import { components as behandlingsflyt} from 'lib/types/behandlingsflyt.schema'
 
 export type BehandlingFlytOgTilstand =
   components['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.BehandlingFlytOgTilstandDto'];
@@ -22,3 +23,5 @@ export type FinnSakGrunnlag =
 export type KategoriserGrunnlag =
     components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringGrunnlagDto'];
 export type StruktureringGrunnlag = components['schemas']["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringGrunnlagDto"]
+
+export type Søknad = behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.dokument.kontrakt.søknad.Søknad']
