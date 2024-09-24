@@ -33,6 +33,13 @@ export function opprettBehandling(journalpostId: number) {
   return fetchProxy<{referanse: number}>('/api/test/behandling/opprett/', 'POST', {referanse: journalpostId});
 }
 
+// TODO: Test/admin endepunkt
+// TODO: Fjern denne - testendepunkt eller featuretoggle kun til test - skal ikke i prod
+export const rekjørFeiledeJobber = async () => {
+  return fetchProxy('/drift/api/jobb/rekjorAlleFeilede', 'GET');
+}
+
+
 export interface SaksInformasjon {
   søker: {
     navn: string;
