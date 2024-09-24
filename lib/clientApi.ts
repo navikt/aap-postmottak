@@ -36,7 +36,7 @@ export function opprettBehandling(journalpostId: number) {
 // TODO: Test/admin endepunkt
 // TODO: Fjern denne - testendepunkt eller featuretoggle kun til test - skal ikke i prod
 export const rekjørFeiledeJobber = async () => {
-  return fetchProxy('/drift/api/jobb/rekjorAlleFeilede', 'GET');
+  return fetchProxy('/drift/api/jobb/rekjorAlleFeilede/', 'GET');
 }
 
 
