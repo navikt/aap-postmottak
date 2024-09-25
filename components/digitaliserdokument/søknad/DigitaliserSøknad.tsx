@@ -1,25 +1,34 @@
 'use client'
 
 import {FormField, useConfigForm} from "@navikt/aap-felles-react";
-import {Behovstype, JaEllerNei, JaEllerNeiOptions, JaNeiAvbrutt, JaNeiVetIkke} from "../../lib/form";
+import {Behovstype, JaEllerNei, JaEllerNeiOptions, JaNeiAvbrutt, JaNeiVetIkke} from "../../../lib/form";
 import {FormEvent, FormEventHandler} from "react";
-import {VilkårsKort} from "../vilkårskort/VilkårsKort";
+import {VilkårsKort} from "../../vilkårskort/VilkårsKort";
 import {Button} from "@navikt/ds-react";
-import {useLøsBehovOgGåTilNesteSteg} from "../../lib/hooks/LøsBehovOgGåTilNesteStegHook";
-import { Søknad } from '../../lib/types/types';
+import {useLøsBehovOgGåTilNesteSteg} from "../../../lib/hooks/LøsBehovOgGåTilNesteStegHook";
+import { Barnetillegg} from "./Barnetillegg";
+import {Søknad} from "../../../lib/types/types";
 
-interface FormFields {
+export type Barn = {
+    fnr: string;
+    fornavn: string;
+    etternavn: string;
+    relasjon: 'FORELDER' | 'FOSTERFORELDER';
+}
+
+export interface SøknadFormFields {
   søknadsDato: Date;
   yrkesSkade: JaEllerNei;
   erStudent: JaNeiAvbrutt;
   studentKommeTilbake: JaNeiVetIkke;
+  oppgitteBarn: Barn[];
 }
 interface Props {
     behandlingsVersjon: number;
     journalpostId: string;
 }
 
-function mapTilSøknadKontrakt(data: FormFields) {
+function mapTilSøknadKontrakt(data: SøknadFormFields) {
   return JSON.stringify({
     student: {
       erStudent: data.erStudent.toString(),
@@ -30,8 +39,7 @@ function mapTilSøknadKontrakt(data: FormFields) {
 }
 
 export const DigitaliserSøknad = ({behandlingsVersjon, journalpostId}: Props) => {
-
-    const {form, formFields} = useConfigForm<FormFields>({
+    const {form, formFields} = useConfigForm<SøknadFormFields>({
         søknadsDato: {
             type: 'date',
             label: 'Søknadsdato'
@@ -50,7 +58,10 @@ export const DigitaliserSøknad = ({behandlingsVersjon, journalpostId}: Props) =
             type: 'radio',
             label: 'Skal studenten tilbake til studiet?',
             options: [JaNeiVetIkke.JA, JaNeiVetIkke.NEI, JaNeiVetIkke.VET_IKKE]
-
+        },
+        oppgitteBarn: {
+            type: 'fieldArray',
+            defaultValue: []
         }
     })
     const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('DIGITALISER_DOKUMENT');
@@ -73,10 +84,13 @@ export const DigitaliserSøknad = ({behandlingsVersjon, journalpostId}: Props) =
     return (
         <VilkårsKort heading={'Digitaliser søknad'}>
             <form onSubmit={onSubmit}>
-                <FormField form={form} formField={formFields.søknadsDato}/>
-                <FormField form={form} formField={formFields.yrkesSkade}/>
-                <FormField form={form} formField={formFields.erStudent}/>
-                {erStudent === JaNeiAvbrutt.JA && <FormField form={form} formField={formFields.studentKommeTilbake}/>}
+                <VilkårsKort heading={'Personalia'}>
+                    <FormField form={form} formField={formFields.søknadsDato}/>
+                </VilkårsKort>
+                <VilkårsKort heading={'Yrkesskade'}>
+                    <FormField form={form} formField={formFields.yrkesSkade}/>
+                </VilkårsKort>
+                <Barnetillegg form={form} />
                 <Button>Send</Button>
             </form>
         </VilkårsKort>

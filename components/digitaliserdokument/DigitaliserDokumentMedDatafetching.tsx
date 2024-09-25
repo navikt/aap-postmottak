@@ -1,4 +1,4 @@
-import { DigitaliserSøknad} from "./DigitaliserSøknad";
+import { DigitaliserSøknad} from "./søknad/DigitaliserSøknad";
 import {hentDigitaliseringGrunnlag, hentFlyt} from "../../lib/services/dokumentmottakservice/dokumentMottakService";
 
 interface Props {
