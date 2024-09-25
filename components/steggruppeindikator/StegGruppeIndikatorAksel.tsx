@@ -19,7 +19,7 @@ export const StegGruppeIndikatorAksel = ({
   return (
     <div className={style.stegMenyWrapper}>
       <Stepper orientation="horizontal" activeStep={aktivtStegNummer}>
-        {stegGrupper.map((steg, index) => (
+        {stegGrupper.filter(steg => steg.skalVises).map((steg, index) => (
           <Stepper.Step
             as="button"
             completed={steg.erFullført}
