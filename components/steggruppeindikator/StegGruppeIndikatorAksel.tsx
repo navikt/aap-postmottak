@@ -25,6 +25,8 @@ export const StegGruppeIndikatorAksel = ({
             completed={steg.erFullført}
             key={index}
             onClick={() => router.push(`/postmottak/${journalpostId}/${steg.stegGruppe}`)}
+            interactive={steg.erFullført}
+
           >
             {steg.stegGruppe}
           </Stepper.Step>

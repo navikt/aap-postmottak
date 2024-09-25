@@ -20,6 +20,7 @@ export type AvklarTemaGrunnlag =
   components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaGrunnlagDto'];
 export type FinnSakGrunnlag =
   components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.finnsak.flate.FinnSakGrunnlagDto'];
+export type Saksinfo = components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.finnsak.flate.SaksInfoDto'];
 export type KategoriserGrunnlag =
     components['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringGrunnlagDto'];
 export type StruktureringGrunnlag = components['schemas']["no.nav.aap.behandlingsflyt.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringGrunnlagDto"]

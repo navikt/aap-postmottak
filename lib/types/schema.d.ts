@@ -753,15 +753,6 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        "no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.Definisjon": {
-            kode: string;
-            kreverToTrinn: boolean;
-            /** @enum {string} */
-            "l\u00F8sesISteg": "KATEGORISER_DOKUMENT" | "DIGITALISER_DOKUMENT" | "START_BEHANDLING" | "AVKLAR_TEMA" | "ENDERLIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "UDEFINERT" | "FINN_SAK";
-            /** @enum {string} */
-            type: "MANUELT_PÅKREVD" | "MANUELT_FRIVILLIG";
-            name: string;
-        };
         "no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.flate.L\u00F8sAvklaringsbehovP\u00E5Behandling": {
             /** Format: int64 */
             behandlingVersjon: number;
@@ -836,16 +827,16 @@ export interface components {
             strukturertDokumentJson: string;
         };
         "no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO": {
-            definisjon: components["schemas"]["no.nav.aap.behandlingsflyt.behandling.avklaringsbehov.Definisjon"];
+            definisjon: components["schemas"]["no.nav.aap.postmottak.kontrakt.avklaringsbehov.Definisjon"];
             endringer: components["schemas"]["no.nav.aap.behandlingsflyt.flyt.flate.EndringDTO"][];
             /** @enum {string} */
             status: "OPPRETTET" | "AVSLUTTET" | "TOTRINNS_VURDERT" | "SENDT_TILBAKE_FRA_BESLUTTER" | "KVALITETSSIKRET" | "SENDT_TILBAKE_FRA_KVALITETSSIKRER" | "AVBRUTT";
         };
         "no.nav.aap.behandlingsflyt.flyt.flate.BehandlingFlytOgTilstandDto": {
             /** @enum {string} */
-            aktivGruppe: "KATEGORISER" | "DIGITALISER" | "AVKLAR_TEMA" | "START_BEHANDLING" | "UDEFINERT" | "ENDERLIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "FINN_SAK";
+            aktivGruppe: "KATEGORISER" | "DIGITALISER" | "AVKLAR_TEMA" | "START_BEHANDLING" | "UDEFINERT" | "SETT_FAGSAK" | "ENDELIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "FINN_SAK";
             /** @enum {string} */
-            aktivtSteg: "KATEGORISER_DOKUMENT" | "DIGITALISER_DOKUMENT" | "START_BEHANDLING" | "AVKLAR_TEMA" | "ENDERLIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "UDEFINERT" | "FINN_SAK";
+            aktivtSteg: "KATEGORISER_DOKUMENT" | "DIGITALISER_DOKUMENT" | "START_BEHANDLING" | "AVKLAR_TEMA" | "SETT_FAGSAK" | "ENDELIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "UDEFINERT" | "FINN_SAK";
             /** Format: int64 */
             behandlingVersjon: number;
             flyt: components["schemas"]["no.nav.aap.behandlingsflyt.flyt.flate.FlytGruppe"][];
@@ -856,17 +847,17 @@ export interface components {
             /** @enum {string} */
             behovType: "MANUELT_PÅKREVD" | "MANUELT_FRIVILLIG";
             /** @enum {string} */
-            "l\u00F8sesISteg": "KATEGORISER_DOKUMENT" | "DIGITALISER_DOKUMENT" | "START_BEHANDLING" | "AVKLAR_TEMA" | "ENDERLIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "UDEFINERT" | "FINN_SAK";
+            "l\u00F8sesISteg": "KATEGORISER_DOKUMENT" | "DIGITALISER_DOKUMENT" | "START_BEHANDLING" | "AVKLAR_TEMA" | "SETT_FAGSAK" | "ENDELIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "UDEFINERT" | "FINN_SAK";
             navn: string;
             type: string;
         };
         "no.nav.aap.behandlingsflyt.flyt.flate.DetaljertBehandlingDTO": {
             /** @enum {string} */
-            aktivtSteg: "KATEGORISER_DOKUMENT" | "DIGITALISER_DOKUMENT" | "START_BEHANDLING" | "AVKLAR_TEMA" | "ENDERLIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "UDEFINERT" | "FINN_SAK";
+            aktivtSteg: "KATEGORISER_DOKUMENT" | "DIGITALISER_DOKUMENT" | "START_BEHANDLING" | "AVKLAR_TEMA" | "SETT_FAGSAK" | "ENDELIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "UDEFINERT" | "FINN_SAK";
             avklaringsbehov: components["schemas"]["no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO"][];
             /**
              * Format: date-time
-             * @example 2024-09-23T09:47:25.663345244
+             * @example 2024-09-24T12:47:22.644502
              */
             opprettet: string;
             referanse: components["schemas"]["no.nav.aap.behandlingsflyt.sakogbehandling.behandling.dokumenter.JournalpostId"];
@@ -883,7 +874,7 @@ export interface components {
             status: "OPPRETTET" | "AVSLUTTET" | "TOTRINNS_VURDERT" | "SENDT_TILBAKE_FRA_BESLUTTER" | "KVALITETSSIKRET" | "SENDT_TILBAKE_FRA_KVALITETSSIKRER" | "AVBRUTT";
             /**
              * Format: date-time
-             * @example 2024-09-23T09:47:25.663345244
+             * @example 2024-09-24T12:47:22.644502
              */
             tidsstempel: string;
         };
@@ -892,12 +883,12 @@ export interface components {
             skalVises: boolean;
             steg: components["schemas"]["no.nav.aap.behandlingsflyt.flyt.flate.FlytSteg"][];
             /** @enum {string} */
-            stegGruppe: "KATEGORISER" | "DIGITALISER" | "AVKLAR_TEMA" | "START_BEHANDLING" | "UDEFINERT" | "ENDERLIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "FINN_SAK";
+            stegGruppe: "KATEGORISER" | "DIGITALISER" | "AVKLAR_TEMA" | "START_BEHANDLING" | "UDEFINERT" | "SETT_FAGSAK" | "ENDELIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "FINN_SAK";
         };
         "no.nav.aap.behandlingsflyt.flyt.flate.FlytSteg": {
             avklaringsbehov: components["schemas"]["no.nav.aap.behandlingsflyt.flyt.flate.AvklaringsbehovDTO"][];
             /** @enum {string} */
-            stegType: "KATEGORISER_DOKUMENT" | "DIGITALISER_DOKUMENT" | "START_BEHANDLING" | "AVKLAR_TEMA" | "ENDERLIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "UDEFINERT" | "FINN_SAK";
+            stegType: "KATEGORISER_DOKUMENT" | "DIGITALISER_DOKUMENT" | "START_BEHANDLING" | "AVKLAR_TEMA" | "SETT_FAGSAK" | "ENDELIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "UDEFINERT" | "FINN_SAK";
         };
         "no.nav.aap.behandlingsflyt.flyt.flate.JournalpostDto": {
             /** Format: int64 */
@@ -916,7 +907,7 @@ export interface components {
             id: string;
             /**
              * Format: date-time
-             * @example 2024-09-23T09:47:25.663345244
+             * @example 2024-09-24T12:47:22.644502
              */
             opprettet: string;
             status: string;
@@ -924,12 +915,12 @@ export interface components {
         "no.nav.aap.komponenter.type.Periode": {
             /**
              * Format: date
-             * @example 2024-09-23
+             * @example 2024-09-24
              */
             fom: string;
             /**
              * Format: date
-             * @example 2024-09-23
+             * @example 2024-09-24
              */
             tom: string;
         };
@@ -947,12 +938,21 @@ export interface components {
             navn: string;
             /**
              * Format: date-time
-             * @example 2024-09-23T09:47:25.663345244
+             * @example 2024-09-24T12:47:22.644502
              */
             "planlagtKj\u00F8retidspunkt": string;
             /** @enum {string} */
             status: "KLAR" | "PLUKKET" | "FERDIG" | "FEILET" | "AVBRUTT";
             type: string;
+        };
+        "no.nav.aap.postmottak.kontrakt.avklaringsbehov.Definisjon": {
+            kode: string;
+            kreverToTrinn: boolean;
+            /** @enum {string} */
+            "l\u00F8sesISteg": "KATEGORISER_DOKUMENT" | "DIGITALISER_DOKUMENT" | "START_BEHANDLING" | "AVKLAR_TEMA" | "SETT_FAGSAK" | "ENDELIG_JOURNALFØRING" | "OVERLEVER_TIL_FAGSYSTEM" | "UDEFINERT" | "FINN_SAK";
+            /** @enum {string} */
+            type: "MANUELT_PÅKREVD" | "MANUELT_FRIVILLIG";
+            name: string;
         };
     };
     responses: never;
