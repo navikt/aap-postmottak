@@ -10,10 +10,10 @@ import { Barnetillegg} from "./Barnetillegg";
 import {Søknad} from "../../../lib/types/types";
 
 export type Barn = {
-    fnr: string;
-    fornavn: string;
-    etternavn: string;
-    relasjon: 'FORELDER' | 'FOSTERFORELDER';
+    fnr?: string;
+    fornavn?: string;
+    etternavn?: string;
+    relasjon?: 'FORELDER' | 'FOSTERFORELDER';
 }
 
 export interface SøknadFormFields {

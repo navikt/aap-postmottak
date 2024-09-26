@@ -1,5 +1,5 @@
 import {VilkårsKort} from "../../vilkårskort/VilkårsKort";
-import {Button, HStack, Select, Table, TextField} from "@navikt/ds-react";
+import {Button, Table} from "@navikt/ds-react";
 import {useFieldArray, UseFormReturn} from "react-hook-form";
 import {SøknadFormFields, Barn} from "./DigitaliserSøknad";
 import {useState} from "react";
@@ -28,26 +28,26 @@ export const Barnetillegg = ({form}: Props) => {
                    </Table.Row>
                </Table.Header>
                <Table.Body>
-                   {fields.map(({fornavn, etternavn, fnr, relasjon}, i) => {
+                   {fields.map(({ fnr }, i) => {
                        return (
-                           <Table.Row key={fnr}>
+                           <Table.Row key={`${i}-${fnr}`}>
                                <Table.DataCell>
-                                   <TextFieldWrapper type={'text'} name={`oppgitteBarn.${i}.fnr`} control={form.control} />
+                                   <TextFieldWrapper label={'Fødselsnummer'} hideLabel={true} type={'text'} name={`oppgitteBarn.${i}.fnr`} control={form.control} />
                                </Table.DataCell>
                                <Table.DataCell>
-                                   <TextFieldWrapper type={'text'} name={`oppgitteBarn.${i}.fornavn`} control={form.control} />
+                                   <TextFieldWrapper  label={'Fornavn'} hideLabel={true} type={'text'} name={`oppgitteBarn.${i}.fornavn`} control={form.control} />
                                </Table.DataCell>
                                <Table.DataCell>
-                                   <TextFieldWrapper type={'text'} name={`oppgitteBarn.${i}.etternavn`} control={form.control} />
+                                   <TextFieldWrapper  label={'Etternavn'} hideLabel={true} type={'text'} name={`oppgitteBarn.${i}.etternavn`} control={form.control} />
                                </Table.DataCell>
                                <Table.DataCell>
-                                   <SelectWrapper name={`oppgitteBarn.${i}.relasjon`} control={form.control}>
+                                   <SelectWrapper  label={'Relasjon'} hideLabel={true}  name={`oppgitteBarn.${i}.relasjon`} control={form.control}>
                                        <option value={'FORELDER'}>Forelder</option>
                                        <option value={'FOSTERFORELDER'}>Fosterforelder</option>
                                    </SelectWrapper>
                                </Table.DataCell>
                                <Table.DataCell>
-                                   <Button size={"small"} icon={<TrashIcon />} variant={"secondary-neutral"} onClick={() => remove(i)}/>
+                                   <Button aria-label={'Slett'} size={"small"} icon={<TrashIcon title={'Slett'}/>} variant={"secondary-neutral"} type={'button'} onClick={() => remove(i)}/>
                                </Table.DataCell>
                            </Table.Row>
                    )
