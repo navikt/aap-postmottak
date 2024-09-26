@@ -48,7 +48,7 @@ export const Kategoriser = ({ behandlingsVersjon, journalpostId, grunnlag }: Pro
     })(event);
   };
   return (
-    <VilkårsKort heading={'Finn sak'}>
+    <VilkårsKort heading={'Kategoriser'}>
       <form onSubmit={onSubmit}>
         <FormField form={form} formField={formFields.kategori} />
         <Button>Send</Button>
