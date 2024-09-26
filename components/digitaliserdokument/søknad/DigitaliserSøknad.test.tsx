@@ -1,31 +1,58 @@
-import {describe, expect, it} from "vitest";
-import { DigitaliserSøknad} from "./DigitaliserSøknad";
-import {render, screen} from "@testing-library/react";
+import { describe, expect, it } from 'vitest';
+import { DigitaliserSøknad } from './DigitaliserSøknad';
+import { render, screen, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
 describe('DigitaliserSøknad', () => {
-    const user = userEvent.setup();
+  const user = userEvent.setup();
 
-    it('legg til barn og sjekk at felter dukker opp', async () => {
-        render(<DigitaliserSøknad journalpostId={'1'} behandlingsVersjon={1} />);
+  it('yrkesskade vises', () => {
+    render(<DigitaliserSøknad journalpostId={'1'} behandlingsVersjon={1} />);
 
-        const leggTilBarnKnapp = screen.getByRole('button', { name: /legg til/i });
-        await user.click(leggTilBarnKnapp);
+    const yrkeskadeRadio = screen.getByRole('group', {
+      name: /yrkesskade/i,
+    });
+    expect(yrkeskadeRadio).toBeVisible();
+  });
+  it('erStudent vises', () => {
+    render(<DigitaliserSøknad journalpostId={'1'} behandlingsVersjon={1} />);
 
-        expect(screen.getByRole('textbox', {name: /fødselsnummer/i})).toBeVisible();
-        expect(screen.getByRole('textbox', {name: /fornavn/i})).toBeVisible();
-        expect(screen.getByRole('textbox', {name: /etternavn/i})).toBeVisible();
-        expect(screen.getByRole('combobox', {name: /relasjon/i})).toBeVisible();
-    })
+    const studentRadio = screen.getByRole('group', {
+      name: /Er søkeren student?/i,
+    });
+    expect(studentRadio).toBeVisible();
+  });
+  it('studentKommeTilbake hvis studie er avbrutt', async () => {
+    render(<DigitaliserSøknad journalpostId={'1'} behandlingsVersjon={1} />);
 
-    it('legg til barn og sjekk at det kan slettes igjen', async () => {
-        render(<DigitaliserSøknad journalpostId={'1'} behandlingsVersjon={1} />);
+    const studentRadio = screen.getByRole('group', {
+      name: /Er søkeren student?/i,
+    });
+    await user.click(within(studentRadio).getByText('Avbrutt'));
+    const studentAvbruttRadio = screen.getByRole('group', {
+      name: /Skal studenten tilbake til studiet?/i,
+    });
+    expect(studentAvbruttRadio).toBeVisible();
+  });
+  it('legg til barn og sjekk at felter dukker opp', async () => {
+    render(<DigitaliserSøknad journalpostId={'1'} behandlingsVersjon={1} />);
 
-        const leggTilBarnKnapp = screen.getByRole('button', { name: /legg til/i });
-        await user.click(leggTilBarnKnapp);
+    const leggTilBarnKnapp = screen.getByRole('button', { name: /legg til/i });
+    await user.click(leggTilBarnKnapp);
 
-        const slettKnapp = screen.getByRole('img', { name: /Slett/i });
-        await user.click(slettKnapp);
-    })
+    expect(screen.getByRole('textbox', { name: /fødselsnummer/i })).toBeVisible();
+    expect(screen.getByRole('textbox', { name: /fornavn/i })).toBeVisible();
+    expect(screen.getByRole('textbox', { name: /etternavn/i })).toBeVisible();
+    expect(screen.getByRole('combobox', { name: /relasjon/i })).toBeVisible();
+  });
 
-})
+  it('legg til barn og sjekk at det kan slettes igjen', async () => {
+    render(<DigitaliserSøknad journalpostId={'1'} behandlingsVersjon={1} />);
+
+    const leggTilBarnKnapp = screen.getByRole('button', { name: /legg til/i });
+    await user.click(leggTilBarnKnapp);
+
+    const slettKnapp = screen.getByRole('img', { name: /Slett/i });
+    await user.click(slettKnapp);
+  });
+});
