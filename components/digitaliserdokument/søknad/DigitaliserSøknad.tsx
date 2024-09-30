@@ -32,10 +32,10 @@ interface Props {
 function mapTilSøknadKontrakt(data: SøknadFormFields) {
   return JSON.stringify({
     student: {
-      erStudent: data.erStudent.toString(),
-      kommeTilbake: data.studentKommeTilbake.toString(),
+      erStudent: data.erStudent,
+      kommeTilbake: data.studentKommeTilbake,
     },
-    yrkesskade: data.yrkesSkade.toString(),
+    yrkesskade: data.yrkesSkade,
   } as Søknad);
 }
 
