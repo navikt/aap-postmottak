@@ -13,24 +13,25 @@ export const StegGruppeIndikatorAksel = ({
   stegGrupper: FlytGruppe[];
 }) => {
   const { aktivGruppe } = useParams();
-  const aktivtStegNummer = stegGrupper.findIndex((steg) => steg.stegGruppe === aktivGruppe) + 1;
+  const aktivtStegNummer = stegGrupper.findIndex((steg) => steg.stegGruppe === aktivGruppe);
   const router = useRouter();
 
   return (
     <div className={style.stegMenyWrapper}>
       <Stepper orientation="horizontal" activeStep={aktivtStegNummer}>
-        {stegGrupper.filter(steg => steg.skalVises).map((steg, index) => (
-          <Stepper.Step
-            as="button"
-            completed={steg.erFullført}
-            key={index}
-            onClick={() => router.push(`/postmottak/${journalpostId}/${steg.stegGruppe}`)}
-            interactive={steg.erFullført}
-
-          >
-            {steg.stegGruppe}
-          </Stepper.Step>
-        ))}
+        {stegGrupper
+          .filter((steg) => steg.skalVises)
+          .map((steg, index) => (
+            <Stepper.Step
+              as="button"
+              completed={steg.erFullført}
+              key={index}
+              onClick={() => router.push(`/postmottak/${journalpostId}/${steg.stegGruppe}`)}
+              interactive={steg.erFullført}
+            >
+              {steg.stegGruppe}
+            </Stepper.Step>
+          ))}
       </Stepper>
     </div>
   );
