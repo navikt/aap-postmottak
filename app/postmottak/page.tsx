@@ -9,8 +9,6 @@ const Page = async () => {
     (a, b) => Date.parse(b.opprettet) - Date.parse(a.opprettet)
   );
 
-  console.log(alleBehandlinger);
-
   return (
     <main>
       Her kommer postmottaket

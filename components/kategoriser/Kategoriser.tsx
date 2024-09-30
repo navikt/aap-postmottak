@@ -29,7 +29,6 @@ export const Kategoriser = ({ behandlingsVersjon, journalpostId, grunnlag }: Pro
       defaultValue: grunnlag.vurdering?.brevkode,
     },
   });
-  console.log(form.watch());
   const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('KATEGORISER_DOKUMENT');
   const onSubmit: FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
     form.handleSubmit((data) => {

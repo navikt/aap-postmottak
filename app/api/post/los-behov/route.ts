@@ -1,5 +1,6 @@
 import { løsAvklaringsbehov } from 'lib/services/dokumentmottakservice/dokumentMottakService';
 import { NextRequest } from 'next/server';
+import { logError } from '@navikt/aap-felles-utils';
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -9,7 +10,7 @@ export async function POST(req: NextRequest) {
 
     return new Response(JSON.stringify({ message: 'Behov løst' }), { status: 200 });
   } catch (error) {
-    console.log('error i route', error);
+    logError('/api/post/løs-behov', error);
     return new Response(JSON.stringify({ message: JSON.stringify(error) }), { status: 500 });
   }
 }
