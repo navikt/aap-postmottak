@@ -66,7 +66,7 @@ export const DigitaliserSøknad = ({ behandlingsVersjon, journalpostId }: Props)
     },
   });
   const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('DIGITALISER_DOKUMENT');
-  const onSubmit: FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
     form.handleSubmit((data) => {
       løsBehovOgGåTilNesteSteg({
         behandlingVersjon: behandlingsVersjon,
@@ -79,7 +79,7 @@ export const DigitaliserSøknad = ({ behandlingsVersjon, journalpostId }: Props)
         referanse: parseInt(journalpostId),
       });
     })(event);
-  };
+  }
 
   return (
     <VilkårsKort heading={'Digitaliser søknad'}>
