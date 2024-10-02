@@ -20,7 +20,7 @@ export const Kategoriser = ({ behandlingsVersjon, journalpostId, grunnlag }: Pro
   const { formFields, form } = useConfigForm<FormFields>({
     kategori: {
       type: 'combobox',
-      label: 'Kategoriser',
+      label: 'Velg kategori for dokument',
       rules: { required: 'Du må velge kategori' },
       options: [
         { label: 'Søknad', value: 'SØKNAD' },
