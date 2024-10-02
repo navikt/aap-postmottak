@@ -33,7 +33,7 @@ function mapTilSøknadKontrakt(data: SøknadFormFields) {
   return JSON.stringify({
     student: {
       erStudent: data.erStudent,
-      kommeTilbake: data.studentKommeTilbake,
+      kommeTilbake: data.studentKommeTilbake || null,
     },
     yrkesskade: data.yrkesSkade,
   } as Søknad);
