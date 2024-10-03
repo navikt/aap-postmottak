@@ -36,6 +36,9 @@ function mapTilSøknadKontrakt(data: SøknadFormFields) {
       kommeTilbake: data.studentKommeTilbake || null,
     },
     yrkesskade: data.yrkesSkade,
+    oppgitteBarn: data.oppgitteBarn?.length
+      ? { identer: data.oppgitteBarn.map((barn) => ({ identifikator: barn.fnr })) }
+      : null,
   } as Søknad);
 }
 
