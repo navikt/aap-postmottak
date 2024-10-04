@@ -2,23 +2,36 @@
 
 import { VilkårsKort } from '../../vilkårskort/VilkårsKort';
 import { FormField, useConfigForm } from '@navikt/aap-felles-react';
-import { Button } from '@navikt/ds-react';
+import { Button, HStack, VStack } from '@navikt/ds-react';
 import { FormEvent } from 'react';
 import { Behovstype } from '../../../lib/form';
 import { useLøsBehovOgGåTilNesteSteg } from '../../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
+import { PliktPerioder } from './PliktPerioder';
 
 interface Props {
   behandlingsVersjon: number;
   journalpostId: string;
 }
-interface PliktkortFormFields {
+export type PliktDag = {
+  dato?: Date;
+  arbeidsTimer?: number;
+};
+export type PliktPeriode = {
+  dager: Array<PliktDag>;
+};
+export interface PliktkortFormFields {
   innsendtDato?: Date;
+  pliktPerioder?: PliktPeriode[];
 }
 export const DigitaliserPliktkort = ({ behandlingsVersjon, journalpostId }: Props) => {
   const { form, formFields } = useConfigForm<PliktkortFormFields>({
     innsendtDato: {
       type: 'date',
       label: 'Innsendt dato',
+    },
+    pliktPerioder: {
+      type: 'fieldArray',
+      defaultValue: [],
     },
   });
   const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('DIGITALISER_DOKUMENT');
@@ -43,8 +56,13 @@ export const DigitaliserPliktkort = ({ behandlingsVersjon, journalpostId }: Prop
   return (
     <VilkårsKort heading={'Pliktkort'}>
       <form onSubmit={onSubmit}>
-        <FormField form={form} formField={formFields.innsendtDato} />
-        <Button>Send</Button>
+        <VStack gap={'3'}>
+          <FormField form={form} formField={formFields.innsendtDato} />
+          <PliktPerioder form={form} />
+          <HStack>
+            <Button>Send inn</Button>
+          </HStack>
+        </VStack>
       </form>
     </VilkårsKort>
   );
