@@ -17,6 +17,9 @@ interface FormFields {
   knyttTilSak: string;
 }
 
+const GENERELL = 'GENERELL'
+const NY = 'NY'
+
 export const FinnSak = ({ behandlingsVersjon, journalpostId, grunnlag}: Props) => {
   const { formFields, form } = useConfigForm<FormFields>({
     knyttTilSak: {
@@ -24,19 +27,22 @@ export const FinnSak = ({ behandlingsVersjon, journalpostId, grunnlag}: Props) =
       label: 'Journalfør på sak',
       rules: { required: 'Du må svare på hvilken sak dokumentet skal knyttes til' },
       options: [
-          { label: 'Ny sak', value: 'NY'},
-          ...grunnlag.saksinfo.map(mapSaksinfoToValuePair)
+          ...grunnlag.saksinfo.map(mapSaksinfoToValuePair),
+          { label: 'Ny sak', value: NY},
+          { label: 'Generell Sak', value: GENERELL}
           ],
     },
   });
-  const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('FINN_SAK');
+  const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('AVKLAR_SAK');
   const onSubmit: FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
     form.handleSubmit((data) => {
       løsBehovOgGåTilNesteSteg({
         behandlingVersjon: behandlingsVersjon,
         behov: {
           behovstype: Behovstype.FINN_SAK,
-          saksnummer: data.knyttTilSak === 'NY' ? null : data.knyttTilSak
+          opprettNySak: data.knyttTilSak === NY,
+          førPåGenerellSak: data.knyttTilSak === GENERELL,
+          saksnummer: data.knyttTilSak === NY || data.knyttTilSak === GENERELL? null : data.knyttTilSak
         },
         //TODO: dette skal være referanse: string
         // @ts-ignore

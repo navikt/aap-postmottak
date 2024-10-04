@@ -18,7 +18,7 @@ export const StegKolonne = ({ aktivGruppe, journalpostId }: Props) => {
           <AvklarTemaMedDataFetching journalpostId={journalpostId} />
         </StegSuspense>
       )}
-      {aktivGruppe === 'FINN_SAK' && (
+      {aktivGruppe === 'AVKLAR_SAK' && (
         <StegSuspense>
           <FinnSakMedDataFetching journalpostId={journalpostId} />
         </StegSuspense>
