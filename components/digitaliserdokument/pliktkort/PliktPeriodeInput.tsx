@@ -41,12 +41,14 @@ export const PliktPeriodeInput = ({ form, dagIndex }: Props) => {
       />
       <Table size={'small'}>
         <Table.Header>
-          <Table.HeaderCell></Table.HeaderCell>
-          {fields?.map((pliktDag: PliktDag, j) => (
-            <Table.HeaderCell key={j}>
-              {pliktDag.dato ? format(pliktDag.dato, 'dd.MM.yyyy') : 'velg dato'}
-            </Table.HeaderCell>
-          ))}
+          <Table.Row>
+            <Table.HeaderCell></Table.HeaderCell>
+            {fields?.map((pliktDag: PliktDag, j) => (
+              <Table.HeaderCell key={j}>
+                {pliktDag.dato ? format(pliktDag.dato, 'dd.MM.yyyy') : 'velg dato'}
+              </Table.HeaderCell>
+            ))}
+          </Table.Row>
         </Table.Header>
         <Table.Body>
           <Table.Row>
