@@ -2,9 +2,9 @@
 
 import { isLocal } from 'lib/utils/environment';
 import { requestAzureOboToken, validateToken } from '@navikt/oasis';
-import { getAccessTokenOrRedirectToLogin, logError } from '@navikt/aap-felles-utils';
+import { getAccessTokenOrRedirectToLogin, logError, logInfo } from '@navikt/aap-felles-utils';
 import { headers } from 'next/headers';
-import {hentLocalToken} from "lib/services/auth";
+import { hentLocalToken } from 'lib/services/auth';
 
 const NUMBER_OF_RETRIES = 3;
 
@@ -49,7 +49,7 @@ export const fetchPdf = async (url: string, scope: string): Promise<Blob | undef
       Accept: 'application/pdf',
     },
     next: { revalidate: 0 },
-  }
+  };
   const response = await fetch(url, init);
 
   if (response.ok) {
@@ -66,6 +66,7 @@ export const fetchWithRetry = async <ResponseBody>(
   retries: number,
   requestBody?: object
 ): Promise<ResponseBody> => {
+  logInfo(url);
   if (retries === 0) {
     throw new Error(`Unable to fetch ${url}: ${retries} retries left`);
   }
@@ -79,7 +80,7 @@ export const fetchWithRetry = async <ResponseBody>(
       'Content-Type': 'application/json',
     },
     next: { revalidate: 0 },
-  }
+  };
   const response = await fetch(url, init);
 
   // Mulige statuskoder:

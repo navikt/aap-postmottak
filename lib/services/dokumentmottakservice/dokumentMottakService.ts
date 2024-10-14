@@ -1,10 +1,14 @@
-import {fetchPdf, fetchProxy} from 'lib/fetchproxy/fetchProxy';
+import { fetchPdf, fetchProxy } from 'lib/fetchproxy/fetchProxy';
 import {
   AvklarTemaGrunnlag,
-  BehandlingFlytOgTilstand, FinnSakGrunnlag,
+  BehandlingFlytOgTilstand,
+  FinnSakGrunnlag,
   JournalpostInfo,
   KategoriserGrunnlag,
-  LøsAvklaringsbehovPåBehandling, StruktureringGrunnlag,
+  LøsAvklaringsbehovPåBehandling,
+  SettPåVentRequest,
+  StruktureringGrunnlag,
+  Venteinformasjon,
 } from 'lib/types/types';
 
 const dokumentMottakApiBaseUrl = process.env.DOKUMENTMOTTAK_API_BASE_URL;
@@ -34,18 +38,29 @@ export const hentDigitaliseringGrunnlag = async (journalpostId: string): Promise
 export const hentJournalpostInfo = async (journalpostId: string): Promise<JournalpostInfo> => {
   const url = `${dokumentMottakApiBaseUrl}/api/dokumenter/${journalpostId}/info`;
   return fetchProxy<JournalpostInfo>(url, dokumentMottakApiScope, 'GET');
-}
+};
 
 export const løsAvklaringsbehov = async (avklaringsBehov: LøsAvklaringsbehovPåBehandling) => {
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/løs-behov`;
   return await fetchProxy<void>(url, dokumentMottakApiScope, 'POST', avklaringsBehov);
 };
-export const hentDokumentFraDokumentInfoId = async (journalpostId: string, dokumentInfoId: string): Promise<Blob | undefined> => {
+export const settPåVent = async (body: SettPåVentRequest): Promise<unknown> => {
+  const url = `${dokumentMottakApiBaseUrl}/api/behandling/${body.referanse}/sett-på-vent`;
+  return await fetchProxy<unknown>(url, dokumentMottakApiScope, 'POST', body);
+};
+export const hentVenteInformasjon = async (journalpostId: string): Promise<Venteinformasjon> => {
+  const url = `${dokumentMottakApiBaseUrl}/api/behandling/${journalpostId}/vente-informasjon`;
+  return await fetchProxy<Venteinformasjon>(url, dokumentMottakApiScope, 'GET');
+};
+export const hentDokumentFraDokumentInfoId = async (
+  journalpostId: string,
+  dokumentInfoId: string
+): Promise<Blob | undefined> => {
   return fetchPdf(
-      `${dokumentMottakApiBaseUrl}/api/dokumenter/${journalpostId}/${dokumentInfoId}`,
-      dokumentMottakApiScope
+    `${dokumentMottakApiBaseUrl}/api/dokumenter/${journalpostId}/${dokumentInfoId}`,
+    dokumentMottakApiScope
   );
-}
+};
 
 export const hentAlleBehandlinger = async () => {
   const url = `${dokumentMottakApiBaseUrl}/test/hentAlleBehandlinger`;
@@ -53,13 +68,13 @@ export const hentAlleBehandlinger = async () => {
 };
 
 // TODO: Fjern denne - testendepunkt
-export const opprettBehandlingForJournalpost = async (body: {referanse: number}) => {
+export const opprettBehandlingForJournalpost = async (body: { referanse: number }) => {
   const url = `${dokumentMottakApiBaseUrl}/api/behandling`;
   return await fetchProxy<{ referanse: number }>(url, dokumentMottakApiScope, 'POST', body);
-}
+};
 
 // TODO: Fjern denne - testendepunkt
 export const rekjørFeiledeJobber = async () => {
   const url = `${dokumentMottakApiBaseUrl}/drift/api/jobb/rekjorAlleFeilede`;
   return await fetchProxy(url, dokumentMottakApiScope, 'GET');
-}
+};

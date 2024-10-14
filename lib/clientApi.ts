@@ -1,14 +1,16 @@
-import { LøsAvklaringsbehovPåBehandling } from './types/types';
+import { LøsAvklaringsbehovPåBehandling, SettPåVentRequest } from './types/types';
 
 async function fetchProxy<ResponseBody>(
   url: string,
   method: 'GET' | 'POST' | 'PATCH' | 'DELETE',
-  body?: object
+  body?: object,
+  nextTag?: string
 ): Promise<ResponseBody | undefined> {
   try {
     const res = await fetch(url, {
       method,
       body: body && JSON.stringify(body),
+      ...(nextTag ? { next: { tags: [nextTag] } } : {}),
     });
 
     const data = await res.json();
@@ -27,18 +29,20 @@ async function fetchProxy<ResponseBody>(
 export function løsBehov(avklaringsBehov: LøsAvklaringsbehovPåBehandling) {
   return fetchProxy('/api/post/los-behov/', 'POST', avklaringsBehov);
 }
+export function settPåVent(body: SettPåVentRequest) {
+  return fetchProxy('/api/post/sett-pa-vent/', 'POST', body);
+}
 
 // TODO: Test-endepunkt - skal fjernes
 export function opprettBehandling(journalpostId: number) {
-  return fetchProxy<{referanse: number}>('/api/test/behandling/opprett/', 'POST', {referanse: journalpostId});
+  return fetchProxy<{ referanse: number }>('/api/test/behandling/opprett/', 'POST', { referanse: journalpostId });
 }
 
 // TODO: Test/admin endepunkt
 // TODO: Fjern denne - testendepunkt eller featuretoggle kun til test - skal ikke i prod
 export const rekjørFeiledeJobber = async () => {
   return fetchProxy('/drift/api/jobb/rekjorAlleFeilede/', 'GET');
-}
-
+};
 
 export interface SaksInformasjon {
   søker: {
