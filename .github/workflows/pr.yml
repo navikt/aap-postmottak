@@ -1,4 +1,4 @@
-name: Bygg og deploy
+name: Pull request
 
 on:
   workflow_dispatch:
