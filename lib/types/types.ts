@@ -5,6 +5,7 @@ export type BehandlingFlytOgTilstand =
   components['schemas']['no.nav.aap.postmottak.flyt.flate.BehandlingFlytOgTilstandDto'];
 
 export type FlytGruppe = components['schemas']['no.nav.aap.postmottak.flyt.flate.FlytGruppe'];
+export type FlytProsessering = components['schemas']['no.nav.aap.postmottak.flyt.flate.visning.Prosessering'];
 
 export type StegGruppe = components['schemas']['no.nav.aap.postmottak.flyt.flate.FlytGruppe']['stegGruppe'];
 

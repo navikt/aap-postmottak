@@ -6,6 +6,7 @@ import { SplitVindu } from 'components/splitvindu/SplitVindu';
 import { hentFlyt, hentJournalpostInfo } from 'lib/services/dokumentmottakservice/dokumentMottakService';
 import { Dokumentvisning } from 'components/dokumentvisning/Dokumentvisning';
 import { BehandlingPVentMedDataFetching } from '../../../components/behandlingpåvent/BehandlingPåVentMedDataFetching';
+import { FlytProsesseringAlert } from '../../../components/flytprosesseringalert/FlytProsesseringAlert';
 
 interface LayoutProps {
   children: ReactNode;
@@ -22,6 +23,7 @@ const Layout = async ({ children, params }: LayoutProps) => {
     <div className={styles.idLayoutWrapper}>
       <DokumentInfoBanner journalpostId={params.journalpostId} behandlingsVersjon={flyt.behandlingVersjon} />
       <StegGruppeIndikatorAksel journalpostId={params.journalpostId} stegGrupper={stegGrupper} />
+      {flyt.prosessering.status === 'FEILET' && <FlytProsesseringAlert flytProsessering={flyt.prosessering} />}
       {flyt.visning.visVentekort ? (
         <SplitVindu dokumentvisning={<Dokumentvisning journalpostId={params.journalpostId} dokumenter={dokumenter} />}>
           <BehandlingPVentMedDataFetching journalpostId={params.journalpostId} />
