@@ -6,7 +6,7 @@ import { Button, HStack, VStack } from '@navikt/ds-react';
 import { FormEvent } from 'react';
 import { Behovstype } from '../../../lib/form';
 import { useLøsBehovOgGåTilNesteSteg } from '../../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
-import { PliktPerioder } from './PliktPerioder';
+import { MeldePerioder } from './MeldePerioder';
 
 interface Props {
   behandlingsVersjon: number;
@@ -23,7 +23,7 @@ export interface PliktkortFormFields {
   innsendtDato?: Date;
   pliktPerioder?: PliktPeriode[];
 }
-export const DigitaliserPliktkort = ({ behandlingsVersjon, journalpostId }: Props) => {
+export const DigitaliserMeldekort = ({ behandlingsVersjon, journalpostId }: Props) => {
   const { form, formFields } = useConfigForm<PliktkortFormFields>({
     innsendtDato: {
       type: 'date',
@@ -58,7 +58,7 @@ export const DigitaliserPliktkort = ({ behandlingsVersjon, journalpostId }: Prop
       <form onSubmit={onSubmit}>
         <VStack gap={'3'}>
           <FormField form={form} formField={formFields.innsendtDato} />
-          <PliktPerioder form={form} />
+          <MeldePerioder form={form} />
           <HStack>
             <Button>Send inn</Button>
           </HStack>

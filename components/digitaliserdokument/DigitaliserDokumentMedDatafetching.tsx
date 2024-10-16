@@ -1,6 +1,6 @@
 import { DigitaliserSøknad } from './søknad/DigitaliserSøknad';
 import { hentDigitaliseringGrunnlag, hentFlyt } from '../../lib/services/dokumentmottakservice/dokumentMottakService';
-import { DigitaliserPliktkort } from './pliktkort/DigitaliserPliktkort';
+import { DigitaliserMeldekort } from './pliktkort/DigitaliserMeldekort';
 
 interface Props {
   journalpostId: string;
@@ -11,7 +11,7 @@ export const DigitaliserDokumentMedDatafetching = async ({ journalpostId }: Prop
   if (grunnlag.kategori === 'SØKNAD') {
     return <DigitaliserSøknad journalpostId={journalpostId} behandlingsVersjon={flyt.behandlingVersjon} />;
   } else if (grunnlag.kategori === 'PLIKTKORT') {
-    return <DigitaliserPliktkort behandlingsVersjon={flyt.behandlingVersjon} journalpostId={journalpostId} />;
+    return <DigitaliserMeldekort behandlingsVersjon={flyt.behandlingVersjon} journalpostId={journalpostId} />;
   } else if (grunnlag.kategori === 'UKJENT') {
     return <div>UKJENT</div>;
   } else if (grunnlag.kategori === 'AKTIVITETSKORT') {

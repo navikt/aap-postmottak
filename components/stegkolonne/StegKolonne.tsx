@@ -1,9 +1,10 @@
 import { StegSuspense } from 'components/stegsuspense/StegSuspense';
 import { AvklarTemaMedDataFetching } from '../avklartema/AvklarTemaMedDataFetching';
 import { StegGruppe } from 'lib/types/types';
-import {FinnSakMedDataFetching} from "../finnsak/FinnSakMedDataFetching";
-import {KategoriserMedDataFetching} from "../kategoriser/KategoriserMedDataFetching";
-import {DigitaliserDokumentMedDatafetching} from "../digitaliserdokument/DigitaliserDokumentMedDatafetching";
+import { FinnSakMedDataFetching } from '../finnsak/FinnSakMedDataFetching';
+import { KategoriserMedDataFetching } from '../kategoriser/KategoriserMedDataFetching';
+import { DigitaliserDokumentMedDatafetching } from '../digitaliserdokument/DigitaliserDokumentMedDatafetching';
+import { EndreTema } from '../endretema/EndreTema';
 
 interface Props {
   aktivGruppe: StegGruppe;
@@ -36,6 +37,11 @@ export const StegKolonne = ({ aktivGruppe, journalpostId }: Props) => {
       {aktivGruppe === 'OVERLEVER_TIL_FAGSYSTEM' && (
         <StegSuspense>
           <div>Overlever</div>
+        </StegSuspense>
+      )}
+      {aktivGruppe === 'ENDRE_TEMA' && (
+        <StegSuspense>
+          <EndreTema />
         </StegSuspense>
       )}
     </div>

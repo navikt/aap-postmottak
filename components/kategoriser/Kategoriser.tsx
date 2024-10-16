@@ -24,7 +24,7 @@ export const Kategoriser = ({ behandlingsVersjon, journalpostId, grunnlag }: Pro
       rules: { required: 'Du må velge kategori' },
       options: [
         { label: 'Søknad', value: 'SØKNAD' },
-        { label: 'Meldekort', value: 'MELDEKORT' },
+        { label: 'Meldekort', value: 'PLIKTKORT' },
       ],
       defaultValue: grunnlag.vurdering?.brevkode,
     },

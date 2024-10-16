@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import { BodyShort, Button, Label } from '@navikt/ds-react';
-import { SideProsessKort } from 'components/sideprosesskort/SideProsessKort';
+import { BodyShort, Label } from '@navikt/ds-react';
 import { HourglassBottomFilledIcon } from '@navikt/aksel-icons';
 import { SettPåVentÅrsaker, Venteinformasjon } from 'lib/types/types';
 import { formaterDatoForFrontend } from 'lib/utils/date';
+import { VilkårsKort } from '../vilkårskort/VilkårsKort';
 
 interface Props {
   informasjon?: Venteinformasjon;
@@ -13,7 +13,7 @@ interface Props {
 
 export const BehandlingPåVentKort = ({ informasjon }: Props) => {
   return (
-    <SideProsessKort heading={'Behandling på vent'} icon={<HourglassBottomFilledIcon />}>
+    <VilkårsKort heading={'Behandling på vent'} icon={<HourglassBottomFilledIcon />}>
       <div className={'flex-column'}>
         {informasjon && (
           <>
@@ -32,7 +32,7 @@ export const BehandlingPåVentKort = ({ informasjon }: Props) => {
           </>
         )}
       </div>
-    </SideProsessKort>
+    </VilkårsKort>
   );
 };
 

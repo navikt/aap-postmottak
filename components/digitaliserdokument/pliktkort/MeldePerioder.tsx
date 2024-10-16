@@ -2,14 +2,14 @@
 
 import { Button, HStack, VStack } from '@navikt/ds-react';
 import { useFieldArray, UseFormReturn } from 'react-hook-form';
-import { PliktDag, PliktkortFormFields } from './DigitaliserPliktkort';
-import { PliktPeriodeInput } from './PliktPeriodeInput';
+import { PliktDag, PliktkortFormFields } from './DigitaliserMeldekort';
+import { MeldePeriodeInput } from './MeldePeriodeInput';
 import { PlusCircleIcon } from '@navikt/aksel-icons';
 
 interface Props {
   form: UseFormReturn<PliktkortFormFields>;
 }
-export const PliktPerioder = ({ form }: Props) => {
+export const MeldePerioder = ({ form }: Props) => {
   const { fields, append } = useFieldArray({ name: 'pliktPerioder', control: form.control });
 
   function leggTilNyPeriode() {
@@ -19,7 +19,7 @@ export const PliktPerioder = ({ form }: Props) => {
   return (
     <VStack gap={'3'}>
       {fields.map((_, periodeIndex) => (
-        <PliktPeriodeInput key={`pliktperiodeinput-${periodeIndex}`} form={form} dagIndex={periodeIndex} />
+        <MeldePeriodeInput key={`pliktperiodeinput-${periodeIndex}`} form={form} dagIndex={periodeIndex} />
       ))}
       <HStack>
         <Button

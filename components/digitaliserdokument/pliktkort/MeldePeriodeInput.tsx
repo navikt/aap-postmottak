@@ -1,15 +1,15 @@
 import { Button, DatePicker, Table, TextField } from '@navikt/ds-react';
-import { PliktDag, PliktkortFormFields } from './DigitaliserPliktkort';
+import { PliktDag, PliktkortFormFields } from './DigitaliserMeldekort';
 import { add, format } from 'date-fns';
 import { useFieldArray, UseFormReturn } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import styles from './PliktPeriodeInput.module.css';
+import styles from './MeldePeriodeInput.module.css';
 
 interface Props {
   form: UseFormReturn<PliktkortFormFields>;
   dagIndex: number;
 }
-export const PliktPeriodeInput = ({ form, dagIndex }: Props) => {
+export const MeldePeriodeInput = ({ form, dagIndex }: Props) => {
   const [isVelgDatoÅpen, setIsVelgDatoÅpen] = useState<boolean>(false);
   const [valgtDato, setValgtDato] = useState<Date>();
   const { fields, update } = useFieldArray({
