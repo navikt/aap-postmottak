@@ -41,7 +41,7 @@ export const Dokumentvisning = ({ journalpostId, dokumenter }: Props) => {
             type={'button'}
             size={'small'}
           >
-            {dokument.dokumentInfoId}
+            {dokument.tittel}
           </Button>
         ))}
       </HStack>

@@ -1,29 +1,30 @@
 'use client';
 
-import { Button, HGrid } from '@navikt/ds-react';
+import { Button, HGrid, HStack } from '@navikt/ds-react';
 import { ReactNode, useState } from 'react';
 import styles from './SplitVindu.module.css';
-import { ExpandIcon, ShrinkIcon } from '@navikt/aksel-icons';
+import { ExpandIcon, SidebarLeftIcon } from '@navikt/aksel-icons';
 
 interface Props {
   dokumentvisning: ReactNode;
   children: ReactNode;
 }
 export const SplitVindu = ({ dokumentvisning, children }: Props) => {
-  const [isSplit, setIsSplit] = useState<boolean>(true);
+  const [is3070Split, setIs3070Split] = useState<boolean>(false);
   return (
-    <HGrid columns={isSplit ? 2 : 1} gap={'4'} className={styles.splitVindu}>
+    <HGrid columns={is3070Split ? '1fr 2fr' : '1fr 1fr'} gap={'4'} className={styles.splitVindu}>
       <div>
-        <div className={styles.splitStateButtonWrapper}>
+        <HStack padding={'1'}>
           <Button
-            icon={isSplit ? <ExpandIcon /> : <ShrinkIcon />}
+            size={'small'}
+            icon={is3070Split ? <ExpandIcon /> : <SidebarLeftIcon />}
             type={'button'}
-            onClick={() => setIsSplit(!isSplit)}
+            onClick={() => setIs3070Split(!is3070Split)}
           />
-        </div>
+        </HStack>
         {children}
       </div>
-      {isSplit && dokumentvisning}
+      {dokumentvisning}
     </HGrid>
   );
 };

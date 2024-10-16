@@ -836,12 +836,12 @@ export interface components {
     'no.nav.aap.komponenter.type.Periode': {
       /**
        * Format: date
-       * @example 2024-10-14
+       * @example 2024-10-16
        */
       fom: string;
       /**
        * Format: date
-       * @example 2024-10-14
+       * @example 2024-10-16
        */
       tom: string;
     };
@@ -859,7 +859,7 @@ export interface components {
       navn: string;
       /**
        * Format: date-time
-       * @example 2024-10-14T14:39:59.163222
+       * @example 2024-10-16T10:40:01.470944
        */
       'planlagtKj\u00F8retidspunkt': string;
       /** @enum {string} */
@@ -923,10 +923,11 @@ export interface components {
     };
     'no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.flate.DokumentDto': {
       dokumentInfoId: string;
+      tittel?: string | null;
     };
     'no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.flate.DokumentIdent': {
-      ident: string;
-      navn: string;
+      ident?: string | null;
+      navn?: string | null;
     };
     'no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.flate.DokumentInfoResponsDTO': {
       dokumenter: components['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.flate.DokumentDto'][];
@@ -971,7 +972,8 @@ export interface components {
         | 'SETT_FAGSAK'
         | 'ENDELIG_JOURNALFØRING'
         | 'OVERLEVER_TIL_FAGSYSTEM'
-        | 'AVKLAR_SAK';
+        | 'AVKLAR_SAK'
+        | 'ENDRE_TEMA';
       /** @enum {string} */
       aktivtSteg:
         | 'KATEGORISER_DOKUMENT'
@@ -982,7 +984,8 @@ export interface components {
         | 'ENDELIG_JOURNALFØRING'
         | 'OVERLEVER_TIL_FAGSYSTEM'
         | 'UDEFINERT'
-        | 'AVKLAR_SAK';
+        | 'AVKLAR_SAK'
+        | 'ENDRE_TEMA';
       /** Format: int64 */
       behandlingVersjon: number;
       flyt: components['schemas']['no.nav.aap.postmottak.flyt.flate.FlytGruppe'][];
@@ -1003,7 +1006,8 @@ export interface components {
         | 'ENDELIG_JOURNALFØRING'
         | 'OVERLEVER_TIL_FAGSYSTEM'
         | 'UDEFINERT'
-        | 'AVKLAR_SAK';
+        | 'AVKLAR_SAK'
+        | 'ENDRE_TEMA';
       navn: string;
       type: string;
     };
@@ -1018,11 +1022,12 @@ export interface components {
         | 'ENDELIG_JOURNALFØRING'
         | 'OVERLEVER_TIL_FAGSYSTEM'
         | 'UDEFINERT'
-        | 'AVKLAR_SAK';
+        | 'AVKLAR_SAK'
+        | 'ENDRE_TEMA';
       avklaringsbehov: components['schemas']['no.nav.aap.postmottak.flyt.flate.AvklaringsbehovDTO'][];
       /**
        * Format: date-time
-       * @example 2024-10-14T14:39:59.163222
+       * @example 2024-10-16T10:40:01.470944
        */
       opprettet: string;
       referanse: components['schemas']['no.nav.aap.postmottak.kontrakt.journalpost.JournalpostId'];
@@ -1044,7 +1049,7 @@ export interface components {
         | 'AVBRUTT';
       /**
        * Format: date-time
-       * @example 2024-10-14T14:39:59.163222
+       * @example 2024-10-16T10:40:01.470944
        */
       tidsstempel: string;
     };
@@ -1062,7 +1067,8 @@ export interface components {
         | 'SETT_FAGSAK'
         | 'ENDELIG_JOURNALFØRING'
         | 'OVERLEVER_TIL_FAGSYSTEM'
-        | 'AVKLAR_SAK';
+        | 'AVKLAR_SAK'
+        | 'ENDRE_TEMA';
     };
     'no.nav.aap.postmottak.flyt.flate.FlytSteg': {
       avklaringsbehov: components['schemas']['no.nav.aap.postmottak.flyt.flate.AvklaringsbehovDTO'][];
@@ -1076,7 +1082,8 @@ export interface components {
         | 'ENDELIG_JOURNALFØRING'
         | 'OVERLEVER_TIL_FAGSYSTEM'
         | 'UDEFINERT'
-        | 'AVKLAR_SAK';
+        | 'AVKLAR_SAK'
+        | 'ENDRE_TEMA';
     };
     'no.nav.aap.postmottak.flyt.flate.JournalpostDto': {
       /** Format: int64 */
@@ -1088,7 +1095,7 @@ export interface components {
       behandlingVersjon: number;
       /**
        * Format: date
-       * @example 2024-10-14
+       * @example 2024-10-16
        */
       frist?: string | null;
       /** @enum {string} */
@@ -1105,7 +1112,7 @@ export interface components {
       begrunnelse: string;
       /**
        * Format: date
-       * @example 2024-10-14
+       * @example 2024-10-16
        */
       frist: string;
       /** @enum {string} */
@@ -1137,7 +1144,8 @@ export interface components {
         | 'ENDELIG_JOURNALFØRING'
         | 'OVERLEVER_TIL_FAGSYSTEM'
         | 'UDEFINERT'
-        | 'AVKLAR_SAK';
+        | 'AVKLAR_SAK'
+        | 'ENDRE_TEMA';
       /** @enum {string} */
       type: 'MANUELT_PÅKREVD' | 'MANUELT_FRIVILLIG' | 'VENTEPUNKT';
       name: string;
@@ -1150,7 +1158,7 @@ export interface components {
       id: string;
       /**
        * Format: date-time
-       * @example 2024-10-14T14:39:59.163222
+       * @example 2024-10-16T10:40:01.470944
        */
       opprettet: string;
       status: string;
