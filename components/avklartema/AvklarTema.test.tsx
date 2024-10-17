@@ -15,6 +15,6 @@ describe('AvklarTema', () => {
   });
   it('Har et valg for om dokumentet hører til tema AAP eller ikke', () => {
     render(<AvklarTema behandlingsVersjon={1} journalpostId={'123'} grunnlag={grunnlag} />);
-    expect(screen.getByRole('group', { name: 'Er dokumentet riktig journalført på tema AAP?' })).toBeVisible();
+    expect(screen.getByText('Er dokumentet riktig journalført på tema AAP?')).toBeVisible();
   });
 });

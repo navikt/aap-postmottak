@@ -62,6 +62,12 @@ export const hentDokumentFraDokumentInfoId = async (
   );
 };
 
+export const endreTema = async (journalpostId: string) => {
+  const url = `${dokumentMottakApiBaseUrl}/api/behandling/${journalpostId}/endre-tema`;
+  return await fetchProxy<{redirectUrl: string}>(url, dokumentMottakApiScope, 'POST');
+};
+
+
 export const hentAlleBehandlinger = async () => {
   const url = `${dokumentMottakApiBaseUrl}/test/hentAlleBehandlinger`;
   return await fetchProxy<[{ id: string; status: string; opprettet: string }]>(url, dokumentMottakApiScope, 'GET');
