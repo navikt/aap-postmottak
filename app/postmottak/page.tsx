@@ -17,7 +17,7 @@ const Page = async () => {
         {alleBehandlinger.map((behandling) => (
           <li key={behandling.id}>
             <Link href={`/postmottak/${behandling.id}/`}>
-              {behandling.id} - {behandling.status} - {behandling.opprettet}
+              {behandling.id} - {behandling.steg} - {behandling.opprettet} - {behandling.status}
             </Link>
           </li>
         ))}
