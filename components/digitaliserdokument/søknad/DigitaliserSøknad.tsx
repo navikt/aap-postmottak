@@ -9,6 +9,7 @@ import { useLøsBehovOgGåTilNesteSteg } from '../../../lib/hooks/LøsBehovOgGå
 import { Barnetillegg } from './Barnetillegg';
 import { Søknad } from '../../../lib/types/types';
 import { Student } from './Student';
+import { ServerSentEventStatusAlert } from '../../serversenteventstatusalert/ServerSentEventStatusAlert';
 
 export type Barn = {
   fnr?: string;
@@ -68,7 +69,7 @@ export const DigitaliserSøknad = ({ behandlingsVersjon, journalpostId }: Props)
       defaultValue: [],
     },
   });
-  const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('DIGITALISER_DOKUMENT');
+  const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('DIGITALISER_DOKUMENT');
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     form.handleSubmit((data) => {
       løsBehovOgGåTilNesteSteg({
@@ -87,6 +88,7 @@ export const DigitaliserSøknad = ({ behandlingsVersjon, journalpostId }: Props)
   return (
     <VilkårsKort heading={'Digitaliser søknad'}>
       <form onSubmit={onSubmit}>
+        <ServerSentEventStatusAlert status={status} />
         <VilkårsKort heading={'Personalia'}>
           <FormField form={form} formField={formFields.søknadsDato} />
         </VilkårsKort>

@@ -7,6 +7,7 @@ import { FormEvent, FormEventHandler } from 'react';
 import { useLøsBehovOgGåTilNesteSteg } from '../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { Button } from '@navikt/ds-react';
 import { KategoriserGrunnlag } from '../../lib/types/types';
+import { ServerSentEventStatusAlert } from '../serversenteventstatusalert/ServerSentEventStatusAlert';
 
 interface Props {
   behandlingsVersjon: number;
@@ -29,7 +30,7 @@ export const Kategoriser = ({ behandlingsVersjon, journalpostId, grunnlag }: Pro
       defaultValue: grunnlag.vurdering?.brevkode,
     },
   });
-  const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('KATEGORISER_DOKUMENT');
+  const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('KATEGORISER_DOKUMENT');
   const onSubmit: FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
     form.handleSubmit((data) => {
       løsBehovOgGåTilNesteSteg({
@@ -49,6 +50,7 @@ export const Kategoriser = ({ behandlingsVersjon, journalpostId, grunnlag }: Pro
   return (
     <VilkårsKort heading={'Kategoriser'}>
       <form onSubmit={onSubmit}>
+        <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.kategori} />
         <Button>Send</Button>
       </form>

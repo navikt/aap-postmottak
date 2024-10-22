@@ -7,6 +7,7 @@ import { FormEvent } from 'react';
 import { Behovstype } from '../../../lib/form';
 import { useLøsBehovOgGåTilNesteSteg } from '../../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { MeldePerioder } from './MeldePerioder';
+import { ServerSentEventStatusAlert } from '../../serversenteventstatusalert/ServerSentEventStatusAlert';
 
 interface Props {
   behandlingsVersjon: number;
@@ -34,7 +35,7 @@ export const DigitaliserMeldekort = ({ behandlingsVersjon, journalpostId }: Prop
       defaultValue: [],
     },
   });
-  const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('DIGITALISER_DOKUMENT');
+  const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('DIGITALISER_DOKUMENT');
 
   function mapTilPliktkortKontrakt(data: PliktkortFormFields) {
     return JSON.stringify(data);
@@ -56,6 +57,7 @@ export const DigitaliserMeldekort = ({ behandlingsVersjon, journalpostId }: Prop
   return (
     <VilkårsKort heading={'Pliktkort'}>
       <form onSubmit={onSubmit}>
+        <ServerSentEventStatusAlert status={status} />
         <VStack gap={'3'}>
           <FormField form={form} formField={formFields.innsendtDato} />
           <MeldePerioder form={form} />
