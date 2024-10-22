@@ -1,28 +1,25 @@
 'use client';
 
-import { VilkårsKort } from '../vilkårskort/VilkårsKort';
+import { VilkårsKort } from 'components/vilkårskort/VilkårsKort';
 import { FormField, useConfigForm } from '@navikt/aap-felles-react';
-import { Behovstype, JaEllerNei, JaEllerNeiOptions } from '../../lib/form';
+import { Behovstype, JaEllerNei, JaEllerNeiOptions } from 'lib/form';
 import { FormEvent, FormEventHandler } from 'react';
-import { useLøsBehovOgGåTilNesteSteg } from '../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
-import { Button, HStack } from '@navikt/ds-react';
+import { useLøsBehovOgGåTilNesteSteg } from 'lib/hooks/LøsBehovOgGåTilNesteStegHook';
+import { Button } from '@navikt/ds-react';
 import { AvklarTemaGrunnlag } from 'lib/types/types';
 import { getJaNeiEllerUndefined } from 'lib/form';
-import { endreTema } from '../../lib/clientApi';
-import { useRouter } from 'next/navigation';
+import { ServerSentEventStatusAlert } from 'components/serversenteventstatusalert/ServerSentEventStatusAlert';
+import { endreTema } from 'lib/clientApi';
 
 interface Props {
   behandlingsVersjon: number;
   journalpostId: string;
   grunnlag: AvklarTemaGrunnlag;
 }
-
 interface FormFields {
   erTemaAAP: string;
 }
-
 export const AvklarTema = ({ behandlingsVersjon, journalpostId, grunnlag }: Props) => {
-  const router = useRouter();
   const { formFields, form } = useConfigForm<FormFields>({
     erTemaAAP: {
       type: 'radio',
@@ -32,33 +29,34 @@ export const AvklarTema = ({ behandlingsVersjon, journalpostId, grunnlag }: Prop
       options: JaEllerNeiOptions,
     },
   });
-  const { løsBehovOgGåTilNesteSteg } = useLøsBehovOgGåTilNesteSteg('AVKLAR_TEMA');
-  const onJa = () => {
-    løsBehovOgGåTilNesteSteg({
-      behandlingVersjon: behandlingsVersjon,
-      behov: {
-        behovstype: Behovstype.AVKLAR_TEMA,
-        skalTilAap: true,
-      },
-      //TODO: dette skal være referanse: string
-      // @ts-ignore
-      referanse: parseInt(journalpostId),
-    });
+  const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('AVKLAR_TEMA');
+  const onSubmit: FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
+    form.handleSubmit((data) => {
+      if (data.erTemaAAP === JaEllerNei.Ja) {
+        løsBehovOgGåTilNesteSteg({
+          behandlingVersjon: behandlingsVersjon,
+          behov: {
+            behovstype: Behovstype.AVKLAR_TEMA,
+            skalTilAap: data.erTemaAAP === JaEllerNei.Ja,
+          },
+          //TODO: dette skal være referanse: string
+          // @ts-ignore
+          referanse: parseInt(journalpostId),
+        });
+      } else {
+        endreTema(journalpostId).then((redirectUrl) => redirectUrl && window.location.replace(redirectUrl));
+      }
+    })(event);
   };
 
   return (
     <VilkårsKort heading={'Avklar tema'}>
+      <form onSubmit={onSubmit}>
+        <ServerSentEventStatusAlert status={status} />
+        <FormField form={form} formField={formFields.erTemaAAP} />
+        <Button>Send</Button>
+      </form>
       <p>Er dokumentet riktig journalført på tema AAP?</p>
-      <HStack gap={'1'} padding={'1'}>
-        <Button onClick={onJa}>Ja!</Button>
-        <Button
-          onClick={() => {
-            endreTema(journalpostId).then((redirectUrl) => redirectUrl && router.replace(redirectUrl));
-          }}
-        >
-          Nope
-        </Button>
-      </HStack>
     </VilkårsKort>
   );
 };
