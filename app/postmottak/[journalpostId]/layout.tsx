@@ -21,7 +21,11 @@ const Layout = async ({ children, params }: LayoutProps) => {
   const dokumenter = journalpostInfo.dokumenter;
   return (
     <div className={styles.idLayoutWrapper}>
-      <DokumentInfoBanner journalpostId={params.journalpostId} behandlingsVersjon={flyt.behandlingVersjon} />
+      <DokumentInfoBanner
+        journalpostId={params.journalpostId}
+        behandlingsVersjon={flyt.behandlingVersjon}
+        journalpostInfo={journalpostInfo}
+      />
       <StegGruppeIndikatorAksel journalpostId={params.journalpostId} stegGrupper={stegGrupper} />
       {flyt.prosessering.status === 'FEILET' && <FlytProsesseringAlert flytProsessering={flyt.prosessering} />}
       {flyt.visning.visVentekort ? (
