@@ -56,7 +56,6 @@ export const AvklarTema = ({ behandlingsVersjon, journalpostId, grunnlag }: Prop
         <FormField form={form} formField={formFields.erTemaAAP} />
         <Button>Send</Button>
       </form>
-      <p>Er dokumentet riktig journalført på tema AAP?</p>
     </VilkårsKort>
   );
 };
