@@ -1019,7 +1019,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/resources@npm:1.26.0, @opentelemetry/resources@npm:^1.26.0":
+"@opentelemetry/resources@npm:1.26.0":
   version: 1.26.0
   resolution: "@opentelemetry/resources@npm:1.26.0"
   dependencies:
@@ -1031,7 +1031,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/resources@npm:1.27.0":
+"@opentelemetry/resources@npm:1.27.0, @opentelemetry/resources@npm:^1.27.0":
   version: 1.27.0
   resolution: "@opentelemetry/resources@npm:1.27.0"
   dependencies:
@@ -1805,7 +1805,7 @@ __metadata:
     "@opentelemetry/api": "npm:^1.9.0"
     "@opentelemetry/api-logs": "npm:^0.53.0"
     "@opentelemetry/instrumentation": "npm:^0.53.0"
-    "@opentelemetry/resources": "npm:^1.26.0"
+    "@opentelemetry/resources": "npm:^1.27.0"
     "@opentelemetry/sdk-logs": "npm:^0.53.0"
     "@opentelemetry/sdk-metrics": "npm:^1.26.0"
     "@opentelemetry/sdk-trace-base": "npm:^1.27.0"
