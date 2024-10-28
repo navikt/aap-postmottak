@@ -6,6 +6,7 @@ import { ChevronDownIcon } from '@navikt/aksel-icons';
 import { SettBehandllingPåVentModal } from '../settbehandlingpåventmodal/SettBehandllingPåVentModal';
 import { useState } from 'react';
 import { JournalpostInfo } from 'lib/types/types';
+import { useParams } from 'next/navigation';
 
 interface Props {
   journalpostId: string;
@@ -14,29 +15,27 @@ interface Props {
 }
 
 export const DokumentInfoBanner = ({ journalpostId, behandlingsVersjon, journalpostInfo }: Props) => {
+  const params: { journalpostId: string } = useParams();
   const [settBehandlingPåVentmodalIsOpen, setSettBehandlingPåVentmodalIsOpen] = useState(false);
   return (
     <div className={styles.dokumentInfoBanner}>
       <div className={styles.left}>
         <div>
+          <Label size="small">Journalpost</Label>
+          <BodyShort size="small">{`JournalpostId: ${params.journalpostId}`}</BodyShort>
+        </div>
+        <div>
           <Label size="small">Søker</Label>
           <BodyShort size="small">{journalpostInfo.søker?.navn}</BodyShort>
           <BodyShort size="small">{`Ident: ${journalpostInfo.søker?.ident}`}</BodyShort>
         </div>
-        {journalpostInfo.avsender && (
+        {journalpostInfo.avsender?.ident && (
           <div>
             <Label size="small">Avsender</Label>
             <BodyShort size="small">{journalpostInfo.avsender?.navn}</BodyShort>
             <BodyShort size="small">{`Ident: ${journalpostInfo.avsender?.ident}`}</BodyShort>
           </div>
         )}
-        {journalpostInfo.dokumenter.map((dokument, index) => (
-          <div key={`dokument-${index}`}>
-            <Label size="small">Dokument</Label>
-            <BodyShort size="small">{dokument.tittel}</BodyShort>
-            <BodyShort size="small">{`DokumentInfoId: ${dokument.dokumentInfoId}`}</BodyShort>
-          </div>
-        ))}
       </div>
       <Dropdown>
         <Button
