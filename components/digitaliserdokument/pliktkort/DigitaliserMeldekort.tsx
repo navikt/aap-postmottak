@@ -11,7 +11,7 @@ import { ServerSentEventStatusAlert } from '../../serversenteventstatusalert/Ser
 
 interface Props {
   behandlingsVersjon: number;
-  journalpostId: string;
+  behandlingsreferanse: string;
 }
 export type PliktDag = {
   dato?: Date;
@@ -24,7 +24,7 @@ export interface PliktkortFormFields {
   innsendtDato?: Date;
   pliktPerioder?: PliktPeriode[];
 }
-export const DigitaliserMeldekort = ({ behandlingsVersjon, journalpostId }: Props) => {
+export const DigitaliserMeldekort = ({ behandlingsVersjon, behandlingsreferanse }: Props) => {
   const { form, formFields } = useConfigForm<PliktkortFormFields>({
     innsendtDato: {
       type: 'date',
@@ -48,9 +48,7 @@ export const DigitaliserMeldekort = ({ behandlingsVersjon, journalpostId }: Prop
           behovstype: Behovstype.DIGITALISER_DOKUMENT,
           strukturertDokument: mapTilPliktkortKontrakt(data),
         },
-        //TODO: dette skal være referanse: string
-        // @ts-ignore
-        referanse: parseInt(journalpostId),
+        referanse: {referanse: behandlingsreferanse},
       });
     })(event);
   }

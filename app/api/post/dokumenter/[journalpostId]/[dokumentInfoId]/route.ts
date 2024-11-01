@@ -4,7 +4,7 @@ import {
     hentDokumentFraDokumentInfoId
 } from "../../../../../../lib/services/dokumentmottakservice/dokumentMottakService";
 
-export async function GET(req: NextRequest, { params }: { params: { journalpostId: string, dokumentInfoId: string } }) {
+export async function GET(req: NextRequest, { params }: { params: { journalpostId: number, dokumentInfoId: string } }) {
      const data = await hentDokumentFraDokumentInfoId(params.journalpostId, params.dokumentInfoId);
     try {
         return new Response(data, { status: 200 });

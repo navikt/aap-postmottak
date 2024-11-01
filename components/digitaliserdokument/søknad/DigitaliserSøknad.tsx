@@ -1,15 +1,15 @@
 'use client';
 
-import { FormField, useConfigForm } from '@navikt/aap-felles-react';
-import { Behovstype, JaEllerNei, JaEllerNeiOptions, JaNeiAvbrutt, JaNeiVetIkke } from '../../../lib/form';
-import { FormEvent, FormEventHandler } from 'react';
-import { VilkårsKort } from '../../vilkårskort/VilkårsKort';
-import { Button } from '@navikt/ds-react';
-import { useLøsBehovOgGåTilNesteSteg } from '../../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
-import { Barnetillegg } from './Barnetillegg';
-import { Søknad } from '../../../lib/types/types';
-import { Student } from './Student';
-import { ServerSentEventStatusAlert } from '../../serversenteventstatusalert/ServerSentEventStatusAlert';
+import {FormField, useConfigForm} from '@navikt/aap-felles-react';
+import {Behovstype, JaEllerNei, JaEllerNeiOptions, JaNeiAvbrutt, JaNeiVetIkke} from '../../../lib/form';
+import {FormEvent, FormEventHandler} from 'react';
+import {VilkårsKort} from '../../vilkårskort/VilkårsKort';
+import {Button} from '@navikt/ds-react';
+import {useLøsBehovOgGåTilNesteSteg} from '../../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
+import {Barnetillegg} from './Barnetillegg';
+import {Søknad} from '../../../lib/types/types';
+import {Student} from './Student';
+import {ServerSentEventStatusAlert} from '../../serversenteventstatusalert/ServerSentEventStatusAlert';
 
 export type Barn = {
   fnr?: string;
@@ -25,9 +25,10 @@ export interface SøknadFormFields {
   studentKommeTilbake: JaNeiVetIkke;
   oppgitteBarn: Barn[];
 }
+
 interface Props {
   behandlingsVersjon: number;
-  journalpostId: string;
+  behandlingsreferanse: string;
 }
 
 function mapTilSøknadKontrakt(data: SøknadFormFields) {
@@ -38,13 +39,13 @@ function mapTilSøknadKontrakt(data: SøknadFormFields) {
     },
     yrkesskade: data.yrkesSkade,
     oppgitteBarn: data.oppgitteBarn?.length
-      ? { identer: data.oppgitteBarn.map((barn) => ({ identifikator: barn.fnr })) }
+      ? {identer: data.oppgitteBarn.map((barn) => ({identifikator: barn.fnr}))}
       : null,
   } as Søknad);
 }
 
-export const DigitaliserSøknad = ({ behandlingsVersjon, journalpostId }: Props) => {
-  const { form, formFields } = useConfigForm<SøknadFormFields>({
+export const DigitaliserSøknad = ({behandlingsVersjon, behandlingsreferanse}: Props) => {
+  const {form, formFields} = useConfigForm<SøknadFormFields>({
     søknadsDato: {
       type: 'date',
       label: 'Søknadsdato',
@@ -69,7 +70,8 @@ export const DigitaliserSøknad = ({ behandlingsVersjon, journalpostId }: Props)
       defaultValue: [],
     },
   });
-  const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('DIGITALISER_DOKUMENT');
+  const {løsBehovOgGåTilNesteSteg, status} = useLøsBehovOgGåTilNesteSteg('DIGITALISER_DOKUMENT');
+
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     form.handleSubmit((data) => {
       løsBehovOgGåTilNesteSteg({
@@ -78,9 +80,7 @@ export const DigitaliserSøknad = ({ behandlingsVersjon, journalpostId }: Props)
           behovstype: Behovstype.DIGITALISER_DOKUMENT,
           strukturertDokument: mapTilSøknadKontrakt(data),
         },
-        //TODO: dette skal være referanse: string
-        // @ts-ignore
-        referanse: parseInt(journalpostId),
+        referanse: {referanse: behandlingsreferanse},
       });
     })(event);
   }
@@ -88,15 +88,15 @@ export const DigitaliserSøknad = ({ behandlingsVersjon, journalpostId }: Props)
   return (
     <VilkårsKort heading={'Digitaliser søknad'}>
       <form onSubmit={onSubmit}>
-        <ServerSentEventStatusAlert status={status} />
+        <ServerSentEventStatusAlert status={status}/>
         <VilkårsKort heading={'Personalia'}>
-          <FormField form={form} formField={formFields.søknadsDato} />
+          <FormField form={form} formField={formFields.søknadsDato}/>
         </VilkårsKort>
         <VilkårsKort heading={'Yrkesskade'}>
-          <FormField form={form} formField={formFields.yrkesSkade} />
+          <FormField form={form} formField={formFields.yrkesSkade}/>
         </VilkårsKort>
-        <Barnetillegg form={form} />
-        <Student form={form} formFields={formFields} />
+        <Barnetillegg form={form}/>
+        <Student form={form} formFields={formFields}/>
         <Button>Send</Button>
       </form>
     </VilkårsKort>

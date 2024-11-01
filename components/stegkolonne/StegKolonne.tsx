@@ -8,30 +8,30 @@ import { EndreTema } from '../endretema/EndreTema';
 
 interface Props {
   aktivGruppe: StegGruppe;
-  journalpostId: string;
+  behandlingsreferanse: string;
 }
-export const StegKolonne = ({ aktivGruppe, journalpostId }: Props) => {
+export const StegKolonne = ({ aktivGruppe, behandlingsreferanse }: Props) => {
   // Det er her vi gjør datafetching og rendering av stegene
   return (
     <div>
       {aktivGruppe === 'AVKLAR_TEMA' && (
         <StegSuspense>
-          <AvklarTemaMedDataFetching journalpostId={journalpostId} />
+          <AvklarTemaMedDataFetching behandlingsreferanse={behandlingsreferanse} />
         </StegSuspense>
       )}
       {aktivGruppe === 'AVKLAR_SAK' && (
         <StegSuspense>
-          <FinnSakMedDataFetching journalpostId={journalpostId} />
+          <FinnSakMedDataFetching behandlingsreferanse={behandlingsreferanse} />
         </StegSuspense>
       )}
       {aktivGruppe === 'KATEGORISER' && (
         <StegSuspense>
-          <KategoriserMedDataFetching journalpostId={journalpostId} />
+          <KategoriserMedDataFetching behandlingsreferanse={behandlingsreferanse} />
         </StegSuspense>
       )}
       {aktivGruppe === 'DIGITALISER' && (
         <StegSuspense>
-          <DigitaliserDokumentMedDatafetching journalpostId={journalpostId} />
+          <DigitaliserDokumentMedDatafetching behandlingsreferanse={behandlingsreferanse} />
         </StegSuspense>
       )}
       {aktivGruppe === 'OVERLEVER_TIL_FAGSYSTEM' && (

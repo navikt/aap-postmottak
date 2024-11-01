@@ -2,9 +2,9 @@ import { BehandlingPåVentKort } from './BehandlingPåVentKort';
 import { hentVenteInformasjon } from '../../lib/services/dokumentmottakservice/dokumentMottakService';
 
 interface Props {
-  journalpostId: string;
+  behandlingsreferanse: string;
 }
-export const BehandlingPVentMedDataFetching = async ({ journalpostId }: Props) => {
-  const venteInfo = await hentVenteInformasjon(journalpostId);
+export const BehandlingPVentMedDataFetching = async ({ behandlingsreferanse }: Props) => {
+  const venteInfo = await hentVenteInformasjon(behandlingsreferanse);
   return <BehandlingPåVentKort informasjon={venteInfo} />;
 };

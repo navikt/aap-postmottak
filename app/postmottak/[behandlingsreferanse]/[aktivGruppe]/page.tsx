@@ -3,11 +3,11 @@ import { StegGruppe } from 'lib/types/types';
 
 interface PageProps {
   aktivGruppe: StegGruppe;
-  journalpostId: string;
+  behandlingsreferanse: string;
 }
 
 const Page = async ({ params }: { params: PageProps }) => {
-  return <StegKolonne aktivGruppe={params.aktivGruppe} journalpostId={params.journalpostId} />;
+  return <StegKolonne aktivGruppe={params.aktivGruppe} behandlingsreferanse={params.behandlingsreferanse} />;
 };
 
 export default Page;

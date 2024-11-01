@@ -1,28 +1,32 @@
 'use client';
 
-import { BodyShort, Button, Dropdown, Label } from '@navikt/ds-react';
+import {BodyShort, Button, Dropdown, Label} from '@navikt/ds-react';
 import styles from './DokumentInfoBanner.module.css';
-import { ChevronDownIcon } from '@navikt/aksel-icons';
-import { SettBehandllingPåVentModal } from '../settbehandlingpåventmodal/SettBehandllingPåVentModal';
-import { useState } from 'react';
-import { JournalpostInfo } from 'lib/types/types';
-import { useParams } from 'next/navigation';
+import {ChevronDownIcon} from '@navikt/aksel-icons';
+import {SettBehandllingPåVentModal} from '../settbehandlingpåventmodal/SettBehandllingPåVentModal';
+import {useState} from 'react';
+import {JournalpostInfo} from 'lib/types/types';
 
 interface Props {
-  journalpostId: string;
+  behandlingsreferanse: string;
+  journalpostId: number;
   behandlingsVersjon: number;
   journalpostInfo: JournalpostInfo;
 }
 
-export const DokumentInfoBanner = ({ journalpostId, behandlingsVersjon, journalpostInfo }: Props) => {
-  const params: { journalpostId: string } = useParams();
+export const DokumentInfoBanner = ({
+                                     behandlingsreferanse,
+                                     journalpostId,
+                                     behandlingsVersjon,
+                                     journalpostInfo
+                                   }: Props) => {
   const [settBehandlingPåVentmodalIsOpen, setSettBehandlingPåVentmodalIsOpen] = useState(false);
   return (
     <div className={styles.dokumentInfoBanner}>
       <div className={styles.left}>
         <div>
           <Label size="small">Journalpost</Label>
-          <BodyShort size="small">{`JournalpostId: ${params.journalpostId}`}</BodyShort>
+          <BodyShort size="small">{`JournalpostId: ${journalpostId}`}</BodyShort>
         </div>
         <div>
           <Label size="small">Søker</Label>
@@ -42,7 +46,7 @@ export const DokumentInfoBanner = ({ journalpostId, behandlingsVersjon, journalp
           size={'small'}
           as={Dropdown.Toggle}
           variant={'secondary'}
-          icon={<ChevronDownIcon title="chevron-saksmeny" fontSize="1.5rem" />}
+          icon={<ChevronDownIcon title="chevron-saksmeny" fontSize="1.5rem"/>}
           iconPosition={'right'}
         >
           Saksmeny
@@ -58,7 +62,7 @@ export const DokumentInfoBanner = ({ journalpostId, behandlingsVersjon, journalp
       </Dropdown>
 
       <SettBehandllingPåVentModal
-        journalpostId={journalpostId}
+        behandlingsreferanse={behandlingsreferanse}
         behandlingVersjon={behandlingsVersjon}
         isOpen={settBehandlingPåVentmodalIsOpen}
         onClose={() => setSettBehandlingPåVentmodalIsOpen(false)}

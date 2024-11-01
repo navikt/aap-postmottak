@@ -11,13 +11,13 @@ import { ServerSentEventStatusAlert } from '../serversenteventstatusalert/Server
 
 interface Props {
   behandlingsVersjon: number;
-  journalpostId: string;
+  behandlingsreferanse: string;
   grunnlag: KategoriserGrunnlag;
 }
 interface FormFields {
   kategori: string;
 }
-export const Kategoriser = ({ behandlingsVersjon, journalpostId, grunnlag }: Props) => {
+export const Kategoriser = ({ behandlingsVersjon, behandlingsreferanse, grunnlag }: Props) => {
   const { formFields, form } = useConfigForm<FormFields>({
     kategori: {
       type: 'combobox',
@@ -41,9 +41,7 @@ export const Kategoriser = ({ behandlingsVersjon, journalpostId, grunnlag }: Pro
           // @ts-ignore
           dokumentkategori: data.kategori,
         },
-        //TODO: dette skal være referanse: string
-        // @ts-ignore
-        referanse: parseInt(journalpostId),
+        referanse: {referanse: behandlingsreferanse},
       });
     })(event);
   };

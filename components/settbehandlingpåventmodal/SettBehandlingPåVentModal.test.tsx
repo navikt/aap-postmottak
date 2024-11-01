@@ -4,7 +4,7 @@ import { SettBehandllingPåVentModal } from 'components/settbehandlingpåventmod
 
 describe('settBehandlingPåVentModal', () => {
   beforeEach(() => {
-    render(<SettBehandllingPåVentModal journalpostId={'123'} behandlingVersjon={1} isOpen={true} onClose={vi.fn} />);
+    render(<SettBehandllingPåVentModal behandlingsreferanse={'123'} behandlingVersjon={1} isOpen={true} onClose={vi.fn} />);
   });
   it('skal ha en heading', () => {
     const heading = screen.getByText('Sett behandling på vent');

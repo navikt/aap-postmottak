@@ -1,5 +1,5 @@
 import { Alert } from '@navikt/ds-react';
-import { ServerSentEventStatus } from 'app/api/post/[journalpostId]/hent/[gruppe]/[steg]/nesteSteg/route';
+import { ServerSentEventStatus } from '../../app/api/post/[behandlingsreferanse]/hent/[gruppe]/[steg]/nesteSteg/route';
 
 interface Props {
   status?: ServerSentEventStatus;

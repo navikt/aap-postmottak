@@ -3,15 +3,15 @@ import { hentDigitaliseringGrunnlag, hentFlyt } from '../../lib/services/dokumen
 import { DigitaliserMeldekort } from './pliktkort/DigitaliserMeldekort';
 
 interface Props {
-  journalpostId: string;
+  behandlingsreferanse: string;
 }
-export const DigitaliserDokumentMedDatafetching = async ({ journalpostId }: Props) => {
-  const flyt = await hentFlyt(journalpostId);
-  const grunnlag = await hentDigitaliseringGrunnlag(journalpostId);
+export const DigitaliserDokumentMedDatafetching = async ({ behandlingsreferanse }: Props) => {
+  const flyt = await hentFlyt(behandlingsreferanse);
+  const grunnlag = await hentDigitaliseringGrunnlag(behandlingsreferanse);
   if (grunnlag.kategori === 'SØKNAD') {
-    return <DigitaliserSøknad journalpostId={journalpostId} behandlingsVersjon={flyt.behandlingVersjon} />;
+    return <DigitaliserSøknad behandlingsreferanse={behandlingsreferanse} behandlingsVersjon={flyt.behandlingVersjon} />;
   } else if (grunnlag.kategori === 'PLIKTKORT') {
-    return <DigitaliserMeldekort behandlingsVersjon={flyt.behandlingVersjon} journalpostId={journalpostId} />;
+    return <DigitaliserMeldekort behandlingsVersjon={flyt.behandlingVersjon} behandlingsreferanse={behandlingsreferanse} />;
   } else if (grunnlag.kategori === 'UKJENT') {
     return <div>UKJENT</div>;
   } else if (grunnlag.kategori === 'AKTIVITETSKORT') {

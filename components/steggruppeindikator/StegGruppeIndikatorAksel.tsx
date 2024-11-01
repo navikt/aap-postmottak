@@ -6,10 +6,10 @@ import { FlytGruppe } from 'lib/types/types';
 import { useParams, useRouter } from 'next/navigation';
 
 export const StegGruppeIndikatorAksel = ({
-  journalpostId,
+  behandlingsreferanse,
   stegGrupper,
 }: {
-  journalpostId: string;
+  behandlingsreferanse: string;
   stegGrupper: FlytGruppe[];
 }) => {
   const { aktivGruppe } = useParams();
@@ -25,7 +25,7 @@ export const StegGruppeIndikatorAksel = ({
             as="button"
             completed={steg.erFullført}
             key={index}
-            onClick={() => router.push(`/postmottak/${journalpostId}/${steg.stegGruppe}`)}
+            onClick={() => router.push(`/postmottak/${behandlingsreferanse}/${steg.stegGruppe}`)}
             interactive={steg.erFullført}
           >
             {steg.stegGruppe}

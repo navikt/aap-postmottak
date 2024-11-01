@@ -7,12 +7,12 @@ describe('DigitaliserPliktkort', () => {
   const user = userEvent.setup();
 
   it('innsendtdato vises', () => {
-    render(<DigitaliserMeldekort behandlingsVersjon={1} journalpostId={'1'} />);
+    render(<DigitaliserMeldekort behandlingsVersjon={1} behandlingsreferanse={'1'} />);
     expect(screen.getByRole('textbox', { name: /Innsendt dato/i })).toBeVisible();
   });
 
   it('legg til pliktperiode, felter for arbeidstimer for en periode vises', async () => {
-    render(<DigitaliserMeldekort behandlingsVersjon={1} journalpostId={'1'} />);
+    render(<DigitaliserMeldekort behandlingsVersjon={1} behandlingsreferanse={'1'} />);
 
     const leggTilPeriodeKnapp = screen.getByRole('button', { name: /legg til ny periode/i });
     await user.click(leggTilPeriodeKnapp);

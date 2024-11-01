@@ -7,7 +7,7 @@ describe('DigitaliserSøknad', () => {
   const user = userEvent.setup();
 
   it('yrkesskade vises', () => {
-    render(<DigitaliserSøknad journalpostId={'1'} behandlingsVersjon={1} />);
+    render(<DigitaliserSøknad behandlingsreferanse={'1'} behandlingsVersjon={1} />);
 
     const yrkeskadeRadio = screen.getByRole('group', {
       name: /yrkesskade/i,
@@ -15,7 +15,7 @@ describe('DigitaliserSøknad', () => {
     expect(yrkeskadeRadio).toBeVisible();
   });
   it('erStudent vises', () => {
-    render(<DigitaliserSøknad journalpostId={'1'} behandlingsVersjon={1} />);
+    render(<DigitaliserSøknad behandlingsreferanse={'1'} behandlingsVersjon={1} />);
 
     const studentRadio = screen.getByRole('group', {
       name: /Er søkeren student?/i,
@@ -23,7 +23,7 @@ describe('DigitaliserSøknad', () => {
     expect(studentRadio).toBeVisible();
   });
   it('studentKommeTilbake hvis studie er avbrutt', async () => {
-    render(<DigitaliserSøknad journalpostId={'1'} behandlingsVersjon={1} />);
+    render(<DigitaliserSøknad behandlingsreferanse={'1'} behandlingsVersjon={1} />);
 
     const studentRadio = screen.getByRole('group', {
       name: /Er søkeren student?/i,
@@ -35,7 +35,7 @@ describe('DigitaliserSøknad', () => {
     expect(studentAvbruttRadio).toBeVisible();
   });
   it('legg til barn og sjekk at felter dukker opp', async () => {
-    render(<DigitaliserSøknad journalpostId={'1'} behandlingsVersjon={1} />);
+    render(<DigitaliserSøknad behandlingsreferanse={'1'} behandlingsVersjon={1} />);
 
     const leggTilBarnKnapp = screen.getByRole('button', { name: /legg til/i });
     await user.click(leggTilBarnKnapp);
@@ -47,7 +47,7 @@ describe('DigitaliserSøknad', () => {
   });
 
   it('legg til barn og sjekk at det kan slettes igjen', async () => {
-    render(<DigitaliserSøknad journalpostId={'1'} behandlingsVersjon={1} />);
+    render(<DigitaliserSøknad behandlingsreferanse={'1'} behandlingsVersjon={1} />);
 
     const leggTilBarnKnapp = screen.getByRole('button', { name: /legg til/i });
     await user.click(leggTilBarnKnapp);

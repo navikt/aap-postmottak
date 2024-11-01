@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ServerSentEventData, ServerSentEventStatus } from '../../app/api/post/[journalpostId]/hent/[gruppe]/[steg]/nesteSteg/route';
+import { ServerSentEventData, ServerSentEventStatus } from '../../app/api/post/[behandlingsreferanse]/hent/[gruppe]/[steg]/nesteSteg/route';
 import { useParams, useRouter } from 'next/navigation';
 import { LøsAvklaringsbehovPåBehandling, StegType } from 'lib/types/types';
 import { løsBehov } from 'lib/clientApi';
@@ -11,7 +11,7 @@ export const useLøsBehovOgGåTilNesteSteg = (
   isLoading: boolean;
   løsBehovOgGåTilNesteSteg: (behov: LøsAvklaringsbehovPåBehandling) => void;
 } => {
-  const params = useParams<{ aktivGruppe: string; journalpostId: string }>();
+  const params = useParams<{ aktivGruppe: string; behandlingsreferanse: string }>();
   const router = useRouter();
   const [status, setStatus] = useState<ServerSentEventStatus | undefined>();
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +23,7 @@ export const useLøsBehovOgGåTilNesteSteg = (
   const listenSSE = () => {
     setIsLoading(true);
     const eventSource = new EventSource(
-      `/api/post/${params.journalpostId}/hent/${params.aktivGruppe}/${steg}/nesteSteg/`,
+      `/api/post/${params.behandlingsreferanse}/hent/${params.aktivGruppe}/${steg}/nesteSteg/`,
       {
         withCredentials: true,
       }
@@ -34,7 +34,7 @@ export const useLøsBehovOgGåTilNesteSteg = (
         eventSource.close();
         if (eventData.skalBytteGruppe || eventData.skalBytteSteg) {
           // TODO: Legge tilbake igjen hash for aktivt-steg hvis vi tar i bruk dette?
-          router.push(`/postmottak/${params.journalpostId}/${eventData.aktivGruppe}/`);
+          router.push(`/postmottak/${params.behandlingsreferanse}/${eventData.aktivGruppe}/`);
         }
         router.refresh();
         setIsLoading(false);

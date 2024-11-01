@@ -5,7 +5,7 @@ import { Button, HStack } from '@navikt/ds-react';
 import { Dokument } from 'lib/types/types';
 
 interface Props {
-  journalpostId: string;
+  journalpostId: number;
   dokumenter: Dokument[];
 }
 
@@ -14,7 +14,7 @@ export const Dokumentvisning = ({ journalpostId, dokumenter }: Props) => {
   const [dataUri, setDataUri] = useState<string>();
   useEffect(() => {
     const hentDokument = async (dokumentInfoId: string) => {
-      fetch(`/api/post/${journalpostId}/dokumenter/${dokumentInfoId}`, { method: 'GET' })
+      fetch(`/api/post/dokumenter/${journalpostId}/${dokumentInfoId}`, { method: 'GET' })
         .then((res) => res.blob())
         .then((blob: Blob) => {
           let reader = new FileReader();

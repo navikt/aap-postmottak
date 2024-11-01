@@ -11,7 +11,7 @@ import { ServerSentEventStatusAlert } from '../serversenteventstatusalert/Server
 
 interface Props {
   behandlingsVersjon: number;
-  journalpostId: string;
+  behandlingsreferanse: string;
   grunnlag: FinnSakGrunnlag;
 }
 interface FormFields {
@@ -31,7 +31,7 @@ function mapVurderingTilValgtOption(vurdering: FinnSakGrunnlag['vurdering']) {
     return undefined;
   }
 }
-export const FinnSak = ({ behandlingsVersjon, journalpostId, grunnlag }: Props) => {
+export const FinnSak = ({ behandlingsVersjon, behandlingsreferanse, grunnlag }: Props) => {
   const { formFields, form } = useConfigForm<FormFields>({
     knyttTilSak: {
       type: 'radio',
@@ -56,9 +56,7 @@ export const FinnSak = ({ behandlingsVersjon, journalpostId, grunnlag }: Props) 
           førPåGenerellSak: data.knyttTilSak === GENERELL,
           saksnummer: data.knyttTilSak === NY || data.knyttTilSak === GENERELL ? null : data.knyttTilSak,
         },
-        //TODO: dette skal være referanse: string
-        // @ts-ignore
-        referanse: parseInt(journalpostId),
+        referanse: {referanse: behandlingsreferanse},
       });
     })(event);
   };

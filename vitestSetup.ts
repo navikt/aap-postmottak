@@ -6,7 +6,7 @@ beforeAll(() => {
   vi.mock('next/navigation', () => ({
     useParams: vi
         .fn()
-        .mockReturnValue({journalpostId: '123', aktivtSteg: 'HEIHEI'}),
+        .mockReturnValue({behandlingsreferanse: '123', aktivtSteg: 'HEIHEI'}),
     useRouter: vi.fn()
   }))
 })

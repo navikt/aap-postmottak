@@ -5,14 +5,14 @@ import {
   hentFlyt,
 } from '../../lib/services/dokumentmottakservice/dokumentMottakService';
 interface Props {
-  journalpostId: string;
+  behandlingsreferanse: string;
 }
-export const FinnSakMedDataFetching = async ({ journalpostId }: Props) => {
-  const flyt = await hentFlyt(journalpostId);
-  const grunnlag = await hentFinnSakGrunnlag(journalpostId);
+export const FinnSakMedDataFetching = async ({ behandlingsreferanse }: Props) => {
+  const flyt = await hentFlyt(behandlingsreferanse);
+  const grunnlag = await hentFinnSakGrunnlag(behandlingsreferanse);
   return <FinnSak
     behandlingsVersjon={flyt.behandlingVersjon}
-    journalpostId={journalpostId}
+    behandlingsreferanse={behandlingsreferanse}
     grunnlag={grunnlag}
   />;
 };

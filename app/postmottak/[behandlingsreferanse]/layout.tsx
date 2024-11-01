@@ -10,30 +10,31 @@ import { FlytProsesseringAlert } from '../../../components/flytprosesseringalert
 
 interface LayoutProps {
   children: ReactNode;
-  params: { journalpostId: string };
+  params: { behandlingsreferanse: string };
 }
 
 const Layout = async ({ children, params }: LayoutProps) => {
-  const flyt = await hentFlyt(params.journalpostId);
+  const flyt = await hentFlyt(params.behandlingsreferanse);
   const stegGrupper = flyt.flyt.map((steg) => steg);
 
-  const journalpostInfo = await hentJournalpostInfo(params.journalpostId);
+  const journalpostInfo = await hentJournalpostInfo(params.behandlingsreferanse);
   const dokumenter = journalpostInfo.dokumenter;
   return (
     <div className={styles.idLayoutWrapper}>
       <DokumentInfoBanner
-        journalpostId={params.journalpostId}
+        behandlingsreferanse={params.behandlingsreferanse}
+        journalpostId={journalpostInfo.journalpostId}
         behandlingsVersjon={flyt.behandlingVersjon}
         journalpostInfo={journalpostInfo}
       />
-      <StegGruppeIndikatorAksel journalpostId={params.journalpostId} stegGrupper={stegGrupper} />
+      <StegGruppeIndikatorAksel behandlingsreferanse={params.behandlingsreferanse} stegGrupper={stegGrupper} />
       {flyt.prosessering.status === 'FEILET' && <FlytProsesseringAlert flytProsessering={flyt.prosessering} />}
       {flyt.visning.visVentekort ? (
-        <SplitVindu dokumentvisning={<Dokumentvisning journalpostId={params.journalpostId} dokumenter={dokumenter} />}>
-          <BehandlingPVentMedDataFetching journalpostId={params.journalpostId} />
+        <SplitVindu dokumentvisning={<Dokumentvisning journalpostId={journalpostInfo.journalpostId} dokumenter={dokumenter} />}>
+          <BehandlingPVentMedDataFetching behandlingsreferanse={params.behandlingsreferanse} />
         </SplitVindu>
       ) : (
-        <SplitVindu dokumentvisning={<Dokumentvisning journalpostId={params.journalpostId} dokumenter={dokumenter} />}>
+        <SplitVindu dokumentvisning={<Dokumentvisning journalpostId={journalpostInfo.journalpostId} dokumenter={dokumenter} />}>
           {children}
         </SplitVindu>
       )}

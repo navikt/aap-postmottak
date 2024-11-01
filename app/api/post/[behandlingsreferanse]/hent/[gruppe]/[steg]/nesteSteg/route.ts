@@ -1,6 +1,6 @@
 import { logInfo, logWarning } from '@navikt/aap-felles-utils';
-import { hentFlyt } from 'lib/services/dokumentmottakservice/dokumentMottakService';
-import { StegGruppe, StegType } from 'lib/types/types';
+import { hentFlyt } from '../../../../../../../../lib/services/dokumentmottakservice/dokumentMottakService';
+import { StegGruppe, StegType } from '../../../../../../../../lib/types/types';
 import { NextRequest } from 'next/server';
 
 const DEFAULT_TIMEOUT_IN_MS = 1000;
@@ -18,7 +18,7 @@ export interface ServerSentEventData {
 export type ServerSentEventStatus = 'POLLING' | 'ERROR' | 'DONE';
 
 
-export async function GET(__request: NextRequest, context: { params: { journalpostId: string; gruppe: string; steg: string } }) {
+export async function GET(__request: NextRequest, context: { params: { behandlingsreferanse: string; gruppe: string; steg: string } }) {
   let responseStream = new TransformStream();
   const writer = responseStream.writable.getWriter();
 
@@ -42,7 +42,7 @@ export async function GET(__request: NextRequest, context: { params: { journalpo
         writer.write(`event: message\ndata: ${JSON.stringify(json)}\n\n`);
       }
 
-      const flyt = await hentFlyt(context.params.journalpostId);
+      const flyt = await hentFlyt(context.params.behandlingsreferanse);
       const aktivGruppe = flyt.aktivGruppe;
       const aktivtSteg = flyt.aktivtSteg;
 

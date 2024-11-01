@@ -32,8 +32,8 @@ export function løsBehov(avklaringsBehov: LøsAvklaringsbehovPåBehandling) {
 export function settPåVent(body: SettPåVentRequest) {
   return fetchProxy('/api/post/sett-pa-vent/', 'POST', body);
 }
-export function endreTema(journalpostId: string): Promise<string|undefined> {
-  return fetchProxy<{redirectUrl: string}>(`/api/post/${journalpostId}/endre-tema`, 'POST', {}).then(resp => resp?.redirectUrl);
+export function endreTema(behandlingsreferanse: string): Promise<string|undefined> {
+  return fetchProxy<{redirectUrl: string}>(`/api/post/${behandlingsreferanse}/endre-tema`, 'POST', {}).then(resp => resp?.redirectUrl);
 }
 // TODO: Test-endepunkt - skal fjernes
 export function opprettBehandling(journalpostId: number) {

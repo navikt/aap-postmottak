@@ -1,10 +1,10 @@
 import { AvklarTema } from './AvklarTema';
 import { hentAvklarTemaGrunnlag, hentFlyt } from '../../lib/services/dokumentmottakservice/dokumentMottakService';
 interface Props {
-  journalpostId: string;
+  behandlingsreferanse: string;
 }
-export const AvklarTemaMedDataFetching = async ({ journalpostId }: Props) => {
-  const flyt = await hentFlyt(journalpostId);
-  const grunnlag = await hentAvklarTemaGrunnlag(journalpostId);
-  return <AvklarTema behandlingsVersjon={flyt.behandlingVersjon} journalpostId={journalpostId} grunnlag={grunnlag} />;
+export const AvklarTemaMedDataFetching = async ({ behandlingsreferanse }: Props) => {
+  const flyt = await hentFlyt(behandlingsreferanse);
+  const grunnlag = await hentAvklarTemaGrunnlag(behandlingsreferanse);
+  return <AvklarTema behandlingsVersjon={flyt.behandlingVersjon} behandlingsreferanse={behandlingsreferanse} grunnlag={grunnlag} />;
 };

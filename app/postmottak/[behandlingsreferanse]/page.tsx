@@ -2,17 +2,17 @@ import { hentFlyt } from 'lib/services/dokumentmottakservice/dokumentMottakServi
 import { notFound, redirect } from 'next/navigation';
 
 interface PageProps {
-  journalpostId: string;
+  behandlingsreferanse: string;
 }
 
 const Page = async ({ params }: { params: PageProps }) => {
-  const flyt = await hentFlyt(params.journalpostId);
+  const flyt = await hentFlyt(params.behandlingsreferanse);
 
   if (flyt === undefined) {
     return notFound();
   }
 
-  redirect(`/postmottak/${params.journalpostId}/${flyt.aktivGruppe}`);
+  redirect(`/postmottak/${params.behandlingsreferanse}/${flyt.aktivGruppe}`);
 };
 
 export default Page;
