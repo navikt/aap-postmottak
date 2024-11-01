@@ -75,7 +75,8 @@ export const SettBehandllingPåVentModal = ({isOpen, onClose, behandlingsreferan
             onSubmit={form.handleSubmit(async (data) => {
               setIsLoading(true);
               await settPåVent({
-                referanse: {referanse: behandlingsreferanse},
+                // @ts-ignore
+                referanse: behandlingsreferanse,
                 begrunnelse: data.begrunnelse,
                 behandlingVersjon: behandlingVersjon,
                 frist: formaterDatoForBackend(data.frist),

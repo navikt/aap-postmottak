@@ -2,7 +2,7 @@
 
 import {FormField, useConfigForm} from '@navikt/aap-felles-react';
 import {Behovstype, JaEllerNei, JaEllerNeiOptions, JaNeiAvbrutt, JaNeiVetIkke} from '../../../lib/form';
-import {FormEvent, FormEventHandler} from 'react';
+import {FormEvent} from 'react';
 import {VilkårsKort} from '../../vilkårskort/VilkårsKort';
 import {Button} from '@navikt/ds-react';
 import {useLøsBehovOgGåTilNesteSteg} from '../../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
@@ -80,7 +80,8 @@ export const DigitaliserSøknad = ({behandlingsVersjon, behandlingsreferanse}: P
           behovstype: Behovstype.DIGITALISER_DOKUMENT,
           strukturertDokument: mapTilSøknadKontrakt(data),
         },
-        referanse: {referanse: behandlingsreferanse},
+        // @ts-ignore
+        referanse: behandlingsreferanse,
       });
     })(event);
   }

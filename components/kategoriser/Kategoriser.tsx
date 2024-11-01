@@ -41,7 +41,8 @@ export const Kategoriser = ({ behandlingsVersjon, behandlingsreferanse, grunnlag
           // @ts-ignore
           dokumentkategori: data.kategori,
         },
-        referanse: {referanse: behandlingsreferanse},
+        // @ts-ignore
+        referanse: behandlingsreferanse,
       });
     })(event);
   };

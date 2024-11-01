@@ -41,7 +41,8 @@ export const AvklarTema = ({behandlingsVersjon, behandlingsreferanse, grunnlag}:
             behovstype: Behovstype.AVKLAR_TEMA,
             skalTilAap: data.erTemaAAP === JaEllerNei.Ja,
           },
-          referanse: {referanse: behandlingsreferanse},
+          // @ts-ignore
+          referanse: behandlingsreferanse,
         });
       } else {
         endreTema(behandlingsreferanse).then((redirectUrl) => redirectUrl && window.location.replace(redirectUrl));

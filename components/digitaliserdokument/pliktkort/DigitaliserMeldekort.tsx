@@ -48,7 +48,8 @@ export const DigitaliserMeldekort = ({ behandlingsVersjon, behandlingsreferanse 
           behovstype: Behovstype.DIGITALISER_DOKUMENT,
           strukturertDokument: mapTilPliktkortKontrakt(data),
         },
-        referanse: {referanse: behandlingsreferanse},
+        // @ts-ignore
+        referanse: behandlingsreferanse,
       });
     })(event);
   }

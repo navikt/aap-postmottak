@@ -56,7 +56,8 @@ export const FinnSak = ({ behandlingsVersjon, behandlingsreferanse, grunnlag }: 
           førPåGenerellSak: data.knyttTilSak === GENERELL,
           saksnummer: data.knyttTilSak === NY || data.knyttTilSak === GENERELL ? null : data.knyttTilSak,
         },
-        referanse: {referanse: behandlingsreferanse},
+        // @ts-ignore
+        referanse: behandlingsreferanse,
       });
     })(event);
   };
