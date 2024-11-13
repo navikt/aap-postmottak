@@ -6,7 +6,8 @@ interface PageProps {
   behandlingsreferanse: string;
 }
 
-const Page = async ({ params }: { params: PageProps }) => {
+const Page = async (props: { params: Promise<PageProps> }) => {
+  const params = await props.params;
   return <StegKolonne aktivGruppe={params.aktivGruppe} behandlingsreferanse={params.behandlingsreferanse} />;
 };
 

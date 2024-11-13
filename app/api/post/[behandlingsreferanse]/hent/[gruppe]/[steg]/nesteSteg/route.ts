@@ -17,8 +17,10 @@ export interface ServerSentEventData {
 
 export type ServerSentEventStatus = 'POLLING' | 'ERROR' | 'DONE';
 
-
-export async function GET(__request: NextRequest, context: { params: { behandlingsreferanse: string; gruppe: string; steg: string } }) {
+export async function GET(
+  __request: NextRequest,
+  context: { params: Promise<{ behandlingsreferanse: string; gruppe: string; steg: string }> }
+) {
   let responseStream = new TransformStream();
   const writer = responseStream.writable.getWriter();
 
@@ -42,7 +44,7 @@ export async function GET(__request: NextRequest, context: { params: { behandlin
         writer.write(`event: message\ndata: ${JSON.stringify(json)}\n\n`);
       }
 
-      const flyt = await hentFlyt(context.params.behandlingsreferanse);
+      const flyt = await hentFlyt((await context.params).behandlingsreferanse);
       const aktivGruppe = flyt.aktivGruppe;
       const aktivtSteg = flyt.aktivtSteg;
 
@@ -64,8 +66,8 @@ export async function GET(__request: NextRequest, context: { params: { behandlin
         const json: ServerSentEventData = {
           aktivGruppe: flyt.aktivGruppe,
           aktivtSteg: flyt.aktivtSteg,
-          skalBytteGruppe: aktivGruppe !== context.params.gruppe,
-          skalBytteSteg: aktivtSteg !== context.params.steg,
+          skalBytteGruppe: aktivGruppe !== (await context.params).gruppe,
+          skalBytteSteg: aktivtSteg !== (await context.params).steg,
           status: 'DONE',
         };
 
