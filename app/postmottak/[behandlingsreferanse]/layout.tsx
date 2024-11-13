@@ -10,10 +10,14 @@ import { FlytProsesseringAlert } from '../../../components/flytprosesseringalert
 
 interface LayoutProps {
   children: ReactNode;
-  params: { behandlingsreferanse: string };
+  params: Promise<{ behandlingsreferanse: string }>;
 }
 
-const Layout = async ({ children, params }: LayoutProps) => {
+const Layout = async (props: LayoutProps) => {
+  const params = await props.params;
+
+  const { children } = props;
+
   const flyt = await hentFlyt(params.behandlingsreferanse);
   const stegGrupper = flyt.flyt.map((steg) => steg);
 
@@ -30,11 +34,15 @@ const Layout = async ({ children, params }: LayoutProps) => {
       <StegGruppeIndikatorAksel behandlingsreferanse={params.behandlingsreferanse} stegGrupper={stegGrupper} />
       {flyt.prosessering.status === 'FEILET' && <FlytProsesseringAlert flytProsessering={flyt.prosessering} />}
       {flyt.visning.visVentekort ? (
-        <SplitVindu dokumentvisning={<Dokumentvisning journalpostId={journalpostInfo.journalpostId} dokumenter={dokumenter} />}>
+        <SplitVindu
+          dokumentvisning={<Dokumentvisning journalpostId={journalpostInfo.journalpostId} dokumenter={dokumenter} />}
+        >
           <BehandlingPVentMedDataFetching behandlingsreferanse={params.behandlingsreferanse} />
         </SplitVindu>
       ) : (
-        <SplitVindu dokumentvisning={<Dokumentvisning journalpostId={journalpostInfo.journalpostId} dokumenter={dokumenter} />}>
+        <SplitVindu
+          dokumentvisning={<Dokumentvisning journalpostId={journalpostInfo.journalpostId} dokumenter={dokumenter} />}
+        >
           {children}
         </SplitVindu>
       )}
