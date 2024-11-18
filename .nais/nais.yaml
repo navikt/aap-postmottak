@@ -53,5 +53,5 @@ spec:
     outbound:
       rules:
         - application: postmottak-backend
-    external:
-      - host: "cdn.nav.no"
+      external:
+        - host: "cdn.nav.no"
