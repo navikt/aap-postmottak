@@ -2,11 +2,11 @@
 
 import { VilkårsKort } from '../vilkårskort/VilkårsKort';
 import { FormField, useConfigForm } from '@navikt/aap-felles-react';
-import { Behovstype } from '../../lib/form';
+import { Behovstype } from 'lib/form';
 import { FormEvent, FormEventHandler } from 'react';
-import { useLøsBehovOgGåTilNesteSteg } from '../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
+import { useLøsBehovOgGåTilNesteSteg } from 'lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { Button } from '@navikt/ds-react';
-import { KategoriserGrunnlag } from '../../lib/types/types';
+import { KategoriserGrunnlag } from 'lib/types/types';
 import { ServerSentEventStatusAlert } from '../serversenteventstatusalert/ServerSentEventStatusAlert';
 
 interface Props {
@@ -17,16 +17,43 @@ interface Props {
 interface FormFields {
   kategori: string;
 }
+const kategorier = [
+  {
+    label: 'Aktivitetskort',
+    value: 'AKTIVITETSKORT',
+  },
+  {
+    label: 'Søknad',
+    value: 'SØKNAD',
+  },
+  {
+    label: 'Meldekort',
+    value: 'PLIKTKORT',
+  },
+  {
+    label: 'Dialogmelding',
+    value: 'DIALOGMELDING',
+  },
+  {
+    label: 'Legeerklæring mottatt',
+    value: 'LEGEERKLÆRING_MOTTATT',
+  },
+  {
+    label: 'Legeerklæring avvist',
+    value: 'LEGEERKLÆRING_AVVIST',
+  },
+  {
+    label: 'Ukjent',
+    value: 'UKJENT',
+  },
+];
 export const Kategoriser = ({ behandlingsVersjon, behandlingsreferanse, grunnlag }: Props) => {
   const { formFields, form } = useConfigForm<FormFields>({
     kategori: {
       type: 'combobox',
       label: 'Velg kategori for dokument',
       rules: { required: 'Du må velge kategori' },
-      options: [
-        { label: 'Søknad', value: 'SØKNAD' },
-        { label: 'Meldekort', value: 'PLIKTKORT' },
-      ],
+      options: kategorier,
       defaultValue: grunnlag.vurdering?.brevkode,
     },
   });

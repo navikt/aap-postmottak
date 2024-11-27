@@ -31,6 +31,8 @@ export type Saksinfo =
   components['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.finnsak.flate.SaksInfoDto'];
 export type KategoriserGrunnlag =
   components['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringGrunnlagDto'];
+export type KategoriserDokumentKategori =
+  components['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.KategoriserDokumentL\u00F8sning']['kategori'];
 export type StruktureringGrunnlag =
   components['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringGrunnlagDto'];
 
