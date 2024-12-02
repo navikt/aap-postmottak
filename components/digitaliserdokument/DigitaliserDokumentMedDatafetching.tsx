@@ -12,8 +12,6 @@ export const DigitaliserDokumentMedDatafetching = async ({ behandlingsreferanse 
     return <DigitaliserSøknad behandlingsreferanse={behandlingsreferanse} behandlingsVersjon={flyt.behandlingVersjon} />;
   } else if (grunnlag.kategori === 'PLIKTKORT') {
     return <DigitaliserMeldekort behandlingsVersjon={flyt.behandlingVersjon} behandlingsreferanse={behandlingsreferanse} />;
-  } else if (grunnlag.kategori === 'UKJENT') {
-    return <div>UKJENT</div>;
   } else if (grunnlag.kategori === 'AKTIVITETSKORT') {
     return <div>AKTIVITETSKORT</div>;
   }

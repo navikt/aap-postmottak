@@ -6,7 +6,7 @@ import { FinnSak } from '../finnsak/FinnSak';
 
 describe('Kategoriser', () => {
   const grunnlag: KategoriserGrunnlag = {
-    vurdering: { brevkode: 'SØKNAD' },
+    vurdering: { kategori: 'SØKNAD' },
     dokumenter: [],
   };
   it('Skal ha en tittel', () => {

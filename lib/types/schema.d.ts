@@ -914,12 +914,12 @@ export interface components {
     'no.nav.aap.komponenter.type.Periode': {
       /**
        * Format: date
-       * @example 2024-11-27
+       * @example 2024-12-02
        */
       fom: string;
       /**
        * Format: date
-       * @example 2024-11-27
+       * @example 2024-12-02
        */
       tom: string;
     };
@@ -937,7 +937,7 @@ export interface components {
       navn: string;
       /**
        * Format: date-time
-       * @example 2024-11-27T09:18:11.369097
+       * @example 2024-12-02T09:08:22.577185
        */
       'planlagtKj\u00F8retidspunkt': string;
       /** @enum {string} */
@@ -961,12 +961,7 @@ export interface components {
       behovstype: string;
       skalTilAap: boolean;
     };
-    'no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.AvklaringsbehovL\u00F8sning':
-      | components['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.AvklarSaksnummerL\u00F8sning']
-      | components['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.AvklarTemaL\u00F8sning']
-      | components['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.DigitaliserDokumentL\u00F8sning']
-      | components['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.KategoriserDokumentL\u00F8sning']
-      | components['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.SattP\u00E5VentL\u00F8sning'];
+    'no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.AvklaringsbehovL\u00F8sning': components['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.AvklarSaksnummerL\u00F8sning'] | components['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.AvklarTemaL\u00F8sning'] | components['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.DigitaliserDokumentL\u00F8sning'] | components['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.KategoriserDokumentL\u00F8sning'] | components['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.SattP\u00E5VentL\u00F8sning'];
     'no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.DigitaliserDokumentL\u00F8sning': {
       behovstype: string;
       strukturertDokument?: string | null;
@@ -974,14 +969,7 @@ export interface components {
     'no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.KategoriserDokumentL\u00F8sning': {
       behovstype: string;
       /** @enum {string} */
-      kategori:
-        | 'SØKNAD'
-        | 'AKTIVITETSKORT'
-        | 'PLIKTKORT'
-        | 'UKJENT'
-        | 'LEGEERKLÆRING_MOTTATT'
-        | 'LEGEERKLÆRING_AVVIST'
-        | 'DIALOGMELDING';
+      kategori: 'SØKNAD' | 'AKTIVITETSKORT' | 'PLIKTKORT' | 'LEGEERKLÆRING' | 'LEGEERKLÆRING_AVVIST' | 'DIALOGMELDING';
     };
     'no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.SattP\u00E5VentL\u00F8sning': {
       behovstype: string;
@@ -1030,26 +1018,12 @@ export interface components {
     };
     'no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringVurderingDto': {
       /** @enum {string} */
-      brevkode:
-        | 'SØKNAD'
-        | 'AKTIVITETSKORT'
-        | 'PLIKTKORT'
-        | 'UKJENT'
-        | 'LEGEERKLÆRING_MOTTATT'
-        | 'LEGEERKLÆRING_AVVIST'
-        | 'DIALOGMELDING';
+      kategori: 'SØKNAD' | 'AKTIVITETSKORT' | 'PLIKTKORT' | 'LEGEERKLÆRING' | 'LEGEERKLÆRING_AVVIST' | 'DIALOGMELDING';
     };
     'no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringGrunnlagDto': {
       dokumenter: number[];
       /** @enum {string} */
-      kategori:
-        | 'SØKNAD'
-        | 'AKTIVITETSKORT'
-        | 'PLIKTKORT'
-        | 'UKJENT'
-        | 'LEGEERKLÆRING_MOTTATT'
-        | 'LEGEERKLÆRING_AVVIST'
-        | 'DIALOGMELDING';
+      kategori: 'SØKNAD' | 'AKTIVITETSKORT' | 'PLIKTKORT' | 'LEGEERKLÆRING' | 'LEGEERKLÆRING_AVVIST' | 'DIALOGMELDING';
       vurdering?: components['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringVurderingDto'];
     };
     'no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringVurderingDto': {
@@ -1059,42 +1033,13 @@ export interface components {
       definisjon: components['schemas']['no.nav.aap.postmottak.kontrakt.avklaringsbehov.Definisjon'];
       endringer: components['schemas']['no.nav.aap.postmottak.flyt.flate.EndringDTO'][];
       /** @enum {string} */
-      status:
-        | 'OPPRETTET'
-        | 'AVSLUTTET'
-        | 'SENDT_TILBAKE_FRA_BESLUTTER'
-        | 'SENDT_TILBAKE_FRA_KVALITETSSIKRER'
-        | 'AVBRUTT';
+      status: 'OPPRETTET' | 'AVSLUTTET' | 'SENDT_TILBAKE_FRA_BESLUTTER' | 'SENDT_TILBAKE_FRA_KVALITETSSIKRER' | 'AVBRUTT';
     };
     'no.nav.aap.postmottak.flyt.flate.BehandlingFlytOgTilstandDto': {
       /** @enum {string} */
-      aktivGruppe:
-        | 'ROUTING'
-        | 'KATEGORISER'
-        | 'DIGITALISER'
-        | 'AVKLAR_TEMA'
-        | 'START_BEHANDLING'
-        | 'UDEFINERT'
-        | 'SETT_FAGSAK'
-        | 'ENDELIG_JOURNALFØRING'
-        | 'OVERLEVER_TIL_FAGSYSTEM'
-        | 'AVKLAR_SAK'
-        | 'ENDRE_TEMA'
-        | 'VIDERESEND';
+      aktivGruppe: 'KATEGORISER' | 'DIGITALISER' | 'AVKLAR_TEMA' | 'START_BEHANDLING' | 'UDEFINERT' | 'SETT_FAGSAK' | 'ENDELIG_JOURNALFØRING' | 'OVERLEVER_TIL_FAGSYSTEM' | 'AVKLAR_SAK' | 'ENDRE_TEMA' | 'VIDERESEND';
       /** @enum {string} */
-      aktivtSteg:
-        | 'ROUTING'
-        | 'KATEGORISER_DOKUMENT'
-        | 'DIGITALISER_DOKUMENT'
-        | 'START_BEHANDLING'
-        | 'AVKLAR_TEMA'
-        | 'SETT_FAGSAK'
-        | 'ENDELIG_JOURNALFØRING'
-        | 'OVERLEVER_TIL_FAGSYSTEM'
-        | 'UDEFINERT'
-        | 'AVKLAR_SAK'
-        | 'ENDRE_TEMA'
-        | 'VIDERESEND';
+      aktivtSteg: 'KATEGORISER_DOKUMENT' | 'DIGITALISER_DOKUMENT' | 'START_BEHANDLING' | 'AVKLAR_TEMA' | 'SETT_FAGSAK' | 'ENDELIG_JOURNALFØRING' | 'OVERLEVER_TIL_FAGSYSTEM' | 'UDEFINERT' | 'AVKLAR_SAK' | 'ENDRE_TEMA' | 'VIDERESEND';
       /** Format: int64 */
       behandlingVersjon: number;
       flyt: components['schemas']['no.nav.aap.postmottak.flyt.flate.FlytGruppe'][];
@@ -1104,23 +1049,11 @@ export interface components {
     'no.nav.aap.postmottak.flyt.flate.BehandlingResultatDto': Record<string, never>;
     'no.nav.aap.postmottak.flyt.flate.DetaljertBehandlingDTO': {
       /** @enum {string} */
-      aktivtSteg:
-        | 'ROUTING'
-        | 'KATEGORISER_DOKUMENT'
-        | 'DIGITALISER_DOKUMENT'
-        | 'START_BEHANDLING'
-        | 'AVKLAR_TEMA'
-        | 'SETT_FAGSAK'
-        | 'ENDELIG_JOURNALFØRING'
-        | 'OVERLEVER_TIL_FAGSYSTEM'
-        | 'UDEFINERT'
-        | 'AVKLAR_SAK'
-        | 'ENDRE_TEMA'
-        | 'VIDERESEND';
+      aktivtSteg: 'KATEGORISER_DOKUMENT' | 'DIGITALISER_DOKUMENT' | 'START_BEHANDLING' | 'AVKLAR_TEMA' | 'SETT_FAGSAK' | 'ENDELIG_JOURNALFØRING' | 'OVERLEVER_TIL_FAGSYSTEM' | 'UDEFINERT' | 'AVKLAR_SAK' | 'ENDRE_TEMA' | 'VIDERESEND';
       avklaringsbehov: components['schemas']['no.nav.aap.postmottak.flyt.flate.AvklaringsbehovDTO'][];
       /**
        * Format: date-time
-       * @example 2024-11-27T09:18:11.369097
+       * @example 2024-12-02T09:08:22.577185
        */
       opprettet: string;
       referanse: components['schemas']['no.nav.aap.postmottak.sakogbehandling.behandling.BehandlingsreferansePathParam'];
@@ -1134,15 +1067,10 @@ export interface components {
       begrunnelse?: string | null;
       endretAv: string;
       /** @enum {string} */
-      status:
-        | 'OPPRETTET'
-        | 'AVSLUTTET'
-        | 'SENDT_TILBAKE_FRA_BESLUTTER'
-        | 'SENDT_TILBAKE_FRA_KVALITETSSIKRER'
-        | 'AVBRUTT';
+      status: 'OPPRETTET' | 'AVSLUTTET' | 'SENDT_TILBAKE_FRA_BESLUTTER' | 'SENDT_TILBAKE_FRA_KVALITETSSIKRER' | 'AVBRUTT';
       /**
        * Format: date-time
-       * @example 2024-11-27T09:18:11.369097
+       * @example 2024-12-02T09:08:22.577185
        */
       tidsstempel: string;
     };
@@ -1151,36 +1079,12 @@ export interface components {
       skalVises: boolean;
       steg: components['schemas']['no.nav.aap.postmottak.flyt.flate.FlytSteg'][];
       /** @enum {string} */
-      stegGruppe:
-        | 'ROUTING'
-        | 'KATEGORISER'
-        | 'DIGITALISER'
-        | 'AVKLAR_TEMA'
-        | 'START_BEHANDLING'
-        | 'UDEFINERT'
-        | 'SETT_FAGSAK'
-        | 'ENDELIG_JOURNALFØRING'
-        | 'OVERLEVER_TIL_FAGSYSTEM'
-        | 'AVKLAR_SAK'
-        | 'ENDRE_TEMA'
-        | 'VIDERESEND';
+      stegGruppe: 'KATEGORISER' | 'DIGITALISER' | 'AVKLAR_TEMA' | 'START_BEHANDLING' | 'UDEFINERT' | 'SETT_FAGSAK' | 'ENDELIG_JOURNALFØRING' | 'OVERLEVER_TIL_FAGSYSTEM' | 'AVKLAR_SAK' | 'ENDRE_TEMA' | 'VIDERESEND';
     };
     'no.nav.aap.postmottak.flyt.flate.FlytSteg': {
       avklaringsbehov: components['schemas']['no.nav.aap.postmottak.flyt.flate.AvklaringsbehovDTO'][];
       /** @enum {string} */
-      stegType:
-        | 'ROUTING'
-        | 'KATEGORISER_DOKUMENT'
-        | 'DIGITALISER_DOKUMENT'
-        | 'START_BEHANDLING'
-        | 'AVKLAR_TEMA'
-        | 'SETT_FAGSAK'
-        | 'ENDELIG_JOURNALFØRING'
-        | 'OVERLEVER_TIL_FAGSYSTEM'
-        | 'UDEFINERT'
-        | 'AVKLAR_SAK'
-        | 'ENDRE_TEMA'
-        | 'VIDERESEND';
+      stegType: 'KATEGORISER_DOKUMENT' | 'DIGITALISER_DOKUMENT' | 'START_BEHANDLING' | 'AVKLAR_TEMA' | 'SETT_FAGSAK' | 'ENDELIG_JOURNALFØRING' | 'OVERLEVER_TIL_FAGSYSTEM' | 'UDEFINERT' | 'AVKLAR_SAK' | 'ENDRE_TEMA' | 'VIDERESEND';
     };
     'no.nav.aap.postmottak.flyt.flate.JournalpostDto': {
       /** Format: int64 */
@@ -1192,32 +1096,22 @@ export interface components {
       behandlingVersjon: number;
       /**
        * Format: date
-       * @example 2024-11-27
+       * @example 2024-12-02
        */
       frist?: string | null;
       /** @enum {string} */
-      grunn:
-        | 'VENTER_PÅ_OPPLYSNINGER'
-        | 'VENTER_PÅ_OPPLYSNINGER_FRA_UTENLANDSKE_MYNDIGHETER'
-        | 'VENTER_PÅ_MEDISINSKE_OPPLYSNINGER'
-        | 'VENTER_PÅ_VURDERING_AV_ROL'
-        | 'VENTER_PÅ_SVAR_FRA_BRUKER';
+      grunn: 'VENTER_PÅ_OPPLYSNINGER' | 'VENTER_PÅ_OPPLYSNINGER_FRA_UTENLANDSKE_MYNDIGHETER' | 'VENTER_PÅ_MEDISINSKE_OPPLYSNINGER' | 'VENTER_PÅ_VURDERING_AV_ROL' | 'VENTER_PÅ_SVAR_FRA_BRUKER';
       referanse: components['schemas']['no.nav.aap.postmottak.sakogbehandling.behandling.Behandlingsreferanse'];
     };
     'no.nav.aap.postmottak.flyt.flate.Venteinformasjon': {
       begrunnelse: string;
       /**
        * Format: date
-       * @example 2024-11-27
+       * @example 2024-12-02
        */
       frist: string;
       /** @enum {string} */
-      grunn:
-        | 'VENTER_PÅ_OPPLYSNINGER'
-        | 'VENTER_PÅ_OPPLYSNINGER_FRA_UTENLANDSKE_MYNDIGHETER'
-        | 'VENTER_PÅ_MEDISINSKE_OPPLYSNINGER'
-        | 'VENTER_PÅ_VURDERING_AV_ROL'
-        | 'VENTER_PÅ_SVAR_FRA_BRUKER';
+      grunn: 'VENTER_PÅ_OPPLYSNINGER' | 'VENTER_PÅ_OPPLYSNINGER_FRA_UTENLANDSKE_MYNDIGHETER' | 'VENTER_PÅ_MEDISINSKE_OPPLYSNINGER' | 'VENTER_PÅ_VURDERING_AV_ROL' | 'VENTER_PÅ_SVAR_FRA_BRUKER';
     };
     'no.nav.aap.postmottak.flyt.flate.visning.Prosessering': {
       /** @enum {string} */
@@ -1232,19 +1126,7 @@ export interface components {
       kode: '9001' | '1337' | '1338' | '1339' | '1340' | '1341';
       kreverToTrinn: boolean;
       /** @enum {string} */
-      'l\u00F8sesISteg':
-        | 'ROUTING'
-        | 'KATEGORISER_DOKUMENT'
-        | 'DIGITALISER_DOKUMENT'
-        | 'START_BEHANDLING'
-        | 'AVKLAR_TEMA'
-        | 'SETT_FAGSAK'
-        | 'ENDELIG_JOURNALFØRING'
-        | 'OVERLEVER_TIL_FAGSYSTEM'
-        | 'UDEFINERT'
-        | 'AVKLAR_SAK'
-        | 'ENDRE_TEMA'
-        | 'VIDERESEND';
+      'l\u00F8sesISteg': 'KATEGORISER_DOKUMENT' | 'DIGITALISER_DOKUMENT' | 'START_BEHANDLING' | 'AVKLAR_TEMA' | 'SETT_FAGSAK' | 'ENDELIG_JOURNALFØRING' | 'OVERLEVER_TIL_FAGSYSTEM' | 'UDEFINERT' | 'AVKLAR_SAK' | 'ENDRE_TEMA' | 'VIDERESEND';
       /** @enum {string} */
       type: 'MANUELT_PÅKREVD' | 'MANUELT_FRIVILLIG' | 'VENTEPUNKT';
       name: string;
@@ -1261,7 +1143,7 @@ export interface components {
       id: string;
       /**
        * Format: date-time
-       * @example 2024-11-27T09:18:11.369097
+       * @example 2024-12-02T09:08:22.577185
        */
       opprettet: string;
       status: string;

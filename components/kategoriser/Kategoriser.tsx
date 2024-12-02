@@ -6,7 +6,7 @@ import { Behovstype } from 'lib/form';
 import { FormEvent, FormEventHandler } from 'react';
 import { useLøsBehovOgGåTilNesteSteg } from 'lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { Button } from '@navikt/ds-react';
-import { KategoriserGrunnlag } from 'lib/types/types';
+import {KategoriserDokumentKategori, KategoriserGrunnlag} from 'lib/types/types';
 import { ServerSentEventStatusAlert } from '../serversenteventstatusalert/ServerSentEventStatusAlert';
 
 interface Props {
@@ -15,9 +15,9 @@ interface Props {
   grunnlag: KategoriserGrunnlag;
 }
 interface FormFields {
-  kategori: string;
+  kategori: KategoriserDokumentKategori;
 }
-const kategorier = [
+const kategorier: {label: string, value: KategoriserDokumentKategori}[] = [
   {
     label: 'Aktivitetskort',
     value: 'AKTIVITETSKORT',
@@ -35,17 +35,13 @@ const kategorier = [
     value: 'DIALOGMELDING',
   },
   {
-    label: 'Legeerklæring mottatt',
-    value: 'LEGEERKLÆRING_MOTTATT',
+    label: 'Legeerklæring',
+    value: 'LEGEERKLÆRING',
   },
   {
     label: 'Legeerklæring avvist',
     value: 'LEGEERKLÆRING_AVVIST',
-  },
-  {
-    label: 'Ukjent',
-    value: 'UKJENT',
-  },
+  }
 ];
 export const Kategoriser = ({ behandlingsVersjon, behandlingsreferanse, grunnlag }: Props) => {
   const { formFields, form } = useConfigForm<FormFields>({
@@ -54,7 +50,7 @@ export const Kategoriser = ({ behandlingsVersjon, behandlingsreferanse, grunnlag
       label: 'Velg kategori for dokument',
       rules: { required: 'Du må velge kategori' },
       options: kategorier,
-      defaultValue: grunnlag.vurdering?.brevkode,
+      defaultValue: grunnlag.vurdering?.kategori,
     },
   });
   const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('KATEGORISER_DOKUMENT');
@@ -64,7 +60,6 @@ export const Kategoriser = ({ behandlingsVersjon, behandlingsreferanse, grunnlag
         behandlingVersjon: behandlingsVersjon,
         behov: {
           behovstype: Behovstype.KATEGORISER_DOKUMENT,
-          // TODO:  kategori må endres. er ikke det samme som brevkode
           // @ts-ignore
           dokumentkategori: data.kategori,
         },
