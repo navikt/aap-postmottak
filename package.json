@@ -35,7 +35,7 @@
   "devDependencies": {
     "@navikt/aap-behandlingsflyt-typescript-types": "^0.0.195",
     "@navikt/aap-felles-prettier": "^4.0.1",
-    "@navikt/aap-postmottak-backend-typescript-types": "^0.0.18",
+    "@navikt/aap-postmottak-backend-typescript-types": "^0.0.20",
     "@navikt/eslint-config-aap": "^1.9.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.2",
