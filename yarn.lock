@@ -1150,6 +1150,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/aap-postmottak-backend-typescript-types@npm:^0.0.18":
+  version: 0.0.18
+  resolution: "@navikt/aap-postmottak-backend-typescript-types@npm:0.0.18::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-postmottak-backend-typescript-types%2F0.0.18%2F19e6fe78c5d7207cabc934556f2f053c87eea31b"
+  checksum: 10c0/a3956dd9b566b681d5fd09e9b70a917493449e248a30ebe658ecb7d4dca7aa6e7e0ad2aa3ef6161f5961585b144388aac857887a34cfc725e058b9c597ce4bf3
+  languageName: node
+  linkType: hard
+
 "@navikt/aksel-icons@npm:^7.5.2, @navikt/aksel-icons@npm:^7.5.3":
   version: 7.5.3
   resolution: "@navikt/aksel-icons@npm:7.5.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faksel-icons%2F7.5.3%2F8b07f7fd834d42300df49884d2c672f0b607ce90"
@@ -2256,6 +2263,7 @@ __metadata:
     "@navikt/aap-felles-prettier": "npm:^4.0.1"
     "@navikt/aap-felles-react": "npm:^4.0.1"
     "@navikt/aap-felles-utils": "npm:^4.0.1"
+    "@navikt/aap-postmottak-backend-typescript-types": "npm:^0.0.18"
     "@navikt/aksel-icons": "npm:^7.8.0"
     "@navikt/ds-css": "npm:^7.8.0"
     "@navikt/ds-react": "npm:^7.8.0"

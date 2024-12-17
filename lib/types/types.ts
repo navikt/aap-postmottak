@@ -1,40 +1,41 @@
-import { components } from 'lib/types/schema';
+// import { components } from 'lib/types/schema';
+import { components as postmottak } from '@navikt/aap-postmottak-backend-typescript-types';
 import { components as behandlingsflyt } from 'lib/types/behandlingsflyt.schema';
 
 export type BehandlingFlytOgTilstand =
-  components['schemas']['no.nav.aap.postmottak.flyt.flate.BehandlingFlytOgTilstandDto'];
+  postmottak['schemas']['no.nav.aap.postmottak.flyt.flate.BehandlingFlytOgTilstandDto'];
 
-export type FlytGruppe = components['schemas']['no.nav.aap.postmottak.flyt.flate.FlytGruppe'];
-export type FlytProsessering = components['schemas']['no.nav.aap.postmottak.flyt.flate.visning.Prosessering'];
+export type FlytGruppe = postmottak['schemas']['no.nav.aap.postmottak.flyt.flate.FlytGruppe'];
+export type FlytProsessering = postmottak['schemas']['no.nav.aap.postmottak.flyt.flate.visning.Prosessering'];
 
-export type StegGruppe = components['schemas']['no.nav.aap.postmottak.flyt.flate.FlytGruppe']['stegGruppe'];
+export type StegGruppe = postmottak['schemas']['no.nav.aap.postmottak.flyt.flate.FlytGruppe']['stegGruppe'];
 
-export type StegType = components['schemas']['no.nav.aap.postmottak.flyt.flate.FlytSteg']['stegType'];
+export type StegType = postmottak['schemas']['no.nav.aap.postmottak.flyt.flate.FlytSteg']['stegType'];
 
 export type LøsAvklaringsbehovPåBehandling =
-  components['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.flate.LøsAvklaringsbehovPåBehandling'];
+  postmottak['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.flate.LøsAvklaringsbehovPåBehandling'];
 
-export type SettPåVentRequest = components['schemas']['no.nav.aap.postmottak.flyt.flate.SettP\u00E5VentRequest'];
+export type SettPåVentRequest = postmottak['schemas']['no.nav.aap.postmottak.flyt.flate.SettP\u00E5VentRequest'];
 export type SettPåVentÅrsaker =
-  components['schemas']['no.nav.aap.postmottak.flyt.flate.SettP\u00E5VentRequest']['grunn'];
-export type Venteinformasjon = components['schemas']['no.nav.aap.postmottak.flyt.flate.Venteinformasjon'];
+  postmottak['schemas']['no.nav.aap.postmottak.flyt.flate.SettP\u00E5VentRequest']['grunn'];
+export type Venteinformasjon = postmottak['schemas']['no.nav.aap.postmottak.flyt.flate.Venteinformasjon'];
 export type JournalpostInfo =
-  components['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.flate.DokumentInfoResponsDTO'];
+  postmottak['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.flate.DokumentInfoResponsDTO'];
 export type Dokument =
-  components['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.flate.DokumentDto'];
+  postmottak['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.flate.DokumentDto'];
 
 export type AvklarTemaGrunnlag =
-  components['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaGrunnlagDto'];
+  postmottak['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.avklarteam.flate.AvklarTemaGrunnlagDto'];
 export type FinnSakGrunnlag =
-  components['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.finnsak.flate.AvklarSakGrunnlagDto'];
+  postmottak['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.finnsak.flate.AvklarSakGrunnlagDto'];
 export type Saksinfo =
-  components['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.finnsak.flate.SaksInfoDto'];
+  postmottak['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.finnsak.flate.SaksInfoDto'];
 export type KategoriserGrunnlag =
-  components['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringGrunnlagDto'];
+  postmottak['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringGrunnlagDto'];
 export type KategoriserDokumentKategori =
-  components['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.KategoriserDokumentL\u00F8sning']['kategori'];
+  postmottak['schemas']['no.nav.aap.postmottak.behandling.avklaringsbehov.l\u00F8sning.KategoriserDokumentL\u00F8sning']['kategori'];
 export type StruktureringGrunnlag =
-  components['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringGrunnlagDto'];
+  postmottak['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringGrunnlagDto'];
 
 export type Søknad =
   behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.dokument.kontrakt.søknad.Søknad'];
