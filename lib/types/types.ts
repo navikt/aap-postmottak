@@ -1,6 +1,5 @@
-// import { components } from 'lib/types/schema';
 import { components as postmottak } from '@navikt/aap-postmottak-backend-typescript-types';
-import { components as behandlingsflyt } from 'lib/types/behandlingsflyt.schema';
+import { components as behandlingsflyt } from '@navikt/aap-behandlingsflyt-typescript-types';
 
 export type BehandlingFlytOgTilstand =
   postmottak['schemas']['no.nav.aap.postmottak.flyt.flate.BehandlingFlytOgTilstandDto'];
@@ -38,4 +37,4 @@ export type StruktureringGrunnlag =
   postmottak['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringGrunnlagDto'];
 
 export type Søknad =
-  behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.faktagrunnlag.dokument.kontrakt.søknad.Søknad'];
+  behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.kontrakt.hendelse.dokumenter.S\u00F8knadV0'];

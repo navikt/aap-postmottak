@@ -1101,6 +1101,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/aap-behandlingsflyt-typescript-types@npm:^0.0.195":
+  version: 0.0.195
+  resolution: "@navikt/aap-behandlingsflyt-typescript-types@npm:0.0.195::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-behandlingsflyt-typescript-types%2F0.0.195%2Fee577ae5adbd8402269edc20ed5c547ef620caa2"
+  checksum: 10c0/c49b024d7b79cdb03402c7852a5bcd20d5f4511d57a06f3a3c4cbc9d90453cb990fcc8b5e514a8feee18609601ebb2157856b8818045c5c12d95407514c3ba76
+  languageName: node
+  linkType: hard
+
 "@navikt/aap-felles-css@npm:^4.0.1":
   version: 4.0.1
   resolution: "@navikt/aap-felles-css@npm:4.0.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-css%2F4.0.1%2Fee1dc3ca44a4ee962680b60d887dbf39f9b62014"
@@ -2259,6 +2266,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "aap-postmottak@workspace:."
   dependencies:
+    "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.195"
     "@navikt/aap-felles-css": "npm:^4.0.1"
     "@navikt/aap-felles-prettier": "npm:^4.0.1"
     "@navikt/aap-felles-react": "npm:^4.0.1"

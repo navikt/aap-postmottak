@@ -33,6 +33,7 @@
     "react-dom": "19.0.0-rc-66855b96-20241106"
   },
   "devDependencies": {
+    "@navikt/aap-behandlingsflyt-typescript-types": "^0.0.195",
     "@navikt/aap-felles-prettier": "^4.0.1",
     "@navikt/aap-postmottak-backend-typescript-types": "^0.0.18",
     "@navikt/eslint-config-aap": "^1.9.0",
