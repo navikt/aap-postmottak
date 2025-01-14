@@ -8,6 +8,7 @@ import { useLøsBehovOgGåTilNesteSteg } from 'lib/hooks/LøsBehovOgGåTilNesteS
 import { Button } from '@navikt/ds-react';
 import { KategoriserDokumentKategori, KategoriserGrunnlag } from 'lib/types/types';
 import { ServerSentEventStatusAlert } from '../serversenteventstatusalert/ServerSentEventStatusAlert';
+import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
 
 interface Props {
   behandlingsVersjon: number;
@@ -73,7 +74,7 @@ export const Kategoriser = ({ behandlingsVersjon, behandlingsreferanse, grunnlag
       <form onSubmit={onSubmit}>
         <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.kategori} />
-        <Button>Bekreft</Button>
+        <Nesteknapp>Bekreft</Nesteknapp>
       </form>
     </VilkårsKort>
   );

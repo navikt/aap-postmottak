@@ -4,12 +4,13 @@ import { FormField, useConfigForm } from '@navikt/aap-felles-react';
 import { Behovstype, JaEllerNei, JaEllerNeiOptions, JaNeiAvbrutt, JaNeiVetIkke } from '../../../lib/form';
 import { FormEvent } from 'react';
 import { VilkårsKort } from '../../vilkårskort/VilkårsKort';
-import { Button } from '@navikt/ds-react';
+import { Button, HStack, VStack } from '@navikt/ds-react';
 import { useLøsBehovOgGåTilNesteSteg } from '../../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { Barnetillegg } from './Barnetillegg';
 import { Søknad } from '../../../lib/types/types';
 import { Student } from './Student';
 import { ServerSentEventStatusAlert } from '../../serversenteventstatusalert/ServerSentEventStatusAlert';
+import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
 
 export type Barn = {
   fnr?: string;
@@ -98,7 +99,7 @@ export const DigitaliserSøknad = ({ behandlingsVersjon, behandlingsreferanse }:
         </VilkårsKort>
         <Barnetillegg form={form} />
         <Student form={form} formFields={formFields} />
-        <Button>Send inn</Button>
+        <Nesteknapp>Send inn</Nesteknapp>
       </form>
     </VilkårsKort>
   );

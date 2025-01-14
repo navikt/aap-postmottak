@@ -31,3 +31,8 @@
   align-items: flex-end;
   gap: var(--a-spacing-2);
 }
+.content form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--a-spacing-4);
+}

@@ -10,6 +10,7 @@ import { AvklarTemaGrunnlag } from 'lib/types/types';
 import { getJaNeiEllerUndefined } from 'lib/form';
 import { ServerSentEventStatusAlert } from 'components/serversenteventstatusalert/ServerSentEventStatusAlert';
 import { endreTema } from 'lib/clientApi';
+import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
 
 interface Props {
   behandlingsVersjon: number;
@@ -55,7 +56,7 @@ export const AvklarTema = ({ behandlingsVersjon, behandlingsreferanse, grunnlag 
       <form onSubmit={onSubmit}>
         <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.erTemaAAP} />
-        <Button>Bekreft</Button>
+        <Nesteknapp>Bekreft</Nesteknapp>
       </form>
     </VilkårsKort>
   );

@@ -8,6 +8,7 @@ import { Behovstype } from '../../../lib/form';
 import { useLøsBehovOgGåTilNesteSteg } from '../../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { MeldePerioder } from './MeldePerioder';
 import { ServerSentEventStatusAlert } from '../../serversenteventstatusalert/ServerSentEventStatusAlert';
+import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
 
 interface Props {
   behandlingsVersjon: number;
@@ -57,13 +58,9 @@ export const DigitaliserMeldekort = ({ behandlingsVersjon, behandlingsreferanse 
     <VilkårsKort heading={'Pliktkort'}>
       <form onSubmit={onSubmit}>
         <ServerSentEventStatusAlert status={status} />
-        <VStack gap={'3'}>
-          <FormField form={form} formField={formFields.innsendtDato} />
-          <MeldePerioder form={form} />
-          <HStack>
-            <Button>Send inn</Button>
-          </HStack>
-        </VStack>
+        <FormField form={form} formField={formFields.innsendtDato} />
+        <MeldePerioder form={form} />
+        <Nesteknapp>Send inn</Nesteknapp>
       </form>
     </VilkårsKort>
   );

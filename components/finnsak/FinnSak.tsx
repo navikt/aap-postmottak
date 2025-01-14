@@ -8,6 +8,7 @@ import { useLøsBehovOgGåTilNesteSteg } from '../../lib/hooks/LøsBehovOgGåTil
 import { Button } from '@navikt/ds-react';
 import { FinnSakGrunnlag, Saksinfo } from '../../lib/types/types';
 import { ServerSentEventStatusAlert } from '../serversenteventstatusalert/ServerSentEventStatusAlert';
+import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
 
 interface Props {
   behandlingsVersjon: number;
@@ -67,7 +68,7 @@ export const FinnSak = ({ behandlingsVersjon, behandlingsreferanse, grunnlag }: 
       <form onSubmit={onSubmit}>
         <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.knyttTilSak} />
-        <Button>Send inn</Button>
+        <Nesteknapp>Send inn</Nesteknapp>
       </form>
     </VilkårsKort>
   );
