@@ -1,11 +1,11 @@
 'use client';
 
-import {BodyShort, Button, Dropdown, Label} from '@navikt/ds-react';
+import { BodyShort, Button, Dropdown, Label } from '@navikt/ds-react';
 import styles from './DokumentInfoBanner.module.css';
-import {ChevronDownIcon} from '@navikt/aksel-icons';
-import {SettBehandllingPåVentModal} from '../settbehandlingpåventmodal/SettBehandllingPåVentModal';
-import {useState} from 'react';
-import {JournalpostInfo} from 'lib/types/types';
+import { ChevronDownIcon } from '@navikt/aksel-icons';
+import { SettBehandllingPåVentModal } from '../settbehandlingpåventmodal/SettBehandllingPåVentModal';
+import { useState } from 'react';
+import { JournalpostInfo } from 'lib/types/types';
 
 interface Props {
   behandlingsreferanse: string;
@@ -15,11 +15,11 @@ interface Props {
 }
 
 export const DokumentInfoBanner = ({
-                                     behandlingsreferanse,
-                                     journalpostId,
-                                     behandlingsVersjon,
-                                     journalpostInfo
-                                   }: Props) => {
+  behandlingsreferanse,
+  journalpostId,
+  behandlingsVersjon,
+  journalpostInfo,
+}: Props) => {
   const [settBehandlingPåVentmodalIsOpen, setSettBehandlingPåVentmodalIsOpen] = useState(false);
   return (
     <div className={styles.dokumentInfoBanner}>
@@ -29,7 +29,7 @@ export const DokumentInfoBanner = ({
           <BodyShort size="small">{`JournalpostId: ${journalpostId}`}</BodyShort>
         </div>
         <div>
-          <Label size="small">Søker</Label>
+          <Label size="small">Person</Label>
           <BodyShort size="small">{journalpostInfo.søker?.navn}</BodyShort>
           <BodyShort size="small">{`Ident: ${journalpostInfo.søker?.ident}`}</BodyShort>
         </div>
@@ -46,7 +46,7 @@ export const DokumentInfoBanner = ({
           size={'small'}
           as={Dropdown.Toggle}
           variant={'secondary'}
-          icon={<ChevronDownIcon title="chevron-saksmeny" fontSize="1.5rem"/>}
+          icon={<ChevronDownIcon title="chevron-saksmeny" fontSize="1.5rem" />}
           iconPosition={'right'}
         >
           Saksmeny
