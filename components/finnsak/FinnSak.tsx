@@ -67,7 +67,7 @@ export const FinnSak = ({ behandlingsVersjon, behandlingsreferanse, grunnlag }: 
       <form onSubmit={onSubmit}>
         <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.knyttTilSak} />
-        <Button>Send</Button>
+        <Button>Send inn</Button>
       </form>
     </VilkårsKort>
   );

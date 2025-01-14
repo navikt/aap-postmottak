@@ -6,7 +6,7 @@ import { Behovstype } from 'lib/form';
 import { FormEvent, FormEventHandler } from 'react';
 import { useLøsBehovOgGåTilNesteSteg } from 'lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { Button } from '@navikt/ds-react';
-import {KategoriserDokumentKategori, KategoriserGrunnlag} from 'lib/types/types';
+import { KategoriserDokumentKategori, KategoriserGrunnlag } from 'lib/types/types';
 import { ServerSentEventStatusAlert } from '../serversenteventstatusalert/ServerSentEventStatusAlert';
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
 interface FormFields {
   kategori: KategoriserDokumentKategori;
 }
-const kategorier: {label: string, value: KategoriserDokumentKategori}[] = [
+const kategorier: { label: string; value: KategoriserDokumentKategori }[] = [
   {
     label: 'Aktivitetskort',
     value: 'AKTIVITETSKORT',
@@ -41,7 +41,7 @@ const kategorier: {label: string, value: KategoriserDokumentKategori}[] = [
   {
     label: 'Legeerklæring avvist',
     value: 'LEGEERKLÆRING_AVVIST',
-  }
+  },
 ];
 export const Kategoriser = ({ behandlingsVersjon, behandlingsreferanse, grunnlag }: Props) => {
   const { formFields, form } = useConfigForm<FormFields>({
@@ -73,7 +73,7 @@ export const Kategoriser = ({ behandlingsVersjon, behandlingsreferanse, grunnlag
       <form onSubmit={onSubmit}>
         <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.kategori} />
-        <Button>Send</Button>
+        <Button>Bekreft</Button>
       </form>
     </VilkårsKort>
   );
