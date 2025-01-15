@@ -6,7 +6,7 @@ import { StruktureringGrunnlag } from 'lib/types/types';
 const grunnlag: StruktureringGrunnlag = {
   dokumenter: [],
   kategori: 'SØKNAD',
-  vurdering: { strukturertDokumentJson: 'blabla' },
+  vurdering: { strukturertDokumentJson: '{}' },
 };
 describe('DigitaliserSøknad', () => {
   const user = userEvent.setup();
