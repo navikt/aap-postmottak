@@ -16,22 +16,26 @@ interface Props {
   behandlingsVersjon: number;
   behandlingsreferanse: string;
   grunnlag: AvklarTemaGrunnlag;
+  readOnly: boolean;
 }
 
 interface FormFields {
   erTemaAAP: string;
 }
 
-export const AvklarTema = ({ behandlingsVersjon, behandlingsreferanse, grunnlag }: Props) => {
-  const { formFields, form } = useConfigForm<FormFields>({
-    erTemaAAP: {
-      type: 'radio',
-      label: 'Er dokumentet riktig journalført på tema AAP?',
-      rules: { required: 'Du må svare på om dokumentet har riktig tema' },
-      defaultValue: getJaNeiEllerUndefined(grunnlag.vurdering?.skalTilAap),
-      options: JaEllerNeiOptions,
+export const AvklarTema = ({ behandlingsVersjon, behandlingsreferanse, grunnlag, readOnly }: Props) => {
+  const { formFields, form } = useConfigForm<FormFields>(
+    {
+      erTemaAAP: {
+        type: 'radio',
+        label: 'Er dokumentet riktig journalført på tema AAP?',
+        rules: { required: 'Du må svare på om dokumentet har riktig tema' },
+        defaultValue: getJaNeiEllerUndefined(grunnlag.vurdering?.skalTilAap),
+        options: JaEllerNeiOptions,
+      },
     },
-  });
+    { readOnly }
+  );
   const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('AVKLAR_TEMA');
   const onSubmit: FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
     form.handleSubmit((data) => {

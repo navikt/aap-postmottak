@@ -5,18 +5,16 @@ import { FinnSakGrunnlag } from '../../lib/types/types';
 
 describe('FinnSak', () => {
   const grunnlag = {
-    saksinfo: [
-      {saksnummer: "23424", periode: {fom: "Dawn of time", tom: "End of time"}}
-    ]
-  } as FinnSakGrunnlag
+    saksinfo: [{ saksnummer: '23424', periode: { fom: 'Dawn of time', tom: 'End of time' } }],
+  } as FinnSakGrunnlag;
 
   it('Skal ha en oversikt', () => {
-    render(<FinnSak behandlingsVersjon={1} behandlingsreferanse={'123'} grunnlag={grunnlag}/>);
+    render(<FinnSak behandlingsVersjon={1} behandlingsreferanse={'123'} grunnlag={grunnlag} readOnly={false} />);
     const heading = screen.getByText('Finn sak');
     expect(heading).toBeVisible();
   });
   it('Har et valg for å knytte dokumentet til sak', () => {
-    render(<FinnSak behandlingsVersjon={1} behandlingsreferanse={'123'} grunnlag={grunnlag} />);
+    render(<FinnSak behandlingsVersjon={1} behandlingsreferanse={'123'} grunnlag={grunnlag} readOnly={false} />);
     expect(screen.getByRole('group', { name: 'Journalfør på sak' })).toBeVisible();
   });
 });

@@ -44,8 +44,8 @@ export const løsAvklaringsbehov = async (avklaringsBehov: LøsAvklaringsbehovP�
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/løs-behov`;
   return await fetchProxy<void>(url, dokumentMottakApiScope, 'POST', avklaringsBehov);
 };
-export const settPåVent = async (body: SettPåVentRequest): Promise<unknown> => {
-  const url = `${dokumentMottakApiBaseUrl}/api/behandling/${body.referanse}/sett-på-vent`;
+export const settPåVent = async (behandlingsreferanse: string, body: SettPåVentRequest): Promise<unknown> => {
+  const url = `${dokumentMottakApiBaseUrl}/api/behandling/${behandlingsreferanse}/sett-på-vent`;
   return await fetchProxy<unknown>(url, dokumentMottakApiScope, 'POST', body);
 };
 export const hentVenteInformasjon = async (behandlingsreferanse: string): Promise<Venteinformasjon> => {
@@ -64,13 +64,16 @@ export const hentDokumentFraDokumentInfoId = async (
 
 export const endreTema = async (behandlingsreferanse: string) => {
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/${behandlingsreferanse}/endre-tema`;
-  return await fetchProxy<{redirectUrl: string}>(url, dokumentMottakApiScope, 'POST');
+  return await fetchProxy<{ redirectUrl: string }>(url, dokumentMottakApiScope, 'POST');
 };
-
 
 export const hentAlleBehandlinger = async () => {
   const url = `${dokumentMottakApiBaseUrl}/test/hentAlleBehandlinger`;
-  return await fetchProxy<[{ id: string; status: string; opprettet: string;  steg:string }]>(url, dokumentMottakApiScope, 'GET');
+  return await fetchProxy<[{ id: string; status: string; opprettet: string; steg: string }]>(
+    url,
+    dokumentMottakApiScope,
+    'GET'
+  );
 };
 
 // TODO: Fjern denne - testendepunkt

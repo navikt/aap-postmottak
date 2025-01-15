@@ -12,6 +12,7 @@ import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
 interface Props {
   behandlingsVersjon: number;
   behandlingsreferanse: string;
+  readOnly: boolean;
 }
 export type PliktDag = {
   dato?: Date;
@@ -24,17 +25,20 @@ export interface PliktkortFormFields {
   innsendtDato?: Date;
   pliktPerioder?: PliktPeriode[];
 }
-export const DigitaliserMeldekort = ({ behandlingsVersjon, behandlingsreferanse }: Props) => {
-  const { form, formFields } = useConfigForm<PliktkortFormFields>({
-    innsendtDato: {
-      type: 'date',
-      label: 'Innsendt dato',
+export const DigitaliserMeldekort = ({ behandlingsVersjon, behandlingsreferanse, readOnly }: Props) => {
+  const { form, formFields } = useConfigForm<PliktkortFormFields>(
+    {
+      innsendtDato: {
+        type: 'date',
+        label: 'Innsendt dato',
+      },
+      pliktPerioder: {
+        type: 'fieldArray',
+        defaultValue: [],
+      },
     },
-    pliktPerioder: {
-      type: 'fieldArray',
-      defaultValue: [],
-    },
-  });
+    { readOnly }
+  );
   const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('DIGITALISER_DOKUMENT');
 
   function mapTilPliktkortKontrakt(data: PliktkortFormFields) {
@@ -54,12 +58,12 @@ export const DigitaliserMeldekort = ({ behandlingsVersjon, behandlingsreferanse 
     })(event);
   }
   return (
-    <VilkårsKort heading={'Pliktkort'}>
+    <VilkårsKort heading={'Meldekort'}>
       <form onSubmit={onSubmit}>
         <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.innsendtDato} />
-        <MeldePerioder form={form} />
-        <Nesteknapp>Send inn</Nesteknapp>
+        <MeldePerioder form={form} readOnly={readOnly} />
+        <Nesteknapp disabled={readOnly}>Send inn</Nesteknapp>
       </form>
     </VilkårsKort>
   );

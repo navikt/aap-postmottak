@@ -6,6 +6,7 @@ import { HourglassBottomFilledIcon } from '@navikt/aksel-icons';
 import { SettPåVentÅrsaker, Venteinformasjon } from 'lib/types/types';
 import { formaterDatoForFrontend } from 'lib/utils/date';
 import { VilkårsKort } from '../vilkårskort/VilkårsKort';
+import { exhaustiveCheck } from 'lib/utils/typescript';
 
 interface Props {
   informasjon?: Venteinformasjon;
@@ -49,4 +50,5 @@ function mapÅrsakerTilString(årsak: SettPåVentÅrsaker): string {
     case 'VENTER_PÅ_OPPLYSNINGER_FRA_UTENLANDSKE_MYNDIGHETER':
       return 'Venter på opplysninger fra utenlandske myndigheter';
   }
+  exhaustiveCheck(årsak);
 }

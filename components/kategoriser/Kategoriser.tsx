@@ -5,7 +5,6 @@ import { FormField, useConfigForm } from '@navikt/aap-felles-react';
 import { Behovstype } from 'lib/form';
 import { FormEvent, FormEventHandler } from 'react';
 import { useLøsBehovOgGåTilNesteSteg } from 'lib/hooks/LøsBehovOgGåTilNesteStegHook';
-import { Button } from '@navikt/ds-react';
 import { KategoriserDokumentKategori, KategoriserGrunnlag } from 'lib/types/types';
 import { ServerSentEventStatusAlert } from '../serversenteventstatusalert/ServerSentEventStatusAlert';
 import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
@@ -14,6 +13,7 @@ interface Props {
   behandlingsVersjon: number;
   behandlingsreferanse: string;
   grunnlag: KategoriserGrunnlag;
+  readOnly: boolean;
 }
 interface FormFields {
   kategori: KategoriserDokumentKategori;
@@ -44,16 +44,19 @@ const kategorier: { label: string; value: KategoriserDokumentKategori }[] = [
     value: 'LEGEERKLÆRING_AVVIST',
   },
 ];
-export const Kategoriser = ({ behandlingsVersjon, behandlingsreferanse, grunnlag }: Props) => {
-  const { formFields, form } = useConfigForm<FormFields>({
-    kategori: {
-      type: 'combobox',
-      label: 'Velg kategori for dokument',
-      rules: { required: 'Du må velge kategori' },
-      options: kategorier,
-      defaultValue: grunnlag.vurdering?.kategori,
+export const Kategoriser = ({ behandlingsVersjon, behandlingsreferanse, grunnlag, readOnly }: Props) => {
+  const { formFields, form } = useConfigForm<FormFields>(
+    {
+      kategori: {
+        type: 'combobox',
+        label: 'Velg kategori for dokument',
+        rules: { required: 'Du må velge kategori' },
+        options: kategorier,
+        defaultValue: grunnlag.vurdering?.kategori,
+      },
     },
-  });
+    { readOnly }
+  );
   const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('KATEGORISER_DOKUMENT');
   const onSubmit: FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
     form.handleSubmit((data) => {
@@ -74,7 +77,7 @@ export const Kategoriser = ({ behandlingsVersjon, behandlingsreferanse, grunnlag
       <form onSubmit={onSubmit}>
         <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.kategori} />
-        <Nesteknapp>Bekreft</Nesteknapp>
+        <Nesteknapp disabled={readOnly}>Bekreft</Nesteknapp>
       </form>
     </VilkårsKort>
   );

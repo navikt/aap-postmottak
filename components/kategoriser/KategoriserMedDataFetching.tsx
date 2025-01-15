@@ -2,13 +2,21 @@ import { Kategoriser } from './Kategoriser';
 import {
   hentAvklarTemaGrunnlag,
   hentFlyt,
-  hentKategoriserGrunnlag
+  hentKategoriserGrunnlag,
 } from '../../lib/services/dokumentmottakservice/dokumentMottakService';
 interface Props {
   behandlingsreferanse: string;
 }
 export const KategoriserMedDataFetching = async ({ behandlingsreferanse }: Props) => {
   const flyt = await hentFlyt(behandlingsreferanse);
+  const isReadOnly: boolean = !!flyt.visning.readOnly;
   const grunnlag = await hentKategoriserGrunnlag(behandlingsreferanse);
-  return <Kategoriser behandlingsVersjon={flyt.behandlingVersjon} behandlingsreferanse={behandlingsreferanse} grunnlag={grunnlag}  />;
+  return (
+    <Kategoriser
+      behandlingsVersjon={flyt.behandlingVersjon}
+      behandlingsreferanse={behandlingsreferanse}
+      grunnlag={grunnlag}
+      readOnly={isReadOnly}
+    />
+  );
 };

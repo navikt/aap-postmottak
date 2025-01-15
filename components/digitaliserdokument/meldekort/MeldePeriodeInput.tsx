@@ -8,8 +8,9 @@ import styles from './MeldePeriodeInput.module.css';
 interface Props {
   form: UseFormReturn<PliktkortFormFields>;
   dagIndex: number;
+  readOnly: boolean;
 }
-export const MeldePeriodeInput = ({ form, dagIndex }: Props) => {
+export const MeldePeriodeInput = ({ form, dagIndex, readOnly }: Props) => {
   const [isVelgDatoÅpen, setIsVelgDatoÅpen] = useState<boolean>(false);
   const [valgtDato, setValgtDato] = useState<Date>();
   const { fields, update } = useFieldArray({
@@ -31,7 +32,7 @@ export const MeldePeriodeInput = ({ form, dagIndex }: Props) => {
       </Button>
       <DatePicker
         today={new Date()}
-        disabled={erAnnenDagEnnMandag}
+        disabled={erAnnenDagEnnMandag || readOnly}
         onSelect={(val) => {
           setValgtDato(val);
           setIsVelgDatoÅpen(false);
@@ -61,6 +62,7 @@ export const MeldePeriodeInput = ({ form, dagIndex }: Props) => {
                   type={'number'}
                   onChange={(event) => update(i, { ...pliktDag, arbeidsTimer: Number(event.target.value) })}
                   size={'small'}
+                  disabled={readOnly}
                 />
               </Table.DataCell>
             ))}

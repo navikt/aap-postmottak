@@ -7,6 +7,7 @@ interface Props {
 }
 export const DigitaliserDokumentMedDatafetching = async ({ behandlingsreferanse }: Props) => {
   const flyt = await hentFlyt(behandlingsreferanse);
+  const isReadOnly: boolean = !!flyt.visning.readOnly;
   console.log('flyt');
   console.log(flyt);
   const grunnlag = await hentDigitaliseringGrunnlag(behandlingsreferanse);
@@ -18,11 +19,16 @@ export const DigitaliserDokumentMedDatafetching = async ({ behandlingsreferanse 
         behandlingsreferanse={behandlingsreferanse}
         behandlingsVersjon={flyt.behandlingVersjon}
         grunnlag={grunnlag}
+        readOnly={isReadOnly}
       />
     );
   } else if (grunnlag.kategori === 'PLIKTKORT') {
     return (
-      <DigitaliserMeldekort behandlingsVersjon={flyt.behandlingVersjon} behandlingsreferanse={behandlingsreferanse} />
+      <DigitaliserMeldekort
+        behandlingsVersjon={flyt.behandlingVersjon}
+        behandlingsreferanse={behandlingsreferanse}
+        readOnly={isReadOnly}
+      />
     );
   } else if (grunnlag.kategori === 'AKTIVITETSKORT') {
     return <div>AKTIVITETSKORT</div>;

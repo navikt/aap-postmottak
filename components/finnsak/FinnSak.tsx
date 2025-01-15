@@ -14,6 +14,7 @@ interface Props {
   behandlingsVersjon: number;
   behandlingsreferanse: string;
   grunnlag: FinnSakGrunnlag;
+  readOnly: boolean;
 }
 interface FormFields {
   knyttTilSak: string;
@@ -32,20 +33,23 @@ function mapVurderingTilValgtOption(vurdering: FinnSakGrunnlag['vurdering']) {
     return undefined;
   }
 }
-export const FinnSak = ({ behandlingsVersjon, behandlingsreferanse, grunnlag }: Props) => {
-  const { formFields, form } = useConfigForm<FormFields>({
-    knyttTilSak: {
-      type: 'radio',
-      label: 'Journalfør på sak',
-      rules: { required: 'Du må svare på hvilken sak dokumentet skal knyttes til' },
-      defaultValue: mapVurderingTilValgtOption(grunnlag.vurdering),
-      options: [
-        ...grunnlag.saksinfo.map(mapSaksinfoToValuePair),
-        { label: 'Ny sak', value: NY },
-        { label: 'Generell Sak', value: GENERELL },
-      ],
+export const FinnSak = ({ behandlingsVersjon, behandlingsreferanse, grunnlag, readOnly }: Props) => {
+  const { formFields, form } = useConfigForm<FormFields>(
+    {
+      knyttTilSak: {
+        type: 'radio',
+        label: 'Journalfør på sak',
+        rules: { required: 'Du må svare på hvilken sak dokumentet skal knyttes til' },
+        defaultValue: mapVurderingTilValgtOption(grunnlag.vurdering),
+        options: [
+          ...grunnlag.saksinfo.map(mapSaksinfoToValuePair),
+          { label: 'Ny sak', value: NY },
+          { label: 'Generell Sak', value: GENERELL },
+        ],
+      },
     },
-  });
+    { readOnly }
+  );
   const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('AVKLAR_SAK');
   const onSubmit: FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
     form.handleSubmit((data) => {
@@ -68,7 +72,7 @@ export const FinnSak = ({ behandlingsVersjon, behandlingsreferanse, grunnlag }: 
       <form onSubmit={onSubmit}>
         <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.knyttTilSak} />
-        <Nesteknapp>Send inn</Nesteknapp>
+        <Nesteknapp disabled={readOnly}>Send inn</Nesteknapp>
       </form>
     </VilkårsKort>
   );

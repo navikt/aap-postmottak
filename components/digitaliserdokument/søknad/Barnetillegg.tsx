@@ -8,8 +8,9 @@ import { TrashIcon } from '@navikt/aksel-icons';
 
 interface Props {
   form: UseFormReturn<SøknadFormFields>;
+  readOnly: boolean;
 }
-export const Barnetillegg = ({ form }: Props) => {
+export const Barnetillegg = ({ form, readOnly }: Props) => {
   const { fields, append, remove } = useFieldArray({ control: form.control, name: 'oppgitteBarn' });
   return (
     <VilkårsKort heading={'Barnetillegg'}>
@@ -39,6 +40,7 @@ export const Barnetillegg = ({ form }: Props) => {
                         required:
                           'Fødselsnummer er påkrevd. Sett postoppgaven på vent og innhent fødselsnummer hvis dette mangler.',
                       }}
+                      readOnly={readOnly}
                     />
                   </Table.DataCell>
                   <Table.DataCell>
@@ -48,6 +50,7 @@ export const Barnetillegg = ({ form }: Props) => {
                       type={'text'}
                       name={`oppgitteBarn.${i}.fornavn`}
                       control={form.control}
+                      readOnly={readOnly}
                     />
                   </Table.DataCell>
                   <Table.DataCell>
@@ -57,6 +60,7 @@ export const Barnetillegg = ({ form }: Props) => {
                       type={'text'}
                       name={`oppgitteBarn.${i}.etternavn`}
                       control={form.control}
+                      readOnly={readOnly}
                     />
                   </Table.DataCell>
                   <Table.DataCell>
@@ -65,6 +69,7 @@ export const Barnetillegg = ({ form }: Props) => {
                       hideLabel={true}
                       name={`oppgitteBarn.${i}.relasjon`}
                       control={form.control}
+                      readOnly={readOnly}
                     >
                       <option value={'FORELDER'}>Forelder</option>
                       <option value={'FOSTERFORELDER'}>Fosterforelder</option>
@@ -78,6 +83,7 @@ export const Barnetillegg = ({ form }: Props) => {
                       variant={'secondary-neutral'}
                       type={'button'}
                       onClick={() => remove(i)}
+                      disabled={readOnly}
                     />
                   </Table.DataCell>
                 </Table.Row>
@@ -88,7 +94,7 @@ export const Barnetillegg = ({ form }: Props) => {
       )}
       {/*@ts-ignore*/}
       <HStack padding={'4 0 0 0'}>
-        <Button size={'small'} type={'button'} onClick={() => append({})}>
+        <Button disabled={readOnly} size={'small'} type={'button'} onClick={() => append({})}>
           Legg til
         </Button>
       </HStack>

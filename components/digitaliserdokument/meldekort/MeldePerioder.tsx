@@ -8,8 +8,9 @@ import { PlusCircleIcon } from '@navikt/aksel-icons';
 
 interface Props {
   form: UseFormReturn<PliktkortFormFields>;
+  readOnly: boolean;
 }
-export const MeldePerioder = ({ form }: Props) => {
+export const MeldePerioder = ({ form, readOnly }: Props) => {
   const { fields, append } = useFieldArray({ name: 'pliktPerioder', control: form.control });
 
   function leggTilNyPeriode() {
@@ -19,7 +20,12 @@ export const MeldePerioder = ({ form }: Props) => {
   return (
     <VStack gap={'3'}>
       {fields.map((_, periodeIndex) => (
-        <MeldePeriodeInput key={`pliktperiodeinput-${periodeIndex}`} form={form} dagIndex={periodeIndex} />
+        <MeldePeriodeInput
+          key={`pliktperiodeinput-${periodeIndex}`}
+          form={form}
+          dagIndex={periodeIndex}
+          readOnly={readOnly}
+        />
       ))}
       <HStack>
         <Button
@@ -28,6 +34,7 @@ export const MeldePerioder = ({ form }: Props) => {
           type={'button'}
           variant={'secondary'}
           onClick={() => leggTilNyPeriode()}
+          disabled={readOnly}
         >
           Legg til ny periode
         </Button>

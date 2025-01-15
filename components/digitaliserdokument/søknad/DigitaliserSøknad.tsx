@@ -39,6 +39,7 @@ interface Props {
   behandlingsVersjon: number;
   behandlingsreferanse: string;
   grunnlag: StruktureringGrunnlag;
+  readOnly: boolean;
 }
 
 function mapTilSøknadKontrakt(data: SøknadFormFields) {
@@ -54,45 +55,49 @@ function mapTilSøknadKontrakt(data: SøknadFormFields) {
   } as Søknad);
 }
 
-export const DigitaliserSøknad = ({ behandlingsVersjon, behandlingsreferanse, grunnlag }: Props) => {
+export const DigitaliserSøknad = ({ behandlingsVersjon, behandlingsreferanse, grunnlag, readOnly }: Props) => {
   const søknadGrunnlag = grunnlag.vurdering?.strukturertDokumentJson
     ? JSON.parse(grunnlag.vurdering?.strukturertDokumentJson)
     : {};
   console.log('søknadsgrunnlag', søknadGrunnlag);
-  const { form, formFields } = useConfigForm<SøknadFormFields>({
-    søknadsDato: {
-      type: 'date',
-      label: 'Søknadsdato',
+  const { form, formFields } = useConfigForm<SøknadFormFields>(
+    {
+      søknadsDato: {
+        type: 'date',
+        label: 'Søknadsdato',
+      },
+      yrkesSkade: {
+        type: 'radio',
+        label: 'Yrkesskade',
+        options: JaEllerNeiOptions,
+        defaultValue: søknadGrunnlag.yrkesskade ? stringToJaEllerNei(søknadGrunnlag.yrkesskade) : undefined,
+      },
+      erStudent: {
+        type: 'radio',
+        label: 'Er søkeren student?',
+        options: [JaNeiAvbrutt.JA, JaNeiAvbrutt.NEI, JaNeiAvbrutt.AVBRUTT],
+        defaultValue: søknadGrunnlag.student?.erStudent
+          ? stringToJaNeiAvbrutt(søknadGrunnlag.student.erStudent)
+          : undefined,
+      },
+      studentKommeTilbake: {
+        type: 'radio',
+        label: 'Skal studenten tilbake til studiet?',
+        options: [JaNeiVetIkke.JA, JaNeiVetIkke.NEI, JaNeiVetIkke.VET_IKKE],
+        defaultValue: søknadGrunnlag.student?.kommeTilbake
+          ? stringToJaNeiVetikke(søknadGrunnlag.student.kommeTilbake)
+          : undefined,
+      },
+      oppgitteBarn: {
+        type: 'fieldArray',
+        defaultValue:
+          søknadGrunnlag.oppgitteBarn?.identer?.map((barn: { identifikator: string }) => ({
+            fnr: barn.identifikator,
+          })) || [],
+      },
     },
-    yrkesSkade: {
-      type: 'radio',
-      label: 'Yrkesskade',
-      options: JaEllerNeiOptions,
-      defaultValue: søknadGrunnlag.yrkesskade ? stringToJaEllerNei(søknadGrunnlag.yrkesskade) : undefined,
-    },
-    erStudent: {
-      type: 'radio',
-      label: 'Er søkeren student?',
-      options: [JaNeiAvbrutt.JA, JaNeiAvbrutt.NEI, JaNeiAvbrutt.AVBRUTT],
-      defaultValue: søknadGrunnlag.student?.erStudent
-        ? stringToJaNeiAvbrutt(søknadGrunnlag.student.erStudent)
-        : undefined,
-    },
-    studentKommeTilbake: {
-      type: 'radio',
-      label: 'Skal studenten tilbake til studiet?',
-      options: [JaNeiVetIkke.JA, JaNeiVetIkke.NEI, JaNeiVetIkke.VET_IKKE],
-      defaultValue: søknadGrunnlag.student?.kommeTilbake
-        ? stringToJaNeiVetikke(søknadGrunnlag.student.kommeTilbake)
-        : undefined,
-    },
-    oppgitteBarn: {
-      type: 'fieldArray',
-      defaultValue:
-        søknadGrunnlag.oppgitteBarn?.identer?.map((barn: { identifikator: string }) => ({ fnr: barn.identifikator })) ||
-        [],
-    },
-  });
+    { readOnly }
+  );
   const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('DIGITALISER_DOKUMENT');
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -119,9 +124,9 @@ export const DigitaliserSøknad = ({ behandlingsVersjon, behandlingsreferanse, g
         <VilkårsKort heading={'Yrkesskade'}>
           <FormField form={form} formField={formFields.yrkesSkade} />
         </VilkårsKort>
-        <Barnetillegg form={form} />
+        <Barnetillegg form={form} readOnly={readOnly} />
         <Student form={form} formFields={formFields} />
-        <Nesteknapp>Send inn</Nesteknapp>
+        <Nesteknapp disabled={readOnly}>Send inn</Nesteknapp>
       </form>
     </VilkårsKort>
   );

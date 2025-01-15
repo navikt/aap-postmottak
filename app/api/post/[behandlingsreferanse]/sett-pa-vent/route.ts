@@ -1,13 +1,14 @@
-import { løsAvklaringsbehov, settPåVent } from 'lib/services/dokumentmottakservice/dokumentMottakService';
+import { settPåVent } from 'lib/services/dokumentmottakservice/dokumentMottakService';
 import { NextRequest } from 'next/server';
 import { logError } from '@navikt/aap-felles-utils';
-import { SettPåVentRequest } from '../../../../lib/types/types';
+import { SettPåVentRequest } from 'lib/types/types';
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest, props: { params: Promise<{ behandlingsreferanse: string }> }) {
+  const params = await props.params;
   const body: SettPåVentRequest = await req.json();
 
   try {
-    const settPåVentResponse = await settPåVent(body);
+    const settPåVentResponse = await settPåVent(params.behandlingsreferanse, body);
     console.log('SETT PÅ VENT');
     console.log(settPåVentResponse);
 

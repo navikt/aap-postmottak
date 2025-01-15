@@ -9,14 +9,14 @@ interface Props {
 }
 export const FinnSakMedDataFetching = async ({ behandlingsreferanse }: Props) => {
   const flyt = await hentFlyt(behandlingsreferanse);
+  const isReadOnly: boolean = !!flyt.visning.readOnly;
   const grunnlag = await hentFinnSakGrunnlag(behandlingsreferanse);
-  console.log(flyt);
-  console.log(grunnlag);
   return (
     <FinnSak
       behandlingsVersjon={flyt.behandlingVersjon}
       behandlingsreferanse={behandlingsreferanse}
       grunnlag={grunnlag}
+      readOnly={isReadOnly}
     />
   );
 };

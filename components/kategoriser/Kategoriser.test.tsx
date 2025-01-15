@@ -10,12 +10,12 @@ describe('Kategoriser', () => {
     dokumenter: [],
   };
   it('Skal ha en tittel', () => {
-    render(<Kategoriser behandlingsVersjon={1} behandlingsreferanse={'123'} grunnlag={grunnlag} />);
+    render(<Kategoriser behandlingsVersjon={1} behandlingsreferanse={'123'} grunnlag={grunnlag} readOnly={false} />);
     const heading = screen.getByText('Kategoriser');
     expect(heading).toBeVisible();
   });
   it('Har et valg for å knytte dokumentet til sak', () => {
-    render(<Kategoriser behandlingsVersjon={1} behandlingsreferanse={'123'} grunnlag={grunnlag} />);
+    render(<Kategoriser behandlingsVersjon={1} behandlingsreferanse={'123'} grunnlag={grunnlag} readOnly={false} />);
     expect(screen.getByRole('combobox', { name: 'Velg kategori for dokument' })).toBeVisible();
   });
 });
