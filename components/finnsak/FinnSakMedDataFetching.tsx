@@ -10,9 +10,13 @@ interface Props {
 export const FinnSakMedDataFetching = async ({ behandlingsreferanse }: Props) => {
   const flyt = await hentFlyt(behandlingsreferanse);
   const grunnlag = await hentFinnSakGrunnlag(behandlingsreferanse);
-  return <FinnSak
-    behandlingsVersjon={flyt.behandlingVersjon}
-    behandlingsreferanse={behandlingsreferanse}
-    grunnlag={grunnlag}
-  />;
+  console.log(flyt);
+  console.log(grunnlag);
+  return (
+    <FinnSak
+      behandlingsVersjon={flyt.behandlingVersjon}
+      behandlingsreferanse={behandlingsreferanse}
+      grunnlag={grunnlag}
+    />
+  );
 };

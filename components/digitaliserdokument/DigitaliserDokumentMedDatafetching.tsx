@@ -7,10 +7,18 @@ interface Props {
 }
 export const DigitaliserDokumentMedDatafetching = async ({ behandlingsreferanse }: Props) => {
   const flyt = await hentFlyt(behandlingsreferanse);
+  console.log('flyt');
+  console.log(flyt);
   const grunnlag = await hentDigitaliseringGrunnlag(behandlingsreferanse);
+  console.log('grunnlag');
+  console.log(grunnlag);
   if (grunnlag.kategori === 'SØKNAD') {
     return (
-      <DigitaliserSøknad behandlingsreferanse={behandlingsreferanse} behandlingsVersjon={flyt.behandlingVersjon} />
+      <DigitaliserSøknad
+        behandlingsreferanse={behandlingsreferanse}
+        behandlingsVersjon={flyt.behandlingVersjon}
+        grunnlag={grunnlag}
+      />
     );
   } else if (grunnlag.kategori === 'PLIKTKORT') {
     return (

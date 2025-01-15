@@ -2,7 +2,6 @@
 
 import { VilkårsKort } from '../../vilkårskort/VilkårsKort';
 import { FormField, useConfigForm } from '@navikt/aap-felles-react';
-import { Button, HStack, VStack } from '@navikt/ds-react';
 import { FormEvent } from 'react';
 import { Behovstype } from '../../../lib/form';
 import { useLøsBehovOgGåTilNesteSteg } from '../../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
