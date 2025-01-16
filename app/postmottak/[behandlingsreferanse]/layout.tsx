@@ -19,7 +19,6 @@ const Layout = async (props: LayoutProps) => {
   const { children } = props;
 
   const flyt = await hentFlyt(params.behandlingsreferanse);
-  console.log(flyt);
   const stegGrupper = flyt.flyt.map((steg) => steg);
 
   const journalpostInfo = await hentJournalpostInfo(params.behandlingsreferanse);

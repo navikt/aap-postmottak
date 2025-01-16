@@ -59,7 +59,6 @@ export const DigitaliserSøknad = ({ behandlingsVersjon, behandlingsreferanse, g
   const søknadGrunnlag = grunnlag.vurdering?.strukturertDokumentJson
     ? JSON.parse(grunnlag.vurdering?.strukturertDokumentJson)
     : {};
-  console.log('søknadsgrunnlag', søknadGrunnlag);
   const { form, formFields } = useConfigForm<SøknadFormFields>(
     {
       søknadsDato: {

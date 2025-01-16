@@ -8,11 +8,7 @@ interface Props {
 export const DigitaliserDokumentMedDatafetching = async ({ behandlingsreferanse }: Props) => {
   const flyt = await hentFlyt(behandlingsreferanse);
   const isReadOnly: boolean = !!flyt.visning.readOnly;
-  console.log('flyt');
-  console.log(flyt);
   const grunnlag = await hentDigitaliseringGrunnlag(behandlingsreferanse);
-  console.log('grunnlag');
-  console.log(grunnlag);
   if (grunnlag.kategori === 'SØKNAD') {
     return (
       <DigitaliserSøknad

@@ -66,9 +66,8 @@ export const FinnSak = ({ behandlingsVersjon, behandlingsreferanse, grunnlag, re
       });
     })(event);
   };
-  console.log(grunnlag.vurdering);
   return (
-    <VilkårsKort heading={'Finn sak'}>
+    <VilkårsKort heading={'Avklar sak'}>
       <form onSubmit={onSubmit}>
         <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.knyttTilSak} />

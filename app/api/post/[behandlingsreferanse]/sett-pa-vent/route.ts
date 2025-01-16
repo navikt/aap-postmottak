@@ -9,8 +9,6 @@ export async function POST(req: NextRequest, props: { params: Promise<{ behandli
 
   try {
     const settPåVentResponse = await settPåVent(params.behandlingsreferanse, body);
-    console.log('SETT PÅ VENT');
-    console.log(settPåVentResponse);
 
     return new Response(JSON.stringify(settPåVentResponse ?? {}), { status: 200 });
   } catch (error) {
