@@ -1,8 +1,7 @@
 import { VilkårsKort } from '../../vilkårskort/VilkårsKort';
 import { Button, HStack, Table } from '@navikt/ds-react';
 import { useFieldArray, UseFormReturn } from 'react-hook-form';
-import { SøknadFormFields, Barn } from './DigitaliserSøknad';
-import { useState } from 'react';
+import { SøknadFormFields } from './DigitaliserSøknad';
 import { SelectWrapper, TextFieldWrapper } from '@navikt/aap-felles-react';
 import { TrashIcon } from '@navikt/aksel-icons';
 

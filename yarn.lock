@@ -1108,10 +1108,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-felles-css@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@navikt/aap-felles-css@npm:4.0.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-css%2F4.0.1%2Fee1dc3ca44a4ee962680b60d887dbf39f9b62014"
-  checksum: 10c0/2c9ee533d55c336f5344fd10f30413f81b6000a8524f26da6670a263a40d289feff3dc2d511b3ce7bde730c1b0771ce07b2cd7ca48a5bc7fab6d779d19927443
+"@navikt/aap-felles-css@npm:^4.2.6":
+  version: 4.2.6
+  resolution: "@navikt/aap-felles-css@npm:4.2.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-css%2F4.2.6%2F6762affb75dccd07d374c18b5c5fa0aeb901470e"
+  checksum: 10c0/91af73995913cc6379d8a60a4259a6aeb4536613e716b5ef265244351c95d7c019b61aae1dd196f939a410985a11b58a3c113c80f8c0d2fa1a075624c4ce5163
   languageName: node
   linkType: hard
 
@@ -1125,19 +1125,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-felles-react@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@navikt/aap-felles-react@npm:4.0.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-react%2F4.0.1%2Ffc78a7aedb3b61fbb80ce4df3cffad4c3caf21b6"
+"@navikt/aap-felles-react@npm:^4.2.6":
+  version: 4.2.6
+  resolution: "@navikt/aap-felles-react@npm:4.2.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-react%2F4.2.6%2F40dc4287829f0d3b24f8531078c6a81883bfc94d"
   dependencies:
     "@navikt/aksel-icons": "npm:^7.5.2"
     "@navikt/ds-css": "npm:^7.5.2"
     "@navikt/ds-react": "npm:^7.5.2"
-    react: "npm:19.0.0-rc-66855b96-20241106"
-    react-dom: "npm:19.0.0-rc-66855b96-20241106"
-    react-hook-form: "npm:^7.53.2"
+    react: "npm:19.0.0"
+    react-dom: "npm:19.0.0"
+    react-hook-form: "npm:^7.54.2"
     react-select: "npm:^5.8.3"
     uuid: "npm:^10.0.0"
-  checksum: 10c0/c9b9e5c964a26743f012419f93e1205c581cc924b2611fbcd05cba519402cafa84e42d8b2ea385c5857aedca11e9ef6cb2bcca3c014659944071e4d0c0ec6f78
+  checksum: 10c0/dbf8b6efdaa6250b0fc2f03c4fd4ce8710f1fabc94422f30220c72651e567e7a6e88d900d0475dea365d7d39b55c3acaf58d578bedacf83a329f57da3c967532
   languageName: node
   linkType: hard
 
@@ -1276,10 +1276,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:15.1.1":
-  version: 15.1.1
-  resolution: "@next/env@npm:15.1.1"
-  checksum: 10c0/464ecb345eaf1170a863fff3f5bbed081982b1c1d70d617020d336aa7bdd6160a8dbb0a9cb4ba9d8c8189ae56aa026c2fa0d3b7f8365dc6ea00d5e9fba10c2f0
+"@next/env@npm:15.1.5":
+  version: 15.1.5
+  resolution: "@next/env@npm:15.1.5"
+  checksum: 10c0/bf6b8d6d87a88b6f8eba40d69192d2bde6d6ecee9dfcc779b383bf87c4efbf1de67b468a5b652225c32725192a644ac5175f51604f58ed094a2ef8e8c0f7a803
   languageName: node
   linkType: hard
 
@@ -1299,9 +1299,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-arm64@npm:15.1.1":
-  version: 15.1.1
-  resolution: "@next/swc-darwin-arm64@npm:15.1.1"
+"@next/swc-darwin-arm64@npm:15.1.5":
+  version: 15.1.5
+  resolution: "@next/swc-darwin-arm64@npm:15.1.5"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
@@ -1313,9 +1313,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-x64@npm:15.1.1":
-  version: 15.1.1
-  resolution: "@next/swc-darwin-x64@npm:15.1.1"
+"@next/swc-darwin-x64@npm:15.1.5":
+  version: 15.1.5
+  resolution: "@next/swc-darwin-x64@npm:15.1.5"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
@@ -1327,9 +1327,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-gnu@npm:15.1.1":
-  version: 15.1.1
-  resolution: "@next/swc-linux-arm64-gnu@npm:15.1.1"
+"@next/swc-linux-arm64-gnu@npm:15.1.5":
+  version: 15.1.5
+  resolution: "@next/swc-linux-arm64-gnu@npm:15.1.5"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
@@ -1341,9 +1341,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-musl@npm:15.1.1":
-  version: 15.1.1
-  resolution: "@next/swc-linux-arm64-musl@npm:15.1.1"
+"@next/swc-linux-arm64-musl@npm:15.1.5":
+  version: 15.1.5
+  resolution: "@next/swc-linux-arm64-musl@npm:15.1.5"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
@@ -1355,9 +1355,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-gnu@npm:15.1.1":
-  version: 15.1.1
-  resolution: "@next/swc-linux-x64-gnu@npm:15.1.1"
+"@next/swc-linux-x64-gnu@npm:15.1.5":
+  version: 15.1.5
+  resolution: "@next/swc-linux-x64-gnu@npm:15.1.5"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
@@ -1369,9 +1369,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-musl@npm:15.1.1":
-  version: 15.1.1
-  resolution: "@next/swc-linux-x64-musl@npm:15.1.1"
+"@next/swc-linux-x64-musl@npm:15.1.5":
+  version: 15.1.5
+  resolution: "@next/swc-linux-x64-musl@npm:15.1.5"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
@@ -1383,9 +1383,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-win32-arm64-msvc@npm:15.1.1":
-  version: 15.1.1
-  resolution: "@next/swc-win32-arm64-msvc@npm:15.1.1"
+"@next/swc-win32-arm64-msvc@npm:15.1.5":
+  version: 15.1.5
+  resolution: "@next/swc-win32-arm64-msvc@npm:15.1.5"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
@@ -1397,9 +1397,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-win32-x64-msvc@npm:15.1.1":
-  version: 15.1.1
-  resolution: "@next/swc-win32-x64-msvc@npm:15.1.1"
+"@next/swc-win32-x64-msvc@npm:15.1.5":
+  version: 15.1.5
+  resolution: "@next/swc-win32-x64-msvc@npm:15.1.5"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -2267,9 +2267,9 @@ __metadata:
   resolution: "aap-postmottak@workspace:."
   dependencies:
     "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.197"
-    "@navikt/aap-felles-css": "npm:^4.0.1"
+    "@navikt/aap-felles-css": "npm:^4.2.6"
     "@navikt/aap-felles-prettier": "npm:^4.0.1"
-    "@navikt/aap-felles-react": "npm:^4.0.1"
+    "@navikt/aap-felles-react": "npm:^4.2.6"
     "@navikt/aap-felles-utils": "npm:^4.0.1"
     "@navikt/aap-postmottak-backend-typescript-types": "npm:^0.0.53"
     "@navikt/aksel-icons": "npm:^7.8.0"
@@ -2288,8 +2288,8 @@ __metadata:
     "@testing-library/react": "npm:^16.0.1"
     "@testing-library/user-event": "npm:^14.5.2"
     "@types/node": "npm:^20.16.7"
-    "@types/react": "npm:types-react@19.0.0-rc.1"
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+    "@types/react": "npm:19.0.7"
+    "@types/react-dom": "npm:19.0.3"
     "@typescript-eslint/eslint-plugin": "npm:^8.7.0"
     "@typescript-eslint/parser": "npm:^8.7.0"
     "@vercel/otel": "npm:^1.10.0"
@@ -2306,11 +2306,12 @@ __metadata:
     husky: "npm:^9.1.7"
     jsdom: "npm:^25.0.1"
     lint-staged: "npm:^15.2.11"
-    next: "npm:15.1.1"
+    next: "npm:15.1.5"
     openapi-typescript: "npm:^7.4.4"
     prettier: "npm:^3.3.3"
-    react: "npm:19.0.0-rc-66855b96-20241106"
-    react-dom: "npm:19.0.0-rc-66855b96-20241106"
+    react: "npm:19.0.0"
+    react-dom: "npm:19.0.0"
+    react-hook-form: "npm:7.54.2"
     typescript: "npm:^5.7.2"
     vite-tsconfig-paths: "npm:^5.1.4"
     vitest: "npm:^2.1.3"
@@ -5885,19 +5886,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:15.1.1":
-  version: 15.1.1
-  resolution: "next@npm:15.1.1"
+"next@npm:15.1.5":
+  version: 15.1.5
+  resolution: "next@npm:15.1.5"
   dependencies:
-    "@next/env": "npm:15.1.1"
-    "@next/swc-darwin-arm64": "npm:15.1.1"
-    "@next/swc-darwin-x64": "npm:15.1.1"
-    "@next/swc-linux-arm64-gnu": "npm:15.1.1"
-    "@next/swc-linux-arm64-musl": "npm:15.1.1"
-    "@next/swc-linux-x64-gnu": "npm:15.1.1"
-    "@next/swc-linux-x64-musl": "npm:15.1.1"
-    "@next/swc-win32-arm64-msvc": "npm:15.1.1"
-    "@next/swc-win32-x64-msvc": "npm:15.1.1"
+    "@next/env": "npm:15.1.5"
+    "@next/swc-darwin-arm64": "npm:15.1.5"
+    "@next/swc-darwin-x64": "npm:15.1.5"
+    "@next/swc-linux-arm64-gnu": "npm:15.1.5"
+    "@next/swc-linux-arm64-musl": "npm:15.1.5"
+    "@next/swc-linux-x64-gnu": "npm:15.1.5"
+    "@next/swc-linux-x64-musl": "npm:15.1.5"
+    "@next/swc-win32-arm64-msvc": "npm:15.1.5"
+    "@next/swc-win32-x64-msvc": "npm:15.1.5"
     "@swc/counter": "npm:0.1.3"
     "@swc/helpers": "npm:0.5.15"
     busboy: "npm:1.6.0"
@@ -5942,7 +5943,7 @@ __metadata:
       optional: true
   bin:
     next: dist/bin/next
-  checksum: 10c0/2908eb539b21a7149f1a5e1cf6ff15f2de1687cc6b445af6cc8b32b33f3d3befc3971c0548bf9bcacd1237e0d06d77b0a21e13d03e5393c3e7bf47280ea1288f
+  checksum: 10c0/13e0001dfb1b36a191fc5cf12ff73b8b472a0271460609be948371ef8fa865873753801823a751aca785f2eb626ac5e6ae38e961d3e1c45237e40d92d5335637
   languageName: node
   linkType: hard
 
@@ -6568,23 +6569,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:19.0.0-rc-66855b96-20241106":
-  version: 19.0.0-rc-66855b96-20241106
-  resolution: "react-dom@npm:19.0.0-rc-66855b96-20241106"
+"react-dom@npm:19.0.0":
+  version: 19.0.0
+  resolution: "react-dom@npm:19.0.0"
   dependencies:
-    scheduler: "npm:0.25.0-rc-66855b96-20241106"
+    scheduler: "npm:^0.25.0"
   peerDependencies:
-    react: 19.0.0-rc-66855b96-20241106
-  checksum: 10c0/62298e0bd655f2bcbebccd03f593532a4728bebe119ecb30d7f50503d74882cbda90acacdb96bd54b6c1e29c36e74cc7ccab8132926d80e34002d89c07f6a9ab
+    react: ^19.0.0
+  checksum: 10c0/a36ce7ab507b237ae2759c984cdaad4af4096d8199fb65b3815c16825e5cfeb7293da790a3fc2184b52bfba7ba3ff31c058c01947aff6fd1a3701632aabaa6a9
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.53.2":
-  version: 7.53.2
-  resolution: "react-hook-form@npm:7.53.2"
+"react-hook-form@npm:7.54.2, react-hook-form@npm:^7.54.2":
+  version: 7.54.2
+  resolution: "react-hook-form@npm:7.54.2"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18 || ^19
-  checksum: 10c0/18336d8e8798a70dcd0af703a0becca2d5dbf82a7b7a3ca334ae0e1f26410490bc3ef2ea51adcf790bb1e7006ed7a763fd00d664e398f71225b23529a7ccf0bf
+  checksum: 10c0/6eebead2900e3d369a989e7a20429f390dc75b3897142aa3107f1f6dabb9ae64fed201ea98cdcd8676e40466c97748aeb0c0d83264f5bd3a84dbc0b8e4863415
   languageName: node
   linkType: hard
 
@@ -6644,10 +6645,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:19.0.0-rc-66855b96-20241106":
-  version: 19.0.0-rc-66855b96-20241106
-  resolution: "react@npm:19.0.0-rc-66855b96-20241106"
-  checksum: 10c0/d4e33b16257c7fdadc79d73798bdbb4865a460875463a3bf3f06d764ce8795fa7964ee714dcbf3010838842af9ab124495a943305e77b2c8d31db08895d067a3
+"react@npm:19.0.0":
+  version: 19.0.0
+  resolution: "react@npm:19.0.0"
+  checksum: 10c0/9cad8f103e8e3a16d15cb18a0d8115d8bd9f9e1ce3420310aea381eb42aa0a4f812cf047bb5441349257a05fba8a291515691e3cb51267279b2d2c3253f38471
   languageName: node
   linkType: hard
 
@@ -6973,10 +6974,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.25.0-rc-66855b96-20241106":
-  version: 0.25.0-rc-66855b96-20241106
-  resolution: "scheduler@npm:0.25.0-rc-66855b96-20241106"
-  checksum: 10c0/65f1187d4b472ad674b91d98661c54dfc312e0ba850713b57411a05db722b5a9cdc7a46683c776116668c251c90cd4d3973b9f021d3821762fa224f94275c85a
+"scheduler@npm:^0.25.0":
+  version: 0.25.0
+  resolution: "scheduler@npm:0.25.0"
+  checksum: 10c0/a4bb1da406b613ce72c1299db43759526058fdcc413999c3c3e0db8956df7633acf395cb20eb2303b6a65d658d66b6585d344460abaee8080b4aa931f10eaafe
   languageName: node
   linkType: hard
 
