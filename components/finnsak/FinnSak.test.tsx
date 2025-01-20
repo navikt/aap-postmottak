@@ -10,7 +10,7 @@ describe('FinnSak', () => {
 
   it('Skal ha en oversikt', () => {
     render(<FinnSak behandlingsVersjon={1} behandlingsreferanse={'123'} grunnlag={grunnlag} readOnly={false} />);
-    const heading = screen.getByText('Finn sak');
+    const heading = screen.getByText('Avklar sak');
     expect(heading).toBeVisible();
   });
   it('Har et valg for å knytte dokumentet til sak', () => {

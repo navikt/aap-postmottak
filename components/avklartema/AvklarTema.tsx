@@ -5,11 +5,10 @@ import { FormField, useConfigForm } from '@navikt/aap-felles-react';
 import { Behovstype, JaEllerNei, JaEllerNeiOptions } from 'lib/form';
 import { FormEvent, FormEventHandler } from 'react';
 import { useLøsBehovOgGåTilNesteSteg } from 'lib/hooks/LøsBehovOgGåTilNesteStegHook';
-import { Button } from '@navikt/ds-react';
 import { AvklarTemaGrunnlag } from 'lib/types/types';
 import { getJaNeiEllerUndefined } from 'lib/form';
 import { ServerSentEventStatusAlert } from 'components/serversenteventstatusalert/ServerSentEventStatusAlert';
-import { endreTema } from 'lib/clientApi';
+import { endreTema, løsBehov } from 'lib/clientApi';
 import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
 
 interface Props {
@@ -23,20 +22,20 @@ interface FormFields {
   erTemaAAP: string;
 }
 
-export const AvklarTema = ({ behandlingsVersjon, behandlingsreferanse, grunnlag, readOnly }: Props) => {
-  const { formFields, form } = useConfigForm<FormFields>(
+export const AvklarTema = ({behandlingsVersjon, behandlingsreferanse, grunnlag, readOnly}: Props) => {
+  const {formFields, form} = useConfigForm<FormFields>(
     {
       erTemaAAP: {
         type: 'radio',
         label: 'Er dokumentet riktig journalført på tema AAP?',
-        rules: { required: 'Du må svare på om dokumentet har riktig tema' },
+        rules: {required: 'Du må svare på om dokumentet har riktig tema'},
         defaultValue: getJaNeiEllerUndefined(grunnlag.vurdering?.skalTilAap),
         options: JaEllerNeiOptions,
       },
     },
-    { readOnly }
+    {readOnly}
   );
-  const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('AVKLAR_TEMA');
+  const {løsBehovOgGåTilNesteSteg, status} = useLøsBehovOgGåTilNesteSteg('AVKLAR_TEMA');
   const onSubmit: FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
     form.handleSubmit((data) => {
       if (data.erTemaAAP === JaEllerNei.Ja) {
@@ -50,7 +49,15 @@ export const AvklarTema = ({ behandlingsVersjon, behandlingsreferanse, grunnlag,
           referanse: behandlingsreferanse,
         });
       } else {
-        endreTema(behandlingsreferanse).then((redirectUrl) => redirectUrl && window.location.replace(redirectUrl));
+        løsBehov({
+          behandlingVersjon: behandlingsVersjon,
+          behov: {
+            behovstype: Behovstype.AVKLAR_TEMA,
+            skalTilAap: data.erTemaAAP === JaEllerNei.Ja,
+          },
+          // @ts-ignore
+          referanse: behandlingsreferanse,
+        }).then(() => endreTema(behandlingsreferanse).then((redirectUrl) => redirectUrl && window.location.replace(redirectUrl)));
       }
     })(event);
   };
@@ -58,8 +65,8 @@ export const AvklarTema = ({ behandlingsVersjon, behandlingsreferanse, grunnlag,
   return (
     <VilkårsKort heading={'Avklar tema'}>
       <form onSubmit={onSubmit}>
-        <ServerSentEventStatusAlert status={status} />
-        <FormField form={form} formField={formFields.erTemaAAP} />
+        <ServerSentEventStatusAlert status={status}/>
+        <FormField form={form} formField={formFields.erTemaAAP}/>
         <Nesteknapp>Bekreft</Nesteknapp>
       </form>
     </VilkårsKort>
