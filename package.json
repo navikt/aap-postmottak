@@ -34,9 +34,9 @@
     "react-hook-form": "7.54.2"
   },
   "devDependencies": {
-    "@navikt/aap-behandlingsflyt-typescript-types": "^0.0.197",
+    "@navikt/aap-behandlingsflyt-typescript-types": "^0.0.320",
     "@navikt/aap-felles-prettier": "^4.0.1",
-    "@navikt/aap-postmottak-backend-typescript-types": "^0.0.53",
+    "@navikt/aap-postmottak-backend-typescript-types": "^0.0.61",
     "@navikt/eslint-config-aap": "^1.9.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.2",
