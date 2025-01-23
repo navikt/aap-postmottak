@@ -1,6 +1,7 @@
 import { DigitaliserSøknad } from './søknad/DigitaliserSøknad';
 import { hentDigitaliseringGrunnlag, hentFlyt } from '../../lib/services/dokumentmottakservice/dokumentMottakService';
 import { DigitaliserMeldekort } from 'components/digitaliserdokument/meldekort/DigitaliserMeldekort';
+import { BodyShort } from '@navikt/ds-react';
 
 interface Props {
   behandlingsreferanse: string;
@@ -26,11 +27,7 @@ export const DigitaliserDokumentMedDatafetching = async ({ behandlingsreferanse 
         readOnly={isReadOnly}
       />
     );
-  } else if (grunnlag.kategori === 'AKTIVITETSKORT') {
-    return <div>AKTIVITETSKORT</div>;
+  } else {
+    return <BodyShort>{`Digitalisering støttes foreløpig ikke for kategorien: ${grunnlag.kategori}`}</BodyShort>;
   }
-  assertNever(grunnlag.kategori);
 };
-function assertNever(value: string): never {
-  throw new Error(`Ikke implementert verdi for grunnlag.kategori i digitaliserdokument: ${value}`);
-}
