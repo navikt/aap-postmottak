@@ -22,16 +22,17 @@ export type JournalpostInfo =
 export type Dokument = postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.dokument.DokumentDto'];
 
 export type AvklarTemaGrunnlag =
-  postmottak['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.avklartema.flate.AvklarTemaGrunnlagDto'];
-export type FinnSakGrunnlag =
-  postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.finnsak.AvklarSakGrunnlagDto'];
-export type Saksinfo = postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.finnsak.SaksInfoDto'];
+  postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.tema.AvklarTemaGrunnlagDto'];
+export type FinnSakGrunnlag = postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.sak.AvklarSakGrunnlagDto'];
+export type Saksinfo = postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.sak.SaksInfoDto'];
 export type KategoriserGrunnlag =
-  postmottak['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.kategorisering.flate.KategoriseringGrunnlagDto'];
+  postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.kategorisering.KategoriseringGrunnlagDto'];
 export type KategoriserDokumentKategori =
   postmottak['schemas']['no.nav.aap.postmottak.avklaringsbehov.l\u00F8sning.KategoriserDokumentL\u00F8sning']['kategori'];
 export type StruktureringGrunnlag =
-  postmottak['schemas']['no.nav.aap.postmottak.faktagrunnlag.saksbehandler.dokument.strukturering.flate.StruktureringGrunnlagDto'];
+  postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.strukturering.StruktureringGrunnlagDto'];
+export type OverleveringGrunnlag =
+  postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.overlevering.OverleveringGrunnlagDto'];
 
 export type Søknad =
   behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.kontrakt.hendelse.dokumenter.S\u00F8knadV0'];

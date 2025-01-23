@@ -5,7 +5,6 @@ import { FormField, useConfigForm, ValuePair } from '@navikt/aap-felles-react';
 import { Behovstype } from '../../lib/form';
 import { FormEvent, FormEventHandler } from 'react';
 import { useLøsBehovOgGåTilNesteSteg } from '../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
-import { Button } from '@navikt/ds-react';
 import { FinnSakGrunnlag, Saksinfo } from '../../lib/types/types';
 import { ServerSentEventStatusAlert } from '../serversenteventstatusalert/ServerSentEventStatusAlert';
 import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
@@ -16,16 +15,16 @@ interface Props {
   grunnlag: FinnSakGrunnlag;
   readOnly: boolean;
 }
+
 interface FormFields {
   knyttTilSak: string;
 }
 
 const GENERELL = 'GENERELL';
 const NY = 'NY';
+
 function mapVurderingTilValgtOption(vurdering: FinnSakGrunnlag['vurdering']) {
-  if (vurdering?.opprettNySak) {
-    return NY;
-  } else if (vurdering?.førPåGenerellSak) {
+  if (vurdering?.førPåGenerellSak) {
     return GENERELL;
   } else if (vurdering?.saksnummer) {
     return vurdering.saksnummer;
@@ -33,6 +32,7 @@ function mapVurderingTilValgtOption(vurdering: FinnSakGrunnlag['vurdering']) {
     return undefined;
   }
 }
+
 export const FinnSak = ({ behandlingsVersjon, behandlingsreferanse, grunnlag, readOnly }: Props) => {
   const { formFields, form } = useConfigForm<FormFields>(
     {
