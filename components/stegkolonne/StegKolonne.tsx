@@ -4,12 +4,14 @@ import { StegGruppe } from 'lib/types/types';
 import { FinnSakMedDataFetching } from '../finnsak/FinnSakMedDataFetching';
 import { KategoriserMedDataFetching } from '../kategoriser/KategoriserMedDataFetching';
 import { DigitaliserDokumentMedDatafetching } from '../digitaliserdokument/DigitaliserDokumentMedDatafetching';
-import { EndreTema } from '../endretema/EndreTema';
+import React from 'react';
+import { OverleveringMedDataFetching } from '../overlevering/OverleveringMedDataFetching';
 
 interface Props {
   aktivGruppe: StegGruppe;
   behandlingsreferanse: string;
 }
+
 export const StegKolonne = ({ aktivGruppe, behandlingsreferanse }: Props) => {
   // Det er her vi gjør datafetching og rendering av stegene
   return (
@@ -36,12 +38,7 @@ export const StegKolonne = ({ aktivGruppe, behandlingsreferanse }: Props) => {
       )}
       {aktivGruppe === 'OVERLEVER_TIL_FAGSYSTEM' && (
         <StegSuspense>
-          <div>Overlever</div>
-        </StegSuspense>
-      )}
-      {aktivGruppe === 'ENDRE_TEMA' && (
-        <StegSuspense>
-          <EndreTema />
+          <OverleveringMedDataFetching behandlingsreferanse={behandlingsreferanse} />
         </StegSuspense>
       )}
     </div>

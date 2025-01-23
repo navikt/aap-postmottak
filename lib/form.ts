@@ -54,6 +54,7 @@ export enum Behovstype {
   DIGITALISER_DOKUMENT = '1338',
   AVKLAR_TEMA = '1339',
   FINN_SAK = '1340',
+  AVKLAR_OVERLEVERING = '1341',
 }
 export const getJaNeiEllerUndefined = (value?: boolean | null): JaEllerNei | undefined => {
   if (value === null || value === undefined) {

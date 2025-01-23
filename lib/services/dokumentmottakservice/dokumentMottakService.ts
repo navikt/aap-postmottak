@@ -6,6 +6,7 @@ import {
   JournalpostInfo,
   KategoriserGrunnlag,
   LøsAvklaringsbehovPåBehandling,
+  OverleveringGrunnlag,
   SettPåVentRequest,
   StruktureringGrunnlag,
   Venteinformasjon,
@@ -30,6 +31,10 @@ export const hentFinnSakGrunnlag = async (behandlingsreferanse: string): Promise
 export const hentKategoriserGrunnlag = async (behandlingsreferanse: string): Promise<KategoriserGrunnlag> => {
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/${behandlingsreferanse}/grunnlag/kategorisering`;
   return await fetchProxy<KategoriserGrunnlag>(url, dokumentMottakApiScope, 'GET');
+};
+export const hentOverleveringGrunnlag = async (behandlingsreferanse: string): Promise<OverleveringGrunnlag> => {
+  const url = `${dokumentMottakApiBaseUrl}/api/behandling/${behandlingsreferanse}/grunnlag/overlevering`;
+  return await fetchProxy<OverleveringGrunnlag>(url, dokumentMottakApiScope, 'GET');
 };
 export const hentDigitaliseringGrunnlag = async (behandlingsreferanse: string): Promise<StruktureringGrunnlag> => {
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/${behandlingsreferanse}/grunnlag/strukturering`;
