@@ -2,31 +2,29 @@
 
 import { Stepper } from '@navikt/ds-react';
 import style from './StegGruppeIndikator.module.css';
-import { FlytGruppe } from 'lib/types/types';
-import { useParams, useRouter } from 'next/navigation';
+import { BehandlingFlytOgTilstand, FlytGruppe } from 'lib/types/types';
 
 export const StegGruppeIndikatorAksel = ({
   behandlingsreferanse,
   stegGrupper,
+  flytRespons,
 }: {
   behandlingsreferanse: string;
   stegGrupper: FlytGruppe[];
+  flytRespons: BehandlingFlytOgTilstand;
 }) => {
-  const { aktivGruppe } = useParams();
   const visningsListe = stegGrupper.filter((steg) => steg.skalVises);
-  const aktivtStegNummer = visningsListe.findIndex((steg) => steg.stegGruppe === aktivGruppe) + 1;
-  const router = useRouter();
+  const aktivtStegNummer = visningsListe.findIndex((steg) => steg.stegGruppe === flytRespons.aktivGruppe) + 1;
 
   return (
     <div className={style.stegMenyWrapper}>
       <Stepper orientation="horizontal" activeStep={aktivtStegNummer}>
         {visningsListe.map((steg, index) => (
           <Stepper.Step
-            as="button"
             completed={steg.erFullført}
             key={index}
-            onClick={() => router.push(`/postmottak/${behandlingsreferanse}/${steg.stegGruppe}`)}
-            interactive={steg.erFullført}
+            href={`/postmottak/${behandlingsreferanse}/${steg.stegGruppe}`}
+            interactive={steg.erFullført || flytRespons.aktivGruppe === steg.stegGruppe}
           >
             {steg.stegGruppe}
           </Stepper.Step>

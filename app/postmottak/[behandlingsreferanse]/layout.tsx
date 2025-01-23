@@ -31,7 +31,11 @@ const Layout = async (props: LayoutProps) => {
         behandlingsVersjon={flyt.behandlingVersjon}
         journalpostInfo={journalpostInfo}
       />
-      <StegGruppeIndikatorAksel behandlingsreferanse={params.behandlingsreferanse} stegGrupper={stegGrupper} />
+      <StegGruppeIndikatorAksel
+        behandlingsreferanse={params.behandlingsreferanse}
+        stegGrupper={stegGrupper}
+        flytRespons={flyt}
+      />
       {flyt.prosessering.status === 'FEILET' && <FlytProsesseringAlert flytProsessering={flyt.prosessering} />}
       {flyt.visning.visVentekort ? (
         <SplitVindu
