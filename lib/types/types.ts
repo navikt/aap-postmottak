@@ -1,6 +1,7 @@
 import { components as postmottak } from '@navikt/aap-postmottak-backend-typescript-types';
 import { components as behandlingsflyt } from '@navikt/aap-behandlingsflyt-typescript-types';
 
+export type DetaljertBehandlingDto = postmottak['schemas']['no.nav.aap.postmottak.api.flyt.DetaljertBehandlingDTO'];
 export type BehandlingFlytOgTilstand =
   postmottak['schemas']['no.nav.aap.postmottak.api.flyt.BehandlingFlytOgTilstandDto'];
 
