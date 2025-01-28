@@ -2,7 +2,6 @@ import { StegSuspense } from 'components/stegsuspense/StegSuspense';
 import { AvklarTemaMedDataFetching } from '../avklartema/AvklarTemaMedDataFetching';
 import { StegGruppe } from 'lib/types/types';
 import { FinnSakMedDataFetching } from '../finnsak/FinnSakMedDataFetching';
-import { KategoriserMedDataFetching } from '../kategoriser/KategoriserMedDataFetching';
 import { DigitaliserDokumentMedDatafetching } from '../digitaliserdokument/DigitaliserDokumentMedDatafetching';
 import React from 'react';
 import { OverleveringMedDataFetching } from '../overlevering/OverleveringMedDataFetching';
@@ -24,11 +23,6 @@ export const StegKolonne = ({ aktivGruppe, behandlingsreferanse }: Props) => {
       {aktivGruppe === 'AVKLAR_SAK' && (
         <StegSuspense>
           <FinnSakMedDataFetching behandlingsreferanse={behandlingsreferanse} />
-        </StegSuspense>
-      )}
-      {aktivGruppe === 'KATEGORISER' && (
-        <StegSuspense>
-          <KategoriserMedDataFetching behandlingsreferanse={behandlingsreferanse} />
         </StegSuspense>
       )}
       {aktivGruppe === 'DIGITALISER' && (
