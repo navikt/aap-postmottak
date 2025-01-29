@@ -2,7 +2,6 @@
 
 import { FormField, useConfigForm } from '@navikt/aap-felles-react';
 import {
-  Behovstype,
   JaEllerNei,
   JaEllerNeiOptions,
   JaNeiAvbrutt,
@@ -11,13 +10,11 @@ import {
   stringToJaNeiAvbrutt,
   stringToJaNeiVetikke,
 } from '../../../lib/form';
-import { FormEvent } from 'react';
 import { VilkårsKort } from '../../vilkårskort/VilkårsKort';
-import { useLøsBehovOgGåTilNesteSteg } from '../../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { Barnetillegg } from './Barnetillegg';
-import { StruktureringGrunnlag, Søknad } from '../../../lib/types/types';
+import { DigitaliseringsGrunnlag, Søknad } from '../../../lib/types/types';
 import { Student } from './Student';
-import { ServerSentEventStatusAlert } from '../../serversenteventstatusalert/ServerSentEventStatusAlert';
+import { Submittable } from '../DigitaliserDokument.tsx';
 import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
 
 export type Barn = {
@@ -35,10 +32,8 @@ export interface SøknadFormFields {
   oppgitteBarn: Barn[];
 }
 
-interface Props {
-  behandlingsVersjon: number;
-  behandlingsreferanse: string;
-  grunnlag: StruktureringGrunnlag;
+interface Props extends Submittable {
+  grunnlag: DigitaliseringsGrunnlag;
   readOnly: boolean;
 }
 
@@ -55,7 +50,7 @@ function mapTilSøknadKontrakt(data: SøknadFormFields) {
   } as Søknad);
 }
 
-export const DigitaliserSøknad = ({ behandlingsVersjon, behandlingsreferanse, grunnlag, readOnly }: Props) => {
+export const DigitaliserSøknad = ({ grunnlag, readOnly, submit }: Props) => {
   const søknadGrunnlag = grunnlag.vurdering?.strukturertDokumentJson
     ? JSON.parse(grunnlag.vurdering?.strukturertDokumentJson)
     : {};
@@ -97,26 +92,10 @@ export const DigitaliserSøknad = ({ behandlingsVersjon, behandlingsreferanse, g
     },
     { readOnly }
   );
-  const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('DIGITALISER_DOKUMENT');
-
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
-    form.handleSubmit((data) => {
-      løsBehovOgGåTilNesteSteg({
-        behandlingVersjon: behandlingsVersjon,
-        behov: {
-          behovstype: Behovstype.DIGITALISER_DOKUMENT,
-          strukturertDokument: mapTilSøknadKontrakt(data),
-        },
-        // @ts-ignore
-        referanse: behandlingsreferanse,
-      });
-    })(event);
-  }
 
   return (
     <VilkårsKort heading={'Digitaliser søknad'}>
-      <form onSubmit={onSubmit}>
-        <ServerSentEventStatusAlert status={status} />
+      <form onSubmit={form.handleSubmit((data) => submit('SØKNAD', mapTilSøknadKontrakt(data)))}>
         <VilkårsKort heading={'Personalia'}>
           <FormField form={form} formField={formFields.søknadsDato} />
         </VilkårsKort>
@@ -125,7 +104,7 @@ export const DigitaliserSøknad = ({ behandlingsVersjon, behandlingsreferanse, g
         </VilkårsKort>
         <Barnetillegg form={form} readOnly={readOnly} />
         <Student form={form} formFields={formFields} />
-        <Nesteknapp disabled={readOnly}>Send inn</Nesteknapp>
+        <Nesteknapp>Send Inn</Nesteknapp>
       </form>
     </VilkårsKort>
   );

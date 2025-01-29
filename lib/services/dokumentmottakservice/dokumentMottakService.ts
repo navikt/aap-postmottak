@@ -3,14 +3,13 @@ import {
   AvklarTemaGrunnlag,
   BehandlingFlytOgTilstand,
   DetaljertBehandlingDto,
+  DigitaliseringsGrunnlag,
   FinnSakGrunnlag,
   FlytProsessering,
   JournalpostInfo,
-  KategoriserGrunnlag,
   LøsAvklaringsbehovPåBehandling,
   OverleveringGrunnlag,
   SettPåVentRequest,
-  StruktureringGrunnlag,
   Venteinformasjon,
 } from 'lib/types/types';
 import { logError, logInfo, logWarning } from '@navikt/aap-felles-utils';
@@ -41,17 +40,13 @@ export const hentFinnSakGrunnlag = async (behandlingsreferanse: string): Promise
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/${behandlingsreferanse}/grunnlag/finnSak`;
   return await fetchProxy<FinnSakGrunnlag>(url, dokumentMottakApiScope, 'GET');
 };
-export const hentKategoriserGrunnlag = async (behandlingsreferanse: string): Promise<KategoriserGrunnlag> => {
-  const url = `${dokumentMottakApiBaseUrl}/api/behandling/${behandlingsreferanse}/grunnlag/kategorisering`;
-  return await fetchProxy<KategoriserGrunnlag>(url, dokumentMottakApiScope, 'GET');
-};
 export const hentOverleveringGrunnlag = async (behandlingsreferanse: string): Promise<OverleveringGrunnlag> => {
   const url = `${dokumentMottakApiBaseUrl}/api/behandling/${behandlingsreferanse}/grunnlag/overlevering`;
   return await fetchProxy<OverleveringGrunnlag>(url, dokumentMottakApiScope, 'GET');
 };
-export const hentDigitaliseringGrunnlag = async (behandlingsreferanse: string): Promise<StruktureringGrunnlag> => {
-  const url = `${dokumentMottakApiBaseUrl}/api/behandling/${behandlingsreferanse}/grunnlag/strukturering`;
-  return await fetchProxy<StruktureringGrunnlag>(url, dokumentMottakApiScope, 'GET');
+export const hentDigitaliseringGrunnlag = async (behandlingsreferanse: string): Promise<DigitaliseringsGrunnlag> => {
+  const url = `${dokumentMottakApiBaseUrl}/api/behandling/${behandlingsreferanse}/grunnlag/digitalisering`;
+  return await fetchProxy<DigitaliseringsGrunnlag>(url, dokumentMottakApiScope, 'GET');
 };
 export const hentJournalpostInfo = async (behandlingsreferanse: string): Promise<JournalpostInfo> => {
   const url = `${dokumentMottakApiBaseUrl}/api/dokumenter/${behandlingsreferanse}/info`;
