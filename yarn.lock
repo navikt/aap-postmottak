@@ -1115,7 +1115,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-felles-prettier@npm:^4.2.8":
+"@navikt/aap-felles-prettier@npm:^4.2.7":
   version: 4.2.8
   resolution: "@navikt/aap-felles-prettier@npm:4.2.8::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-prettier%2F4.2.8%2F33ddd8928717a79aa7b6a5182d0921704ad066e5"
   dependencies:
@@ -2294,10 +2294,10 @@ __metadata:
   resolution: "aap-postmottak@workspace:."
   dependencies:
     "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.368"
-    "@navikt/aap-felles-css": "npm:^4.2.7"
+    "@navikt/aap-felles-css": "npm:^4.2.8"
     "@navikt/aap-felles-prettier": "npm:^4.2.7"
-    "@navikt/aap-felles-react": "npm:^4.2.7"
-    "@navikt/aap-felles-utils": "npm:^4.2.7"
+    "@navikt/aap-felles-react": "npm:^4.2.8"
+    "@navikt/aap-felles-utils": "npm:^4.2.8"
     "@navikt/aap-postmottak-backend-typescript-types": "npm:^0.0.92"
     "@navikt/aksel-icons": "npm:^7.10.0"
     "@navikt/ds-css": "npm:^7.10.0"
