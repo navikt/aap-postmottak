@@ -17,13 +17,15 @@ describe('Kategoriser', () => {
     expect(heading).toBeVisible();
   });
   it('Har et valg for å knytte dokumentet til sak', () => {
-    <Kategoriser
-      submit={() => {}}
-      kategori={'AKTIVITETSKORT'}
-      readOnly={false}
-      onKategoriChange={() => {}}
-      status={undefined}
-    />;
+    render(
+      <Kategoriser
+        submit={() => {}}
+        kategori={'AKTIVITETSKORT'}
+        readOnly={false}
+        onKategoriChange={() => {}}
+        status={undefined}
+      />
+    );
     expect(screen.getByRole('combobox', { name: 'Velg kategori for dokument' })).toBeVisible();
   });
 });
