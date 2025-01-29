@@ -36,8 +36,6 @@ export interface SøknadFormFields {
 }
 
 interface Props {
-  behandlingsVersjon: number;
-  behandlingsreferanse: string;
   grunnlag: StruktureringGrunnlag;
   readOnly: boolean;
 }
@@ -56,7 +54,7 @@ function mapTilSøknadKontrakt(data: SøknadFormFields) {
 }
 
 export const DigitaliserSøknad = forwardRef<Submittable, Props>(
-  ({ behandlingsVersjon, behandlingsreferanse, grunnlag, readOnly }: Props, ref) => {
+  ({ grunnlag, readOnly }: Props, ref) => {
     const søknadGrunnlag = grunnlag.vurdering?.strukturertDokumentJson
       ? JSON.parse(grunnlag.vurdering?.strukturertDokumentJson)
       : {};
@@ -103,31 +101,15 @@ export const DigitaliserSøknad = forwardRef<Submittable, Props>(
       submit(setDokumentJson: setDokumentJson): void {
         console.log('submithandle called from digitaliser søknad');
         form.handleSubmit((data) => {
+          console.log("YOLO");
           setDokumentJson(mapTilSøknadKontrakt(data));
-        });
+        })();
       },
     }));
 
-    const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('DIGITALISER_DOKUMENT');
-
-    function onSubmit(event: FormEvent<HTMLFormElement>) {
-      form.handleSubmit((data) => {
-        løsBehovOgGåTilNesteSteg({
-          behandlingVersjon: behandlingsVersjon,
-          behov: {
-            behovstype: Behovstype.DIGITALISER_DOKUMENT,
-            strukturertDokument: mapTilSøknadKontrakt(data),
-          },
-          // @ts-ignore
-          referanse: behandlingsreferanse,
-        });
-      })(event);
-    }
-
     return (
       <VilkårsKort heading={'Digitaliser søknad'}>
-        <form onSubmit={onSubmit}>
-          <ServerSentEventStatusAlert status={status} />
+        <form>
           <VilkårsKort heading={'Personalia'}>
             <FormField form={form} formField={formFields.søknadsDato} />
           </VilkårsKort>
