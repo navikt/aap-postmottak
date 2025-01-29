@@ -1101,10 +1101,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-behandlingsflyt-typescript-types@npm:^0.0.368":
-  version: 0.0.368
-  resolution: "@navikt/aap-behandlingsflyt-typescript-types@npm:0.0.368::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-behandlingsflyt-typescript-types%2F0.0.368%2F0047fe49a65f651fad857369ff342ec9a3609155"
-  checksum: 10c0/bf1bbaf7f3b1aa7604c1d747448da691e148bfe777fb316320f83a26f8b0d7093c69a2f183ac5b1318e2cead413e09037a97e9235b54ac85a2f555981a0f736b
+"@navikt/aap-behandlingsflyt-typescript-types@npm:^0.0.384":
+  version: 0.0.384
+  resolution: "@navikt/aap-behandlingsflyt-typescript-types@npm:0.0.384::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-behandlingsflyt-typescript-types%2F0.0.384%2F99c48496a4f77fd736b2c6a40307b10f1bea296e"
+  checksum: 10c0/82e9fa54da58f31229fe539f8d770cc9943d237ab9ff346abf02990eee1c8b613d3e7176ead3bc3e5fa8db9d0bb1eaa051ea90cef9d771fbdd79ede075de01b4
   languageName: node
   linkType: hard
 
@@ -1157,10 +1157,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-postmottak-backend-typescript-types@npm:^0.0.79":
-  version: 0.0.79
-  resolution: "@navikt/aap-postmottak-backend-typescript-types@npm:0.0.79::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-postmottak-backend-typescript-types%2F0.0.79%2F748fcbd4a1e3b30c77a464fc64887eccdc49834a"
-  checksum: 10c0/ea212ea87725dbdf12ff22f01e33ddd969e8b44473bd1c8d446c6128b8247bb6fbf711b94e3562e4d8ae70edb60b4fabc3a6b5b1598fc98a3608d92775eb5ec9
+"@navikt/aap-postmottak-backend-typescript-types@npm:^0.0.87":
+  version: 0.0.87
+  resolution: "@navikt/aap-postmottak-backend-typescript-types@npm:0.0.87::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-postmottak-backend-typescript-types%2F0.0.87%2Fa3418cabf41a7a0e7676e2d50eeee59d416154fa"
+  checksum: 10c0/f2cc4e650de5f97521848ddd832422b93c8e9bef713f06fb022f47304ccd50886f04af5db1513a649b2302d4e713eaabc3f95bf5f854b6797190889b6349225e
   languageName: node
   linkType: hard
 
@@ -2293,12 +2293,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "aap-postmottak@workspace:."
   dependencies:
-    "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.368"
+    "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.384"
     "@navikt/aap-felles-css": "npm:^4.2.8"
     "@navikt/aap-felles-prettier": "npm:^4.2.8"
     "@navikt/aap-felles-react": "npm:^4.2.8"
     "@navikt/aap-felles-utils": "npm:^4.2.8"
-    "@navikt/aap-postmottak-backend-typescript-types": "npm:^0.0.79"
+    "@navikt/aap-postmottak-backend-typescript-types": "npm:^0.0.87"
     "@navikt/aksel-icons": "npm:^7.10.0"
     "@navikt/ds-css": "npm:^7.10.0"
     "@navikt/ds-react": "npm:^7.10.0"
