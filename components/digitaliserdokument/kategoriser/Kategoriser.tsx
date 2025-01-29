@@ -4,11 +4,16 @@ import { VilkårsKort } from '../../vilkårskort/VilkårsKort';
 import { FormField, useConfigForm } from '@navikt/aap-felles-react';
 import { FormEvent } from 'react';
 import { KategoriserDokumentKategori, Søknad } from '../../../lib/types/types';
+import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
+import { Submittable } from 'components/digitaliserdokument/DigitaliserDokument.tsx';
+import { ServerSentEventStatusAlert } from 'components/serversenteventstatusalert/ServerSentEventStatusAlert';
+import { ServerSentEventStatus } from 'app/api/post/[behandlingsreferanse]/hent/[gruppe]/[steg]/nesteSteg/route';
 
-interface Props {
-  kategori: KategoriserDokumentKategori;
-  onKategoriChange: (kategori: KategoriserDokumentKategori) => void;
+interface Props extends Submittable {
+  kategori?: KategoriserDokumentKategori;
   readOnly: boolean;
+  onKategoriChange: (kategori: KategoriserDokumentKategori) => void;
+  status: ServerSentEventStatus | undefined;
 }
 interface FormFields {
   kategori: KategoriserDokumentKategori;
@@ -40,7 +45,7 @@ const kategorier: { label: string; value: KategoriserDokumentKategori }[] = [
   },
 ];
 
-export const Kategoriser = ({ kategori, readOnly, onKategoriChange }: Props) => {
+export const Kategoriser = ({ kategori, readOnly, submit, onKategoriChange, status }: Props) => {
   const { formFields, form } = useConfigForm<FormFields>(
     {
       kategori: {
@@ -53,19 +58,14 @@ export const Kategoriser = ({ kategori, readOnly, onKategoriChange }: Props) => 
     },
     { readOnly }
   );
-
-  form.watch((value, info) => onKategoriChange(value.kategori!!));
-
-  const onChange = (event: FormEvent<HTMLFormElement>) => {
-    form.handleSubmit((data) => {
-      onKategoriChange(data.kategori);
-    });
-  };
+  form.watch((value) => value.kategori && onKategoriChange(value.kategori));
 
   return (
     <VilkårsKort heading={'Kategoriser'}>
-      <form onChange={onChange}>
+      <form onSubmit={form.handleSubmit((data) => submit(data.kategori, null))}>
+        <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.kategori} />
+        {kategori !== 'SØKNAD' && kategori !== 'PLIKTKORT' && <Nesteknapp>Send Inn</Nesteknapp>}
       </form>
     </VilkårsKort>
   );

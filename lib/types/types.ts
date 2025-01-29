@@ -18,6 +18,10 @@ export type LøsAvklaringsbehovPåBehandling =
 export type SettPåVentRequest = postmottak['schemas']['no.nav.aap.postmottak.api.flyt.SettP\u00E5VentRequest'];
 export type SettPåVentÅrsaker = postmottak['schemas']['no.nav.aap.postmottak.api.flyt.SettP\u00E5VentRequest']['grunn'];
 export type Venteinformasjon = postmottak['schemas']['no.nav.aap.postmottak.api.flyt.Venteinformasjon'];
+export type DigitaliseringsGrunnlag =
+  postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.strukturering.DigitaliseringGrunnlagDto'];
+export type KategoriserDokumentKategori =
+  postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.strukturering.DigitaliseringvurderingDto']['kategori'];
 export type JournalpostInfo =
   postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.dokument.DokumentInfoResponsDTO'];
 export type Dokument = postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.dokument.DokumentDto'];
@@ -26,12 +30,6 @@ export type AvklarTemaGrunnlag =
   postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.tema.AvklarTemaGrunnlagDto'];
 export type FinnSakGrunnlag = postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.sak.AvklarSakGrunnlagDto'];
 export type Saksinfo = postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.sak.SaksInfoDto'];
-export type KategoriserGrunnlag =
-  postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.kategorisering.KategoriseringGrunnlagDto'];
-export type KategoriserDokumentKategori =
-  postmottak['schemas']['no.nav.aap.postmottak.avklaringsbehov.l\u00F8sning.KategoriserDokumentL\u00F8sning']['kategori'];
-export type StruktureringGrunnlag =
-  postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.strukturering.StruktureringGrunnlagDto'];
 export type OverleveringGrunnlag =
   postmottak['schemas']['no.nav.aap.postmottak.api.faktagrunnlag.overlevering.OverleveringGrunnlagDto'];
 
