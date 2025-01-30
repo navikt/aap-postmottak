@@ -34,6 +34,7 @@ function mapVurderingTilValgtOption(vurdering: FinnSakGrunnlag['vurdering']) {
 }
 
 export const FinnSak = ({ behandlingsVersjon, behandlingsreferanse, grunnlag, readOnly }: Props) => {
+  const nySakOption = (grunnlag.saksinfo.length === 0 ? [{ label: 'Ny sak', value: NY }] : []);
   const { formFields, form } = useConfigForm<FormFields>(
     {
       knyttTilSak: {
@@ -42,8 +43,8 @@ export const FinnSak = ({ behandlingsVersjon, behandlingsreferanse, grunnlag, re
         rules: { required: 'Du må svare på hvilken sak dokumentet skal knyttes til' },
         defaultValue: mapVurderingTilValgtOption(grunnlag.vurdering),
         options: [
+          ...nySakOption,
           ...grunnlag.saksinfo.map(mapSaksinfoToValuePair),
-          { label: 'Ny sak', value: NY },
           { label: 'Generell Sak', value: GENERELL },
         ],
       },
