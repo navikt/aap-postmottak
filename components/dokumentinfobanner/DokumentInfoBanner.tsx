@@ -40,6 +40,10 @@ export const DokumentInfoBanner = ({
             <BodyShort size="small">{`Ident: ${journalpostInfo.avsender?.ident}`}</BodyShort>
           </div>
         )}
+        <div>
+          <Label size="small">Registrertdato</Label>
+          <BodyShort size="small">{journalpostInfo.registrertDato}</BodyShort>
+        </div>
       </div>
       <Dropdown>
         <Button

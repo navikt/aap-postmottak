@@ -5,7 +5,6 @@ import { userEvent } from '@testing-library/user-event';
 import { DigitaliseringsGrunnlag } from 'lib/types/types';
 const grunnlag: DigitaliseringsGrunnlag = {
   erPapir: false,
-  registrertDato: '01-20-2025',
   vurdering: {
     kategori: 'SØKNAD',
     strukturertDokumentJson: '{}',

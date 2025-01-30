@@ -2,7 +2,6 @@
 
 import { VilkårsKort } from '../../vilkårskort/VilkårsKort';
 import { FormField, useConfigForm } from '@navikt/aap-felles-react';
-import { FormEvent } from 'react';
 import { KategoriserDokumentKategori, Søknad } from '../../../lib/types/types';
 import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
 import { Submittable } from 'components/digitaliserdokument/DigitaliserDokument.tsx';
@@ -62,7 +61,7 @@ export const Kategoriser = ({ kategori, readOnly, submit, onKategoriChange, stat
 
   return (
     <VilkårsKort heading={'Kategoriser'}>
-      <form onSubmit={form.handleSubmit((data) => submit(data.kategori, null))}>
+      <form onSubmit={form.handleSubmit((data) => submit(data.kategori, null, null))}>
         <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.kategori} />
         {kategori !== 'SØKNAD' && kategori !== 'PLIKTKORT' && <Nesteknapp>Send Inn</Nesteknapp>}

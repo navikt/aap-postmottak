@@ -16,6 +16,7 @@ import { DigitaliseringsGrunnlag, Søknad } from '../../../lib/types/types';
 import { Student } from './Student';
 import { Submittable } from '../DigitaliserDokument.tsx';
 import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
+import {formaterDatoForFrontend} from "../../../lib/utils/date";
 
 export type Barn = {
   fnr?: string;
@@ -54,11 +55,13 @@ export const DigitaliserSøknad = ({ grunnlag, readOnly, submit }: Props) => {
   const søknadGrunnlag = grunnlag.vurdering?.strukturertDokumentJson
     ? JSON.parse(grunnlag.vurdering?.strukturertDokumentJson)
     : {};
+  const søknadsdato = grunnlag.vurdering?.søknadsdato;
   const { form, formFields } = useConfigForm<SøknadFormFields>(
     {
       søknadsDato: {
         type: 'date',
         label: 'Søknadsdato',
+        defaultValue: søknadsdato ? new Date(søknadsdato) : undefined,
       },
       yrkesSkade: {
         type: 'radio',
@@ -95,8 +98,9 @@ export const DigitaliserSøknad = ({ grunnlag, readOnly, submit }: Props) => {
 
   return (
     <VilkårsKort heading={'Digitaliser søknad'}>
-      <form onSubmit={form.handleSubmit((data) => submit('SØKNAD', mapTilSøknadKontrakt(data)))}>
+      <form onSubmit={form.handleSubmit((data) => submit('SØKNAD', mapTilSøknadKontrakt(data), data.søknadsDato))}>
         <VilkårsKort heading={'Personalia'}>
+          {grunnlag.erPapir && <p>Papirsøknader skal justeres for postgang</p>}
           <FormField form={form} formField={formFields.søknadsDato} />
         </VilkårsKort>
         <VilkårsKort heading={'Yrkesskade'}>
