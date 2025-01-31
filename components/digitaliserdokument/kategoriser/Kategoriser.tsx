@@ -14,9 +14,11 @@ interface Props extends Submittable {
   onKategoriChange: (kategori: KategoriserDokumentKategori) => void;
   status: ServerSentEventStatus | undefined;
 }
+
 interface FormFields {
   kategori: KategoriserDokumentKategori;
 }
+
 const kategorier: { label: string; value: KategoriserDokumentKategori }[] = [
   {
     label: 'Aktivitetskort',
@@ -42,6 +44,16 @@ const kategorier: { label: string; value: KategoriserDokumentKategori }[] = [
     label: 'Legeerklæring avvist',
     value: 'LEGEERKLÆRING_AVVIST',
   },
+  {
+    label: 'Annet relevant dokument',
+    value: 'ANNET_RELEVANT_DOKUMENT',
+  },
+];
+
+const kategorierSomSkalDigitaliseres: KategoriserDokumentKategori[] = [
+  'SØKNAD',
+  'PLIKTKORT',
+  'ANNET_RELEVANT_DOKUMENT',
 ];
 
 export const Kategoriser = ({ kategori, readOnly, submit, onKategoriChange, status }: Props) => {
@@ -64,7 +76,7 @@ export const Kategoriser = ({ kategori, readOnly, submit, onKategoriChange, stat
       <form onSubmit={form.handleSubmit((data) => submit(data.kategori, null, null))}>
         <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.kategori} />
-        {kategori !== 'SØKNAD' && kategori !== 'PLIKTKORT' && <Nesteknapp>Send Inn</Nesteknapp>}
+        {kategori && !kategorierSomSkalDigitaliseres.includes(kategori) && <Nesteknapp>Send Inn</Nesteknapp>}
       </form>
     </VilkårsKort>
   );

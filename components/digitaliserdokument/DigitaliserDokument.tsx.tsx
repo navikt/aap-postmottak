@@ -7,7 +7,8 @@ import { DigitaliserSøknad } from './søknad/DigitaliserSøknad';
 import { DigitaliserMeldekort } from './meldekort/DigitaliserMeldekort';
 import { Behovstype } from '../../lib/form';
 import { useLøsBehovOgGåTilNesteSteg } from '../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
-import {formaterDatoForBackend} from "../../lib/utils/date";
+import { formaterDatoForBackend } from '../../lib/utils/date';
+import { DigitaliserAnnetRelevantDokument } from './annetrelevantdokument/DigitaliserAnnetRelevantDokument';
 
 interface Props {
   behandlingsVersjon: number;
@@ -55,6 +56,9 @@ export const DigitaliserDokument = ({ behandlingsVersjon, behandlingsreferanse, 
           behandlingsreferanse={behandlingsreferanse}
           readOnly={readOnly}
         />
+      )}
+      {kategori === 'ANNET_RELEVANT_DOKUMENT' && (
+        <DigitaliserAnnetRelevantDokument submit={handleSubmit} grunnlag={grunnlag} readOnly={readOnly} />
       )}
     </>
   );

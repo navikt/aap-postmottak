@@ -35,3 +35,6 @@ export type OverleveringGrunnlag =
 
 export type Søknad =
   behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.kontrakt.hendelse.dokumenter.S\u00F8knadV0'];
+export type AnnetRelevantDokument =
+  behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.kontrakt.hendelse.dokumenter.AnnetRelevantDokumentV0'];
+export type ÅrsakTilBehandling = AnnetRelevantDokument['årsakTilBehandling'];
