@@ -2,12 +2,11 @@
 
 import { FormField, useConfigForm } from '@navikt/aap-felles-react';
 import {
-  JaEllerNei,
-  JaEllerNeiOptions,
-  JaNeiAvbrutt,
+  JaNeiAvbruttIkkeOppgitt,
+  JaNeiIkkeOppgitt,
   JaNeiVetIkke,
-  stringToJaEllerNei,
-  stringToJaNeiAvbrutt,
+  stringToJaNeiAvbruttIkkeOppgitt,
+  stringToJaNeiIkkeOppgitt,
   stringToJaNeiVetikke,
 } from '../../../lib/form';
 import { VilkårsKort } from '../../vilkårskort/VilkårsKort';
@@ -16,7 +15,6 @@ import { DigitaliseringsGrunnlag, Søknad } from '../../../lib/types/types';
 import { Student } from './Student';
 import { Submittable } from '../DigitaliserDokument.tsx';
 import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
-import {formaterDatoForFrontend} from "../../../lib/utils/date";
 
 export type Barn = {
   fnr?: string;
@@ -27,8 +25,8 @@ export type Barn = {
 
 export interface SøknadFormFields {
   søknadsDato: Date;
-  yrkesSkade: JaEllerNei;
-  erStudent: JaNeiAvbrutt;
+  yrkesSkade: JaNeiIkkeOppgitt;
+  erStudent: JaNeiAvbruttIkkeOppgitt;
   studentKommeTilbake: JaNeiVetIkke;
   oppgitteBarn: Barn[];
 }
@@ -41,10 +39,10 @@ interface Props extends Submittable {
 function mapTilSøknadKontrakt(data: SøknadFormFields) {
   return JSON.stringify({
     student: {
-      erStudent: data.erStudent,
+      erStudent: data.erStudent === JaNeiAvbruttIkkeOppgitt.IKKE_OPPGITT ? null : data.erStudent,
       kommeTilbake: data.studentKommeTilbake || null,
     },
-    yrkesskade: data.yrkesSkade,
+    yrkesskade: data.yrkesSkade === JaNeiIkkeOppgitt.IKKE_OPPGITT ? null : data.yrkesSkade,
     oppgitteBarn: data.oppgitteBarn?.length
       ? { identer: data.oppgitteBarn.map((barn) => ({ identifikator: barn.fnr })) }
       : null,
@@ -62,20 +60,28 @@ export const DigitaliserSøknad = ({ grunnlag, readOnly, submit }: Props) => {
         type: 'date',
         label: 'Søknadsdato',
         defaultValue: søknadsdato ? new Date(søknadsdato) : undefined,
+        rules: { required: 'Du må oppgi søknadsdato' },
       },
       yrkesSkade: {
         type: 'radio',
         label: 'Yrkesskade',
-        options: JaEllerNeiOptions,
-        defaultValue: søknadGrunnlag.yrkesskade ? stringToJaEllerNei(søknadGrunnlag.yrkesskade) : undefined,
+        options: [JaNeiIkkeOppgitt.JA, JaNeiIkkeOppgitt.NEI, JaNeiIkkeOppgitt.IKKE_OPPGITT],
+        defaultValue: søknadGrunnlag.yrkesskade ? stringToJaNeiIkkeOppgitt(søknadGrunnlag.yrkesskade) : undefined,
+        rules: { required: 'Du må velge om søker har oppgitt en yrkesskade' },
       },
       erStudent: {
         type: 'radio',
         label: 'Er søkeren student?',
-        options: [JaNeiAvbrutt.JA, JaNeiAvbrutt.NEI, JaNeiAvbrutt.AVBRUTT],
+        options: [
+          JaNeiAvbruttIkkeOppgitt.JA,
+          JaNeiAvbruttIkkeOppgitt.NEI,
+          JaNeiAvbruttIkkeOppgitt.AVBRUTT,
+          JaNeiAvbruttIkkeOppgitt.IKKE_OPPGITT,
+        ],
         defaultValue: søknadGrunnlag.student?.erStudent
-          ? stringToJaNeiAvbrutt(søknadGrunnlag.student.erStudent)
+          ? stringToJaNeiAvbruttIkkeOppgitt(søknadGrunnlag.student.erStudent)
           : undefined,
+        rules: { required: 'Du må velge et alternativ om søkers student-status' },
       },
       studentKommeTilbake: {
         type: 'radio',

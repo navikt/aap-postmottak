@@ -14,7 +14,7 @@ export const SplitVindu = ({ dokumentvisning, children }: Props) => {
   return (
     <HGrid columns={is3070Split ? '1fr 2fr' : '1fr 1fr'} gap={'4'} className={styles.splitVindu}>
       <div>
-        <HStack padding={'1'}>
+        <HStack padding={'1'} justify={'end'}>
           <Button
             size={'small'}
             icon={is3070Split ? <ExpandIcon /> : <SidebarLeftIcon />}

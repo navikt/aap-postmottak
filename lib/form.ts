@@ -13,6 +13,21 @@ export function stringToJaEllerNei(value: string) {
   }
 }
 
+export enum JaNeiIkkeOppgitt {
+  JA = 'Ja',
+  NEI = 'Nei',
+  IKKE_OPPGITT = 'Ikke oppgitt',
+}
+export function stringToJaNeiIkkeOppgitt(value: string) {
+  switch (value) {
+    case 'Ja':
+      return JaNeiIkkeOppgitt.JA;
+    case 'Nei':
+      return JaNeiIkkeOppgitt.NEI;
+    case 'Ikke oppgitt':
+      return JaNeiIkkeOppgitt.IKKE_OPPGITT;
+  }
+}
 export enum JaNeiVetIkke {
   JA = 'Ja',
   NEI = 'Nei',
@@ -26,6 +41,24 @@ export function stringToJaNeiVetikke(value: string) {
       return JaNeiVetIkke.NEI;
     case 'Vet ikke':
       return JaNeiVetIkke.VET_IKKE;
+  }
+}
+export enum JaNeiAvbruttIkkeOppgitt {
+  JA = 'Ja',
+  NEI = 'Nei',
+  AVBRUTT = 'Avbrutt',
+  IKKE_OPPGITT = 'Ikke oppgitt',
+}
+export function stringToJaNeiAvbruttIkkeOppgitt(value: string) {
+  switch (value) {
+    case 'Ja':
+      return JaNeiAvbruttIkkeOppgitt.JA;
+    case 'Nei':
+      return JaNeiAvbruttIkkeOppgitt.NEI;
+    case 'Avbrutt':
+      return JaNeiAvbruttIkkeOppgitt.AVBRUTT;
+    case 'Ikke oppgitt':
+      return JaNeiAvbruttIkkeOppgitt.IKKE_OPPGITT;
   }
 }
 export enum JaNeiAvbrutt {
