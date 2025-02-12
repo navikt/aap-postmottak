@@ -96,6 +96,11 @@ export const forberedBehandlingOgVentPåProsessering = async (
   return await fetchProxy(url, dokumentMottakApiScope, 'GET').then(() => ventTilProsesseringErFerdig(referanse));
 };
 
+export const auditlog = async (journalpostId: number) => {
+  const url = `${dokumentMottakApiBaseUrl}/api/journalpost/${journalpostId}/auditlog`;
+  return await fetchProxy(url, dokumentMottakApiScope, 'POST');
+};
+
 // TODO: Fjern denne - testendepunkt
 export const opprettBehandlingForJournalpost = async (body: { journalpostId: number }) => {
   const url = `${dokumentMottakApiBaseUrl}/api/behandling`;
