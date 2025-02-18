@@ -1101,10 +1101,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-behandlingsflyt-typescript-types@npm:^0.0.521":
-  version: 0.0.521
-  resolution: "@navikt/aap-behandlingsflyt-typescript-types@npm:0.0.521::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-behandlingsflyt-typescript-types%2F0.0.521%2Faab164dba7173d49939a8d9349ba719e682b8d1a"
-  checksum: 10c0/64812e233db528bf1d114ab2a641a90e3d078134c5e57470da80b457b7084f4b1c634a16b0d94e2233565063f291a514f72cf705cbc453d52d8390a4360a05ac
+"@navikt/aap-behandlingsflyt-typescript-types@npm:^0.0.530":
+  version: 0.0.530
+  resolution: "@navikt/aap-behandlingsflyt-typescript-types@npm:0.0.530::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-behandlingsflyt-typescript-types%2F0.0.530%2Ffa06d343501f27499ca9103e6b8f164c742dc3f4"
+  checksum: 10c0/a17f2b53e492de5752661fa6a7d5776a9f04ba2a0ea4a8a4b74185b2e0eee14026e0daf14157d2aded1f3af683de09ac32bc48fcf349c1cc14d062ab1c0d6ded
   languageName: node
   linkType: hard
 
@@ -2291,7 +2291,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "aap-postmottak@workspace:."
   dependencies:
-    "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.521"
+    "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.530"
     "@navikt/aap-felles-css": "npm:^4.3.4"
     "@navikt/aap-felles-prettier": "npm:^4.3.4"
     "@navikt/aap-felles-react": "npm:^5.0.2"
