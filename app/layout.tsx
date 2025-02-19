@@ -4,7 +4,7 @@ import 'styles/globals.css';
 
 import type { Metadata } from 'next';
 
-import { hentBrukerInformasjon, verifyUserLoggedIn } from '@navikt/aap-felles-utils';
+import { hentBrukerInformasjon } from '@navikt/aap-felles-utils';
 import styles from './layout.module.css';
 import { KelvinAppHeader } from '@navikt/aap-felles-react/cjs/KelvinAppHeader/KelvinAppHeader';
 
@@ -18,7 +18,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await verifyUserLoggedIn();
   const brukerInformasjon = await hentBrukerInformasjon();
 
   return (
