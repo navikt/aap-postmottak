@@ -14,7 +14,7 @@ export const Dokumentvisning = ({ journalpostId, dokumenter }: Props) => {
   const [dataUri, setDataUri] = useState<string>();
   useEffect(() => {
     const hentDokument = async (dokumentInfoId: string) => {
-      fetch(`/api/post/dokumenter/${journalpostId}/${dokumentInfoId}`, { method: 'GET' })
+      fetch(`/postmottak/api/post/dokumenter/${journalpostId}/${dokumentInfoId}`, { method: 'GET' })
         .then((res) => res.blob())
         .then((blob: Blob) => {
           let reader = new FileReader();
