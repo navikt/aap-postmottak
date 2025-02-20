@@ -27,27 +27,31 @@ async function fetchProxy<ResponseBody>(
 }
 
 export function løsBehov(avklaringsBehov: LøsAvklaringsbehovPåBehandling) {
-  return fetchProxy('/api/post/los-behov/', 'POST', avklaringsBehov);
+  return fetchProxy('/postmottak/api/post/los-behov/', 'POST', avklaringsBehov);
 }
 export function settPåVent(behandlingsreferanse: string, body: SettPåVentRequest) {
-  return fetchProxy(`/api/post/${behandlingsreferanse}/sett-pa-vent/`, 'POST', body);
+  return fetchProxy(`/postmottak/api/post/${behandlingsreferanse}/sett-pa-vent/`, 'POST', body);
 }
 export function endreTema(behandlingsreferanse: string): Promise<string | undefined> {
-  return fetchProxy<{ redirectUrl: string }>(`/api/post/${behandlingsreferanse}/endre-tema`, 'POST', {}).then(
-    (resp) => resp?.redirectUrl
-  );
+  return fetchProxy<{ redirectUrl: string }>(
+    `/postmottak/api/post/${behandlingsreferanse}/endre-tema`,
+    'POST',
+    {}
+  ).then((resp) => resp?.redirectUrl);
 }
+
 // TODO: Test-endepunkt - skal fjernes
 export function opprettBehandling(journalpostId: number) {
-  return fetchProxy<{ referanse: number }>('/api/test/behandling/opprett/', 'POST', { referanse: journalpostId });
+  return fetchProxy<{ referanse: number }>('/postmottak/api/test/behandling/opprett/', 'POST', {
+    referanse: journalpostId,
+  });
 }
 
 // TODO: Test/admin endepunkt
 // TODO: Fjern denne - testendepunkt eller featuretoggle kun til test - skal ikke i prod
 export const rekjørFeiledeJobber = async () => {
-  return fetchProxy('/drift/api/jobb/rekjorAlleFeilede/', 'GET');
+  return fetchProxy('/postmottak/drift/api/jobb/rekjorAlleFeilede/', 'GET');
 };
-
 export interface SaksInformasjon {
   søker: {
     navn: string;

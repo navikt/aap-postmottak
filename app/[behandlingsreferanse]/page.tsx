@@ -13,7 +13,7 @@ const Page = async (props: { params: Promise<PageProps> }) => {
     return notFound();
   }
 
-  redirect(`/postmottak/${params.behandlingsreferanse}/${flyt.aktivGruppe}`);
+  redirect(`/${params.behandlingsreferanse}/${flyt.aktivGruppe}`);
 };
 
 export default Page;

@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { ServerSentEventData, ServerSentEventStatus } from '../../app/api/post/[behandlingsreferanse]/hent/[gruppe]/[steg]/nesteSteg/route';
+import {
+  ServerSentEventData,
+  ServerSentEventStatus,
+} from '../../app/api/post/[behandlingsreferanse]/hent/[gruppe]/[steg]/nesteSteg/route';
 import { useParams, useRouter } from 'next/navigation';
 import { LøsAvklaringsbehovPåBehandling, StegType } from 'lib/types/types';
 import { løsBehov } from 'lib/clientApi';
@@ -23,7 +26,7 @@ export const useLøsBehovOgGåTilNesteSteg = (
   const listenSSE = () => {
     setIsLoading(true);
     const eventSource = new EventSource(
-      `/api/post/${params.behandlingsreferanse}/hent/${params.aktivGruppe}/${steg}/nesteSteg/`,
+      `/postmottak/api/post/${params.behandlingsreferanse}/hent/${params.aktivGruppe}/${steg}/nesteSteg/`,
       {
         withCredentials: true,
       }
@@ -34,7 +37,7 @@ export const useLøsBehovOgGåTilNesteSteg = (
         eventSource.close();
         if (eventData.skalBytteGruppe || eventData.skalBytteSteg) {
           // TODO: Legge tilbake igjen hash for aktivt-steg hvis vi tar i bruk dette?
-          router.push(`/postmottak/${params.behandlingsreferanse}/${eventData.aktivGruppe}/`);
+          router.push(`/${params.behandlingsreferanse}/${eventData.aktivGruppe}/`);
         }
         router.refresh();
         setIsLoading(false);

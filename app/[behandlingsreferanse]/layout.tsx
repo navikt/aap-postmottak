@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { DokumentInfoBanner } from 'components/dokumentinfobanner/DokumentInfoBanner';
-import styles from './layout.module.css';
+import styles from 'app/[behandlingsreferanse]/layout.module.css';
 import { StegGruppeIndikatorAksel } from 'components/steggruppeindikator/StegGruppeIndikatorAksel';
 import { SplitVindu } from 'components/splitvindu/SplitVindu';
 import {
@@ -11,8 +11,8 @@ import {
   hentJournalpostInfo,
 } from 'lib/services/dokumentmottakservice/dokumentMottakService';
 import { Dokumentvisning } from 'components/dokumentvisning/Dokumentvisning';
-import { BehandlingPVentMedDataFetching } from '../../../components/behandlingpåvent/BehandlingPåVentMedDataFetching';
-import { FlytProsesseringAlert } from '../../../components/flytprosesseringalert/FlytProsesseringAlert';
+import { BehandlingPVentMedDataFetching } from 'components/behandlingpåvent/BehandlingPåVentMedDataFetching';
+import { FlytProsesseringAlert } from 'components/flytprosesseringalert/FlytProsesseringAlert';
 
 interface LayoutProps {
   children: ReactNode;
