@@ -3,6 +3,7 @@ import { AnnetRelevantDokument, DigitaliseringsGrunnlag, ÅrsakTilBehandling } f
 import { FormField, useConfigForm, ValuePair } from '@navikt/aap-felles-react';
 import { VilkårsKort } from '../../vilkårskort/VilkårsKort';
 import { Nesteknapp } from '../../nesteknapp/Nesteknapp';
+import { VStack } from '@navikt/ds-react';
 
 export interface AnnetRelevantDokumentFormFields {
   årsak: String;
@@ -57,8 +58,10 @@ export const DigitaliserAnnetRelevantDokument = ({ grunnlag, readOnly, submit }:
           submit('ANNET_RELEVANT_DOKUMENT', mapTilAnnetRelevantDokumentKontrakt(data), null)
         )}
       >
-        <FormField form={form} formField={formFields.årsak} />
-        <Nesteknapp>Send Inn</Nesteknapp>
+        <VStack gap={'6'}>
+          <FormField form={form} formField={formFields.årsak} />
+          <Nesteknapp>Send Inn</Nesteknapp>
+        </VStack>
       </form>
     </VilkårsKort>
   );

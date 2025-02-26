@@ -8,6 +8,7 @@ import { useLøsBehovOgGåTilNesteSteg } from '../../lib/hooks/LøsBehovOgGåTil
 import { FinnSakGrunnlag, Saksinfo } from '../../lib/types/types';
 import { ServerSentEventStatusAlert } from '../serversenteventstatusalert/ServerSentEventStatusAlert';
 import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
+import { HStack, VStack } from '@navikt/ds-react';
 
 interface Props {
   behandlingsVersjon: number;
@@ -34,12 +35,12 @@ function mapVurderingTilValgtOption(vurdering: FinnSakGrunnlag['vurdering']) {
 }
 
 export const FinnSak = ({ behandlingsVersjon, behandlingsreferanse, grunnlag, readOnly }: Props) => {
-  const nySakOption = (grunnlag.saksinfo.length === 0 ? [{ label: 'Ny sak', value: NY }] : []);
+  const nySakOption = grunnlag.saksinfo.length === 0 ? [{ label: 'Ny sak', value: NY }] : [];
   const { formFields, form } = useConfigForm<FormFields>(
     {
       knyttTilSak: {
         type: 'radio',
-        label: 'Journalfør på sak',
+        label: 'Journalfør dokumentet på sak',
         rules: { required: 'Du må svare på hvilken sak dokumentet skal knyttes til' },
         defaultValue: mapVurderingTilValgtOption(grunnlag.vurdering),
         options: [
@@ -68,13 +69,17 @@ export const FinnSak = ({ behandlingsVersjon, behandlingsreferanse, grunnlag, re
     })(event);
   };
   return (
-    <VilkårsKort heading={'Avklar sak'}>
-      <form onSubmit={onSubmit}>
-        <ServerSentEventStatusAlert status={status} />
-        <FormField form={form} formField={formFields.knyttTilSak} />
-        <Nesteknapp disabled={readOnly}>Send inn</Nesteknapp>
-      </form>
-    </VilkårsKort>
+    <VStack padding={'4'} gap={'4'}>
+      <VilkårsKort heading={'Avklar sak'}>
+        <form onSubmit={onSubmit}>
+          <VStack gap={'6'}>
+            <ServerSentEventStatusAlert status={status} />
+            <FormField form={form} formField={formFields.knyttTilSak} />
+            <Nesteknapp disabled={readOnly}>Send inn</Nesteknapp>
+          </VStack>
+        </form>
+      </VilkårsKort>
+    </VStack>
   );
 };
 

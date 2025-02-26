@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Button, HStack } from '@navikt/ds-react';
+import { Button, HStack, Tabs, VStack } from '@navikt/ds-react';
 import { Dokument } from 'lib/types/types';
 
 interface Props {
@@ -32,19 +32,19 @@ export const Dokumentvisning = ({ journalpostId, dokumenter }: Props) => {
     }
   }, [valgtDokumentIndex]);
   return (
-    <div>
-      <HStack gap={'1'} padding={'1'}>
-        {dokumenter.map((dokument, index) => (
-          <Button
-            key={dokument.dokumentInfoId}
-            onClick={() => setValgtDokumentIndex(index)}
-            type={'button'}
-            size={'small'}
-          >
-            {dokument.tittel}
-          </Button>
-        ))}
-      </HStack>
+    <VStack paddingBlock={'4'}>
+      <Tabs defaultValue="0" size="small">
+        <Tabs.List>
+          {dokumenter.map((dokument, index) => (
+            <Tabs.Tab
+              key={dokument.dokumentInfoId}
+              value={`${index}`}
+              label={`${dokument.tittel}`}
+              onClick={() => setValgtDokumentIndex(index)}
+            />
+          ))}
+        </Tabs.List>
+      </Tabs>
       {dataUri && (
         <object data={`${dataUri}#toolbar=0`} type="application/pdf" width="100%" height="100%">
           <p>
@@ -52,6 +52,6 @@ export const Dokumentvisning = ({ journalpostId, dokumenter }: Props) => {
           </p>
         </object>
       )}
-    </div>
+    </VStack>
   );
 };

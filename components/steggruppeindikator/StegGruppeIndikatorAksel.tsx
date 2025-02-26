@@ -3,7 +3,35 @@
 import { Stepper } from '@navikt/ds-react';
 import style from './StegGruppeIndikator.module.css';
 import { BehandlingFlytOgTilstand, FlytGruppe } from 'lib/types/types';
+import { exhaustiveCheck } from 'lib/utils/typescript';
 
+function stegGruppeNavnTilLabel(stegGruppeNavn: FlytGruppe['stegGruppe']) {
+  switch (stegGruppeNavn) {
+    case 'AVKLAR_TEMA':
+      return 'Avklar tema';
+    case 'AVKLAR_SAK':
+      return 'Avklar sak';
+    case 'KATEGORISER':
+      return 'Kategoriser';
+    case 'DIGITALISER':
+      return 'Kategoriser';
+    case 'OVERLEVER_TIL_FAGSYSTEM':
+      return 'Send til fagsystem';
+    case 'ENDELIG_JOURNALFØRING':
+      return 'Endelig journalføring';
+    case 'START_BEHANDLING':
+      return 'Start behandling';
+    case 'UDEFINERT':
+      return 'Udefinert';
+    case 'VIDERESEND':
+      return 'Videresend';
+    case 'IVERKSETTES':
+      return 'Iverksettes';
+    case 'SETT_FAGSAK':
+      return 'Sett fagsak';
+  }
+  exhaustiveCheck(stegGruppeNavn);
+}
 export const StegGruppeIndikatorAksel = ({
   behandlingsreferanse,
   stegGrupper,
@@ -26,7 +54,7 @@ export const StegGruppeIndikatorAksel = ({
             href={`/postmottak/${behandlingsreferanse}/${steg.stegGruppe}`}
             interactive={steg.erFullført || flytRespons.aktivGruppe === steg.stegGruppe}
           >
-            {steg.stegGruppe}
+            {stegGruppeNavnTilLabel(steg.stegGruppe)}
           </Stepper.Step>
         ))}
       </Stepper>

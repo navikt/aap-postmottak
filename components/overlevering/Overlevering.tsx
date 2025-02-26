@@ -8,6 +8,7 @@ import { VilkårsKort } from '../vilkårskort/VilkårsKort';
 import { ServerSentEventStatusAlert } from '../serversenteventstatusalert/ServerSentEventStatusAlert';
 import { Nesteknapp } from '../nesteknapp/Nesteknapp';
 import { FormEvent, FormEventHandler } from 'react';
+import { VStack } from '@navikt/ds-react';
 
 interface Props {
   behandlingsVersjon: number;
@@ -25,7 +26,8 @@ export const Overlevering = ({ behandlingsVersjon, behandlingsreferanse, grunnla
     {
       skalOverleveres: {
         type: 'radio',
-        label: 'Skal dokumentet overleveres til fagsystem? Dette kan føre til revurdering',
+        label: 'Skal dokumentet sendes til fagsystem?',
+        description: 'Hvis dokumentet sendes til fagsystemet kan det føre til en revurdering',
         rules: { required: 'Du må svare på om dokumentet skal overleveres til fagsystem' },
         defaultValue: getJaNeiEllerUndefined(grunnlag.vurdering?.skalOverleveres),
         options: JaEllerNeiOptions,
@@ -51,12 +53,16 @@ export const Overlevering = ({ behandlingsVersjon, behandlingsreferanse, grunnla
   };
 
   return (
-    <VilkårsKort heading={'Avklar overlevering'}>
-      <form onSubmit={onSubmit}>
-        <ServerSentEventStatusAlert status={status} />
-        <FormField form={form} formField={formFields.skalOverleveres} />
-        <Nesteknapp disabled={readOnly}>Bekreft</Nesteknapp>
-      </form>
-    </VilkårsKort>
+    <VStack padding={'4'} gap={'4'}>
+      <VilkårsKort heading={'Send dokument'}>
+        <form onSubmit={onSubmit}>
+          <VStack gap={'6'}>
+            <ServerSentEventStatusAlert status={status} />
+            <FormField form={form} formField={formFields.skalOverleveres} />
+            <Nesteknapp disabled={readOnly}>Send inn</Nesteknapp>
+          </VStack>
+        </form>
+      </VilkårsKort>
+    </VStack>
   );
 };

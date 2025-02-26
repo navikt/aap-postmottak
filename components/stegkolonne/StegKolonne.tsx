@@ -5,6 +5,7 @@ import { FinnSakMedDataFetching } from '../finnsak/FinnSakMedDataFetching';
 import { DigitaliserDokumentMedDatafetching } from '../digitaliserdokument/DigitaliserDokumentMedDatafetching';
 import React from 'react';
 import { OverleveringMedDataFetching } from '../overlevering/OverleveringMedDataFetching';
+import { Alert, VStack } from '@navikt/ds-react';
 
 interface Props {
   aktivGruppe: StegGruppe;
@@ -24,6 +25,16 @@ export const StegKolonne = ({ aktivGruppe, behandlingsreferanse }: Props) => {
         <StegSuspense>
           <FinnSakMedDataFetching behandlingsreferanse={behandlingsreferanse} />
         </StegSuspense>
+      )}
+      {aktivGruppe === 'VIDERESEND' && (
+        <VStack padding={'4'} gap={'4'}>
+          <Alert variant={'success'}>Dokumentet er journalført.</Alert>
+        </VStack>
+      )}
+      {aktivGruppe === 'IVERKSETTES' && (
+        <VStack padding={'4'} gap={'4'}>
+          <Alert variant={'success'}>Dokumentet er kategorisert og sendt.</Alert>
+        </VStack>
       )}
       {aktivGruppe === 'DIGITALISER' && (
         <StegSuspense>

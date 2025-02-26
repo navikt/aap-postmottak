@@ -15,6 +15,7 @@ import { DigitaliseringsGrunnlag, Søknad } from '../../../lib/types/types';
 import { Student } from './Student';
 import { Submittable } from '../DigitaliserDokument.tsx';
 import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
+import { VStack } from '@navikt/ds-react';
 
 export type Barn = {
   fnr?: string;
@@ -105,16 +106,18 @@ export const DigitaliserSøknad = ({ grunnlag, readOnly, submit }: Props) => {
   return (
     <VilkårsKort heading={'Digitaliser søknad'}>
       <form onSubmit={form.handleSubmit((data) => submit('SØKNAD', mapTilSøknadKontrakt(data), data.søknadsDato))}>
-        <VilkårsKort heading={'Personalia'}>
-          {grunnlag.erPapir && <p>Papirsøknader skal justeres for postgang</p>}
-          <FormField form={form} formField={formFields.søknadsDato} />
-        </VilkårsKort>
-        <VilkårsKort heading={'Yrkesskade'}>
-          <FormField form={form} formField={formFields.yrkesSkade} />
-        </VilkårsKort>
-        <Barnetillegg form={form} readOnly={readOnly} />
-        <Student form={form} formFields={formFields} />
-        <Nesteknapp>Send Inn</Nesteknapp>
+        <VStack gap={'6'}>
+          <VStack gap={'3'}>
+            {grunnlag.erPapir && <p>Papirsøknader skal justeres for postgang</p>}
+            <FormField form={form} formField={formFields.søknadsDato} />
+          </VStack>
+          <div>
+            <FormField form={form} formField={formFields.yrkesSkade} />
+          </div>
+          <Barnetillegg form={form} readOnly={readOnly} />
+          <Student form={form} formFields={formFields} />
+          <Nesteknapp>Neste</Nesteknapp>
+        </VStack>
       </form>
     </VilkårsKort>
   );

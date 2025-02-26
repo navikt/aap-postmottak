@@ -1,5 +1,5 @@
 import { VilkårsKort } from '../../vilkårskort/VilkårsKort';
-import { Button, HStack, Table } from '@navikt/ds-react';
+import { Button, HStack, Label, Table, VStack } from '@navikt/ds-react';
 import { useFieldArray, UseFormReturn } from 'react-hook-form';
 import { SøknadFormFields } from './DigitaliserSøknad';
 import { SelectWrapper, TextFieldWrapper } from '@navikt/aap-felles-react';
@@ -12,16 +12,25 @@ interface Props {
 export const Barnetillegg = ({ form, readOnly }: Props) => {
   const { fields, append, remove } = useFieldArray({ control: form.control, name: 'oppgitteBarn' });
   return (
-    <VilkårsKort heading={'Barnetillegg'}>
+    <VStack gap={'3'}>
+      <Label size={'small'}>Barnetillegg</Label>
       {fields.length > 0 && (
         <Table size="small">
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell scope="col">Fødselsnr.</Table.HeaderCell>
-              <Table.HeaderCell scope="col">Fornavn</Table.HeaderCell>
-              <Table.HeaderCell scope="col">Etternavn</Table.HeaderCell>
-              <Table.HeaderCell scope="col">Relasjon</Table.HeaderCell>
-              <Table.HeaderCell scope="col"></Table.HeaderCell>
+              <Table.HeaderCell textSize={'small'} scope="col">
+                Fødselsnr.
+              </Table.HeaderCell>
+              <Table.HeaderCell textSize={'small'} scope="col">
+                Fornavn
+              </Table.HeaderCell>
+              <Table.HeaderCell textSize={'small'} scope="col">
+                Etternavn
+              </Table.HeaderCell>
+              <Table.HeaderCell textSize={'small'} scope="col">
+                Relasjon
+              </Table.HeaderCell>
+              <Table.HeaderCell textSize={'small'} scope="col"></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
@@ -91,12 +100,11 @@ export const Barnetillegg = ({ form, readOnly }: Props) => {
           </Table.Body>
         </Table>
       )}
-      {/*@ts-ignore*/}
-      <HStack padding={'4 0 0 0'}>
-        <Button disabled={readOnly} size={'small'} type={'button'} onClick={() => append({})}>
+      <HStack>
+        <Button variant={'secondary'} disabled={readOnly} size={'small'} type={'button'} onClick={() => append({})}>
           Legg til
         </Button>
       </HStack>
-    </VilkårsKort>
+    </VStack>
   );
 };

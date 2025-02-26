@@ -10,6 +10,7 @@ import { getJaNeiEllerUndefined } from 'lib/form';
 import { ServerSentEventStatusAlert } from 'components/serversenteventstatusalert/ServerSentEventStatusAlert';
 import { endreTema, løsBehov } from 'lib/clientApi';
 import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
+import { VStack } from '@navikt/ds-react';
 
 interface Props {
   behandlingsVersjon: number;
@@ -22,20 +23,20 @@ interface FormFields {
   erTemaAAP: string;
 }
 
-export const AvklarTema = ({behandlingsVersjon, behandlingsreferanse, grunnlag, readOnly}: Props) => {
-  const {formFields, form} = useConfigForm<FormFields>(
+export const AvklarTema = ({ behandlingsVersjon, behandlingsreferanse, grunnlag, readOnly }: Props) => {
+  const { formFields, form } = useConfigForm<FormFields>(
     {
       erTemaAAP: {
         type: 'radio',
-        label: 'Er dokumentet riktig journalført på tema AAP?',
-        rules: {required: 'Du må svare på om dokumentet har riktig tema'},
+        label: 'Hører dette dokumentet til tema AAP?',
+        rules: { required: 'Du må svare på om dokumentet har riktig tema' },
         defaultValue: getJaNeiEllerUndefined(grunnlag.vurdering?.skalTilAap),
         options: JaEllerNeiOptions,
       },
     },
-    {readOnly}
+    { readOnly }
   );
-  const {løsBehovOgGåTilNesteSteg, status} = useLøsBehovOgGåTilNesteSteg('AVKLAR_TEMA');
+  const { løsBehovOgGåTilNesteSteg, status } = useLøsBehovOgGåTilNesteSteg('AVKLAR_TEMA');
   const onSubmit: FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
     form.handleSubmit((data) => {
       if (data.erTemaAAP === JaEllerNei.Ja) {
@@ -57,18 +58,24 @@ export const AvklarTema = ({behandlingsVersjon, behandlingsreferanse, grunnlag, 
           },
           // @ts-ignore
           referanse: behandlingsreferanse,
-        }).then(() => endreTema(behandlingsreferanse).then((redirectUrl) => redirectUrl && window.location.replace(redirectUrl)));
+        }).then(() =>
+          endreTema(behandlingsreferanse).then((redirectUrl) => redirectUrl && window.location.replace(redirectUrl))
+        );
       }
     })(event);
   };
 
   return (
-    <VilkårsKort heading={'Avklar tema'}>
-      <form onSubmit={onSubmit}>
-        <ServerSentEventStatusAlert status={status}/>
-        <FormField form={form} formField={formFields.erTemaAAP}/>
-        <Nesteknapp>Bekreft</Nesteknapp>
-      </form>
-    </VilkårsKort>
+    <VStack padding={'4'} gap={'4'}>
+      <VilkårsKort heading={'Avklar tema'}>
+        <form onSubmit={onSubmit}>
+          <VStack gap={'6'}>
+            <ServerSentEventStatusAlert status={status} />
+            <FormField form={form} formField={formFields.erTemaAAP} />
+            <Nesteknapp>Neste</Nesteknapp>
+          </VStack>
+        </form>
+      </VilkårsKort>
+    </VStack>
   );
 };

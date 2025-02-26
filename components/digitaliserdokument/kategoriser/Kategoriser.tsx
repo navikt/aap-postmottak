@@ -76,7 +76,7 @@ export const Kategoriser = ({ kategori, readOnly, submit, onKategoriChange, stat
       <form onSubmit={form.handleSubmit((data) => submit(data.kategori, null, null))}>
         <ServerSentEventStatusAlert status={status} />
         <FormField form={form} formField={formFields.kategori} />
-        {kategori && !kategorierSomSkalDigitaliseres.includes(kategori) && <Nesteknapp>Send Inn</Nesteknapp>}
+        {kategori && !kategorierSomSkalDigitaliseres.includes(kategori) && <Nesteknapp>Neste</Nesteknapp>}
       </form>
     </VilkårsKort>
   );

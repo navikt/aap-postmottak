@@ -4,18 +4,22 @@ import { Button, HStack, VStack } from '@navikt/ds-react';
 import { useFieldArray, UseFormReturn } from 'react-hook-form';
 import { PliktDag, PliktkortFormFields } from './DigitaliserMeldekort';
 import { MeldePeriodeInput } from './MeldePeriodeInput';
-import { PlusCircleIcon } from '@navikt/aksel-icons';
+import { PlusCircleFillIcon, PlusCircleIcon, TrashFillIcon, TrashIcon } from '@navikt/aksel-icons';
+import PlusCircleFill from '@navikt/aksel-icons/src/PlusCircleFill';
 
 interface Props {
   form: UseFormReturn<PliktkortFormFields>;
   readOnly: boolean;
 }
 export const MeldePerioder = ({ form, readOnly }: Props) => {
-  const { fields, append } = useFieldArray({ name: 'pliktPerioder', control: form.control });
+  const { fields, append, remove } = useFieldArray({ name: 'pliktPerioder', control: form.control });
 
   function leggTilNyPeriode() {
     const tomUke: PliktDag[] = Array.from(Array(7), () => ({ dato: undefined, arbeidsTimer: 0 }));
     append({ dager: tomUke });
+  }
+  function fjernPeriode(index: number) {
+    remove(index);
   }
   return (
     <VStack gap={'3'}>
@@ -25,18 +29,19 @@ export const MeldePerioder = ({ form, readOnly }: Props) => {
           form={form}
           dagIndex={periodeIndex}
           readOnly={readOnly}
+          slettPeriode={fjernPeriode}
         />
       ))}
       <HStack>
         <Button
-          icon={<PlusCircleIcon />}
+          icon={<PlusCircleFillIcon />}
           size={'small'}
           type={'button'}
           variant={'secondary'}
           onClick={() => leggTilNyPeriode()}
           disabled={readOnly}
         >
-          Legg til ny periode
+          Legg til periode
         </Button>
       </HStack>
     </VStack>

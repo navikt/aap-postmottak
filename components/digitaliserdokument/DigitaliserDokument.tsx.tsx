@@ -9,6 +9,7 @@ import { Behovstype } from '../../lib/form';
 import { useLøsBehovOgGåTilNesteSteg } from '../../lib/hooks/LøsBehovOgGåTilNesteStegHook';
 import { formaterDatoForBackend } from '../../lib/utils/date';
 import { DigitaliserAnnetRelevantDokument } from './annetrelevantdokument/DigitaliserAnnetRelevantDokument';
+import { VStack } from '@navikt/ds-react';
 
 interface Props {
   behandlingsVersjon: number;
@@ -40,7 +41,7 @@ export const DigitaliserDokument = ({ behandlingsVersjon, behandlingsreferanse, 
   }
 
   return (
-    <>
+    <VStack padding={'4'} gap={'4'}>
       <Kategoriser
         submit={handleSubmit}
         kategori={kategori}
@@ -60,6 +61,6 @@ export const DigitaliserDokument = ({ behandlingsVersjon, behandlingsreferanse, 
       {kategori === 'ANNET_RELEVANT_DOKUMENT' && (
         <DigitaliserAnnetRelevantDokument submit={handleSubmit} grunnlag={grunnlag} readOnly={readOnly} />
       )}
-    </>
+    </VStack>
   );
 };

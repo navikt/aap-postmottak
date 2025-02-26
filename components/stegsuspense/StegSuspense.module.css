@@ -1,6 +1,6 @@
 .skeletonHeader {
-  --ac-skeleton-bg: var(--a-orange-100);
+  --ac-skeleton-bg: var(--a-blue-100);
 }
 .skeletonBody {
-  --ac-skeleton-bg: var(--a-orange-50);
+  --ac-skeleton-bg: var(--a-blue-50);
 }
