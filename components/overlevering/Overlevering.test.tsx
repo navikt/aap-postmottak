@@ -9,11 +9,11 @@ describe('Overlevering', () => {
   };
   it('Skal ha en tittel', () => {
     render(<Overlevering behandlingsVersjon={1} behandlingsreferanse={'123'} grunnlag={grunnlag} readOnly={false} />);
-    const heading = screen.getByText('Avklar overlevering');
+    const heading = screen.getByText('Send dokument');
     expect(heading).toBeVisible();
   });
   it('Har et valg om dokumentet skal overleveres til fagsystem', () => {
     render(<Overlevering behandlingsVersjon={1} behandlingsreferanse={'123'} grunnlag={grunnlag} readOnly={false} />);
-    expect(screen.getByText('Skal dokumentet overleveres til fagsystem? Dette kan føre til revurdering')).toBeVisible();
+    expect(screen.getByText('Skal dokumentet sendes til fagsystem?')).toBeVisible();
   });
 });

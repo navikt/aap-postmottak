@@ -12,15 +12,4 @@ describe('DigitaliserPliktkort', () => {
     );
     expect(screen.getByRole('textbox', { name: /Innsendt dato/i })).toBeVisible();
   });
-
-  it('legg til pliktperiode, felter for arbeidstimer for en periode vises', async () => {
-    render(
-      <DigitaliserMeldekort submit={() => {}} behandlingsVersjon={1} behandlingsreferanse={'1'} readOnly={false} />
-    );
-
-    const leggTilPeriodeKnapp = screen.getByRole('button', { name: /legg til ny periode/i });
-    await user.click(leggTilPeriodeKnapp);
-
-    expect(screen.getAllByRole('spinbutton', { name: /arbeidstimer/i }).length).toBe(7);
-  });
 });

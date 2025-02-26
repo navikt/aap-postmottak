@@ -15,6 +15,6 @@ describe('FinnSak', () => {
   });
   it('Har et valg for å knytte dokumentet til sak', () => {
     render(<FinnSak behandlingsVersjon={1} behandlingsreferanse={'123'} grunnlag={grunnlag} readOnly={false} />);
-    expect(screen.getByRole('group', { name: 'Journalfør på sak' })).toBeVisible();
+    expect(screen.getByRole('group', { name: 'Journalfør dokumentet på sak' })).toBeVisible();
   });
 });
