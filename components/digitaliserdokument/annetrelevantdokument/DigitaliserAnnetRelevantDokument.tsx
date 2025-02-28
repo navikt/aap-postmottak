@@ -1,5 +1,5 @@
 import { Submittable } from '../DigitaliserDokument.tsx';
-import { AnnetRelevantDokument, DigitaliseringsGrunnlag, ÅrsakTilBehandling } from '../../../lib/types/types';
+import { AnnetRelevantDokumentV0, DigitaliseringsGrunnlag, ÅrsakTilBehandling, } from '../../../lib/types/types';
 import { FormField, useConfigForm, ValuePair } from '@navikt/aap-felles-react';
 import { VilkårsKort } from '../../vilkårskort/VilkårsKort';
 import { Nesteknapp } from '../../nesteknapp/Nesteknapp';
@@ -15,9 +15,11 @@ interface Props extends Submittable {
 }
 
 function mapTilAnnetRelevantDokumentKontrakt(data: AnnetRelevantDokumentFormFields) {
-  return JSON.stringify({
-    årsakTilBehandling: data.årsak,
-  } as AnnetRelevantDokument);
+  const dokument: AnnetRelevantDokumentV0 = {
+    meldingType: AnnetRelevantDokumentV0,
+    årsakTilBehandling: data.årsak as AnnetRelevantDokumentV0['årsakTilBehandling'],
+  };
+  return JSON.stringify(dokument);
 }
 
 export const DigitaliserAnnetRelevantDokument = ({ grunnlag, readOnly, submit }: Props) => {

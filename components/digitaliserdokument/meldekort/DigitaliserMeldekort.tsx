@@ -5,6 +5,7 @@ import { FormField, useConfigForm } from '@navikt/aap-felles-react';
 import { MeldePerioder } from './MeldePerioder';
 import { Submittable } from '../DigitaliserDokument.tsx';
 import { Nesteknapp } from 'components/nesteknapp/Nesteknapp';
+import { MeldekortV0 } from '../../../lib/types/types';
 
 interface Props extends Submittable {
   behandlingsVersjon: number;
@@ -38,8 +39,22 @@ export const DigitaliserMeldekort = ({ readOnly, submit }: Props) => {
   );
 
   function mapTilPliktkortKontrakt(data: PliktkortFormFields) {
-    return JSON.stringify(data);
+    const dager: MeldekortV0['timerArbeidPerPeriode'] = (data.pliktPerioder ?? [])
+      .flatMap((uke) => uke.dager)
+      .map(({ dato, arbeidsTimer }) => ({
+        fraOgMedDato: dato!.toISOString().slice(0, 10),
+        tilOgMedDato: dato!.toISOString().slice(0, 10),
+        timerArbeid: arbeidsTimer ?? 0,
+      }));
+
+    const meldekort: MeldekortV0 = {
+      meldingType: MeldekortV0,
+      harDuArbeidet: dager.some((dag) => dag.timerArbeid > 0),
+      timerArbeidPerPeriode: dager,
+    };
+    return JSON.stringify(meldekort);
   }
+
   return (
     <VilkårsKort heading={'Meldekort'}>
       <form onSubmit={form.handleSubmit((data) => submit('MELDEKORT', mapTilPliktkortKontrakt(data), null))}>

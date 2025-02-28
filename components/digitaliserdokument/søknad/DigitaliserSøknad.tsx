@@ -38,16 +38,17 @@ interface Props extends Submittable {
 }
 
 function mapTilSøknadKontrakt(data: SøknadFormFields) {
-  return JSON.stringify({
-    student: {
-      erStudent: data.erStudent === JaNeiAvbruttIkkeOppgitt.IKKE_OPPGITT ? null : data.erStudent,
+  const søknad: Søknad = {
+    student: data.erStudent === JaNeiAvbruttIkkeOppgitt.IKKE_OPPGITT ? undefined : {
+      erStudent: data.erStudent,
       kommeTilbake: data.studentKommeTilbake || null,
     },
-    yrkesskade: data.yrkesSkade === JaNeiIkkeOppgitt.IKKE_OPPGITT ? null : data.yrkesSkade,
+    yrkesskade: data.yrkesSkade,
     oppgitteBarn: data.oppgitteBarn?.length
-      ? { identer: data.oppgitteBarn.map((barn) => ({ identifikator: barn.fnr })) }
-      : null,
-  } as Søknad);
+      ? { identer: data.oppgitteBarn.map((barn) => ({ identifikator: barn.fnr! })) }
+      : undefined,
+  };
+  return JSON.stringify(søknad);
 }
 
 export const DigitaliserSøknad = ({ grunnlag, readOnly, submit }: Props) => {

@@ -35,6 +35,18 @@ export type OverleveringGrunnlag =
 
 export type Søknad =
   behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.kontrakt.hendelse.dokumenter.S\u00F8knadV0'];
-export type AnnetRelevantDokument =
-  behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.kontrakt.hendelse.dokumenter.AnnetRelevantDokumentV0'];
-export type ÅrsakTilBehandling = AnnetRelevantDokument['årsakTilBehandling'];
+
+export const MeldekortV0 = "MeldekortV0"
+export type MeldekortV0 =
+  behandlingsflyt['schemas'][`no.nav.aap.behandlingsflyt.kontrakt.hendelse.dokumenter.${typeof MeldekortV0}`] & {
+    meldingType: typeof MeldekortV0; /* Hadde vært fint om dette kom med i kontrakten ... */
+  };
+
+
+export const AnnetRelevantDokumentV0 = "AnnetRelevantDokumentV0"
+export type AnnetRelevantDokumentV0 =
+  behandlingsflyt['schemas'][`no.nav.aap.behandlingsflyt.kontrakt.hendelse.dokumenter.${typeof AnnetRelevantDokumentV0}`] & {
+    meldingType: typeof AnnetRelevantDokumentV0; /* Hadde vært fint om dette kom med i kontrakten ... */
+  };
+
+export type ÅrsakTilBehandling = AnnetRelevantDokumentV0['årsakTilBehandling'];
