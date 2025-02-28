@@ -26,7 +26,7 @@ const kategorier: { label: string; value: KategoriserDokumentKategori }[] = [
   },
   {
     label: 'Meldekort',
-    value: 'PLIKTKORT',
+    value: 'MELDEKORT',
   },
   {
     label: 'Dialogmelding',
@@ -44,7 +44,7 @@ const kategorier: { label: string; value: KategoriserDokumentKategori }[] = [
 
 const kategorierSomSkalDigitaliseres: KategoriserDokumentKategori[] = [
   'SØKNAD',
-  'PLIKTKORT',
+  'MELDEKORT',
   'ANNET_RELEVANT_DOKUMENT',
 ];
 

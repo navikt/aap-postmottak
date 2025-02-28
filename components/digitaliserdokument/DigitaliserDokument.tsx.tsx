@@ -50,7 +50,7 @@ export const DigitaliserDokument = ({ behandlingsVersjon, behandlingsreferanse, 
         status={status}
       />
       {kategori === 'SØKNAD' && <DigitaliserSøknad submit={handleSubmit} grunnlag={grunnlag} readOnly={readOnly} />}
-      {kategori === 'PLIKTKORT' && (
+      {kategori === 'MELDEKORT' && (
         <DigitaliserMeldekort
           submit={handleSubmit}
           behandlingsVersjon={behandlingsVersjon}

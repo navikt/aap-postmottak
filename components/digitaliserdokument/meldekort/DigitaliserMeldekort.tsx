@@ -42,7 +42,7 @@ export const DigitaliserMeldekort = ({ readOnly, submit }: Props) => {
   }
   return (
     <VilkårsKort heading={'Meldekort'}>
-      <form onSubmit={form.handleSubmit((data) => submit('PLIKTKORT', mapTilPliktkortKontrakt(data), null))}>
+      <form onSubmit={form.handleSubmit((data) => submit('MELDEKORT', mapTilPliktkortKontrakt(data), null))}>
         <FormField form={form} formField={formFields.innsendtDato} />
         <MeldePerioder form={form} readOnly={readOnly} />
         <Nesteknapp>Neste</Nesteknapp>
