@@ -21,10 +21,6 @@ interface FormFields {
 
 const kategorier: { label: string; value: KategoriserDokumentKategori }[] = [
   {
-    label: 'Aktivitetskort',
-    value: 'AKTIVITETSKORT',
-  },
-  {
     label: 'Søknad',
     value: 'SØKNAD',
   },
@@ -39,10 +35,6 @@ const kategorier: { label: string; value: KategoriserDokumentKategori }[] = [
   {
     label: 'Legeerklæring',
     value: 'LEGEERKLÆRING',
-  },
-  {
-    label: 'Legeerklæring avvist',
-    value: 'LEGEERKLÆRING_AVVIST',
   },
   {
     label: 'Annet relevant dokument',
