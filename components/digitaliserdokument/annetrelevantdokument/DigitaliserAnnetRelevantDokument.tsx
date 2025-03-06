@@ -37,6 +37,7 @@ export const DigitaliserAnnetRelevantDokument = ({ grunnlag, readOnly, submit }:
     { label: 'Revurder medlemskap', value: 'REVURDER_MEDLEMSKAP' },
     { label: 'Revurder yrkesskade', value: 'REVURDER_YRKESSKADE' },
     { label: 'Revurder beregning', value: 'REVURDER_BEREGNING' },
+    { label: 'Revurder lovvalg', value: 'REVURDER_LOVVALG' },
   ];
 
   const { form, formFields } = useConfigForm<AnnetRelevantDokumentFormFields>(
